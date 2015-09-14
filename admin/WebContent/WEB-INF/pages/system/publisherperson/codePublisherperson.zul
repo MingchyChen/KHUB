@@ -1,0 +1,79 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="ermCodePublisherperson" apply="com.claridy.admin.composer.ErmCodePublisherpersonListComposer">
+		<vlayout width="300px">
+			<hlayout>
+				<label hflex="2" value="${labels.ermCodePublisherperson.publisherId }:"></label>
+				<combobox hflex="3" id="publisherIdBox" readonly="true"/>
+			</hlayout>
+			<hlayout>
+				<label  hflex="2" value="${labels.ermCodePublisherperson.personname }:"></label>
+				<textbox hflex="3" id="personnameBox" />
+			</hlayout>
+		</vlayout>
+		
+		<hbox>
+			<!-- 查詢 -->
+			<button id="pagSearchBtn" label="${labels.search}" />
+			<button label="${labels.showAll}" id="showAllBtn"></button>
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		
+		<listbox id="publisherLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.publisherId}" sort="auto(publisherId)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.personname}" sort="auto(personName)"></listheader>
+				<listheader label="email" sort="auto(mail)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.telephone}" sort="auto(telephone)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.title}" sort="auto(title)"></listheader>
+				<listheader label="${labels.creator}" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.createdate }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.publisherId }"></listcell>
+					<listcell label="${each.personName }"></listcell>
+					<listcell label="${each.mail }"></listcell>
+					<listcell label="${each.telephone }"></listcell>
+					<listcell label="${each.title }"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+						<button label="${labels.changeRecord }" target="${each.publisherId},${each.personName}">
+							<attribute name="onClick">
+								<![CDATA[
+										String[] str=self.getTarget().split(",");
+										Map arg = new HashMap();
+										arg.put("nlocate", "ermCodePublisherperson_" + str[0]+str[1]);
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.publisherId},${each.personName}">
+							<attribute name="onClick">
+								<![CDATA[
+										String[] str=self.getTarget().split(",");
+										Map params = new HashMap();
+										params.put("publisherId",  str[0]);
+										params.put("personName",  str[1]);
+										params.put("currentPage",String.valueOf(publisherLix.getActivePage()));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/publisherperson/codePublisherpersonEdit.zul", ermCodePublisherperson,
+												params);
+										newAdd.doModal();
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

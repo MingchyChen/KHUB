@@ -1,0 +1,5 @@
+<vlayout>
+	<html style="font-size: 13px;">${footerinfo}</html>
+	<!-- <label value="維護廠商：艾迪訊科技  資訊服務窗口：吳小姐或鍾小姐，電話：02-6606-0588 #152 或 #150； Email : cs@csr.transtech.com.tw"/>
+	<label value="行政院農業委員會版權所有©2014 COA All Rights Reserved 以及最佳瀏覽狀態為IE7.0 以上‧Firefox 1.0 以上‧1024*768 以上解析度最佳" /> -->
+</vlayout>

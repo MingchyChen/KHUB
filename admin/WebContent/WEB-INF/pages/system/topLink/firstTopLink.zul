@@ -1,0 +1,83 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window apply="com.claridy.admin.composer.FirstTopListComposer" id="firstTopLink">
+	<hbox align="center">
+			<!-- 關鍵字 -->
+			<label value="${labels.firstTopLink.ljmc}:"/>
+			<textbox id="linkName" />
+	</hbox>
+	<vlayout width="350px">
+		<hbox align="center">
+				<!-- 查詢，新增，修改，刪除 -->
+				<!-- 搜尋 -->
+				<button id="pagSearchBtn" label="${labels.search}" />
+				<button id="addBtn" label="${labels.add}" />
+				<!-- <button id="editBtn" label="${labels.edit}" /> -->
+				<button id="deleteBtn" label="${labels.del}" />
+				<button id="showAll" label="${labels.firstTopLink.xsqb}"></button>
+			 	<button id="open" label="${labels.openZt}" />
+				<button id="close" label="${labels.closeZt}"></button> 
+		</hbox>
+	</vlayout>
+	
+	<listbox id="webRelLinklbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<!-- 連接名稱 -->
+				<listheader label="${labels.firstTopLink.ljmc} " sort="auto(nameZhTw)" ></listheader>
+				<!-- 狀態 -->
+				<listheader label="${labels.firstTopLink.zt}" sort="auto(isDisplay)"></listheader>
+				<!-- 排序-->
+				<listheader label="${labels.firstTopLink.sort}" sort="auto(sortNum)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.firstTopLink.dataowner}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動紀錄 -->
+				<listheader label="${labels.firstTopLink.changeRecord}" ></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			 <template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.nameZhTw}"></listcell>
+					<listcell label="${labels.firstTopLink.open }" if="${each.isDisplay==1}"></listcell>
+					<listcell label="${labels.firstTopLink.close }" if="${each.isDisplay==0}"></listcell>
+					<listcell label="${each.sortNum }"></listcell>
+					<listcell label="${each.webEmployee.employeeName}"></listcell>
+					<listcell label="${c:formatDate(each.createdate,'yyyy-MM-dd HH:mm:ss') }">
+						<button label="${labels.changeRecord} "
+							target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "webrellink_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					
+					<listcell >
+						<button label="${labels.edit}" target="${each.uuid}">
+						 <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("uuid",  self.getTarget());
+							int currentPage = webRelLinklbx.getActivePage();
+							params.put("currentPage",String.valueOf(currentPage));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/topLink/firstTopLinkEdit.zul", firstTopLink,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						     </button>
+     				 
+					</listcell> 
+				</listitem>
+			</template> 
+		</listbox>
+</window>
+</zk>

@@ -1,0 +1,138 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webCooperationWin" apply="com.claridy.admin.composer.WebCooperationListComposer">
+	<vlayout width="325px">
+		<!-- 申請單位 -->
+		<hlayout>
+			<label hflex="1" value="${labels.webErwSource.applyOrg }"></label>
+			<combobox hflex="3" id="applyOrgCBbox" readonly="true"></combobox>
+		</hlayout>
+		<!-- 受理單位 -->
+		<hlayout>
+			<label hflex="1" value="${labels.webErwSource.acceptOrg }"></label>
+			<combobox hflex="3" id="acceptOrgCBbox" readonly="true"></combobox>
+		</hlayout>
+		<!-- 申請案件單號 -->
+		<hlayout>
+			<label hflex="1" value="${labels.webErwSource.applyOdd }"></label>
+			<textbox hflex="3" id="applyOddTbox" value=""></textbox>
+		</hlayout>
+		<!-- 申請人 -->
+		<hlayout>
+			<label hflex="1" value="${labels.webErwSource.apployPeople }"></label>
+			<textbox hflex="3" id="applyPeopleTbox" value=""></textbox>
+		</hlayout>
+		<!-- 回復狀態 -->
+		<hlayout>
+			<label hflex="1" value="${labels.webErwSource.retStatus }"></label>
+			<combobox hflex="3" id="retStatusCBbox" readonly="true">
+				<comboitem value="-1" label="${labels.select }" ></comboitem>
+				<comboitem value="0" label="${labels.webCooperation.statusNoDispose }"></comboitem>
+				<comboitem value="1" label="${labels.webCooperation.statusOK }"></comboitem>
+				<comboitem value="2" label="${labels.webCooperation.statusNO }"></comboitem>
+			</combobox>
+		</hlayout>
+		<!-- 申請日期 -->
+		<hlayout>
+			<label hflex="1" value="${labels.webErwSource.applyDate }"></label>
+			<datebox format="yyyy-MM-dd" id="startDate"></datebox><label value="～"></label>
+			<datebox format="yyyy-MM-dd" id="endDate"></datebox>
+		</hlayout>
+		<!-- 查詢，查詢全部 -->
+	</vlayout>
+	<hbox>
+		<button id="searchBtn" label="${labels.search }"></button>
+		<button id="showAll" label="${labels.showAll }"></button>
+		<button label="${labels.ermResReport.export }" id="execleBtn"></button>
+	</hbox>
+	
+	<listbox id="webCooperationLix" checkmark="true" multiple="true" mold="paging" pageSize="10" pagingPosition="both">
+		<listhead>
+			<listheader  align="center" width="45px"></listheader>
+			<listheader label="${labels.webErwSource.applyOdd }" sort="auto(uuid)"></listheader>
+			<listheader label="${labels.webErwSource.applyOrg }" sort="auto(applyAccount.parentOrgName)"></listheader>
+			<listheader label="${labels.webErwSource.applyTitle }" sort="auto(atitle)"></listheader>
+			<listheader label="${labels.webErwSource.apployPeople }" sort="auto(applyAccount.nameZhTw)"></listheader>
+			<listheader label="${labels.webErwSource.applyDate }" sort="auto(createDate)"></listheader>
+			<listheader label="${labels.webErwSource.acceptOrg }" sort="auto(acceptEmployee.parentWebOrg.orgName)"></listheader>
+			<listheader label="${labels.webErwSource.retStatus }" sort="auto(status)"></listheader>
+			<listheader label="${labels.createdate }"></listheader>
+			<listheader width="160px"></listheader>
+		</listhead>
+
+		<template name="model">
+			<listitem>
+				<listcell></listcell>
+				<listcell label="${each.uuid }"></listcell>
+				<listcell label="${each.applyAccount.parentOrgName }"></listcell>
+				<listcell label="${each.atitle }"></listcell>
+				<listcell label="${each.applyAccount.nameZhTw }"></listcell>
+				<listcell label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss'))}"></listcell>
+				<listcell label="${each.acceptEmployee.parentWebOrg.orgName }"></listcell>
+				<listcell label="${labels.webCooperation.statusNoDispose }" if="${each.status==0 }"></listcell>
+				<listcell label="${labels.webCooperation.statusOK }" if="${each.status==1 }"></listcell>
+				<listcell label="${labels.webCooperation.statusNO }" if="${each.status==2 }"></listcell>
+				<listcell label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss'))}" >
+						<button label="${labels.changeRecord }" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "webilc_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+				</listcell>
+				<listcell>
+					<button label="${labels.webCooperation.see }" target="${each.uuid}">
+						<attribute name="onClick" >
+							<![CDATA[
+								Map arg=new HashMap();
+								arg.put("uuid",self.getTarget());
+								arg.put("webctype","0");
+								Window see=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webCooperation/webCooperationSee.zul",null,arg);
+								see.doModal();
+							]]>
+						</attribute>
+						<attribute name="onClick" if="${each.status==2 }">
+							<![CDATA[
+								Map arg=new HashMap();
+								arg.put("uuid",self.getTarget());
+								arg.put("webctype","2");
+								Window see=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webCooperation/webCooperationSee.zul",null,arg);
+								see.doModal();
+							]]>
+						</attribute>
+					</button>
+					<button if="${each.status==0 and each.acceptEmployee.employeesn eq sessionScope.webEmployee.employeesn }" label="${labels.webCooperation.statusOK }" target="${each.uuid }">
+						<attribute name="onClick">
+							<![CDATA[
+								Map arg=new HashMap();
+								arg.put("uuid",self.getTarget());
+								arg.put("webctype","0");
+								arg.put("currpage",String.valueOf(webCooperationLix.getActivePage()));
+								Window isOk=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webCooperation/webCooperationPass.zul",webCooperationWin,arg);
+								isOk.doModal();
+							]]>
+						</attribute>
+					</button>
+					
+					<button if="${each.status==0 and each.acceptEmployee.employeesn eq sessionScope.webEmployee.employeesn }" label="${labels.webCooperation.statusNO }" target="${each.uuid }">
+						<attribute name="onClick">
+							<![CDATA[
+								Map arg=new HashMap();
+								arg.put("uuid",self.getTarget());
+								arg.put("webctype","0");
+								arg.put("currpage",String.valueOf(webCooperationLix.getActivePage()));
+								Window isNo=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webCooperation/webCooperationReject.zul",webCooperationWin,arg);
+								isNo.doModal();
+							]]>
+						</attribute>
+					</button>
+				</listcell>
+			</listitem>
+		</template>
+	</listbox>
+</window>
+</zk>

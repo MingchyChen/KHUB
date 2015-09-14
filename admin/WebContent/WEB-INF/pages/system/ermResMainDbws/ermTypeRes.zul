@@ -1,0 +1,192 @@
+<?page id="resourcesDbws" title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>        
+<window id="ermTypeResWin" apply="com.claridy.admin.composer.ErmTypeResListComposer">
+		<vlayout width="500px">
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermTypeRes.resName}"/><!-- 資源名稱 -->
+				</div>
+				<textbox id="resNameBox" readonly="true" width="500px"/>
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermTypeRes.resId}"/><!-- 資源編號 -->
+				</div>
+				<textbox id="resIdBox" readonly="true" width="500px"/>
+				<textbox id="dbIdBox" visible="false" width="500px"/>
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermTypeRes.resTitle}"/><!-- 資源題名 -->
+				</div>
+				<textbox id="titleBox" readonly="true" width="500px"/>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 列表-->
+			<button label="${labels.ermTypeRes.resList}" id="listBtn"/>
+		</hbox>
+		<html>
+			<hr/>
+		</html>
+		<label value="${labels.ermTypeRes.relTitle}" />
+		<separator/>
+		<!-- 新增-->
+		<button label="${labels.add}" id="relTitleAddBtn"/>
+		<!-- 刪除-->
+		<button id="delRelTitleBtn" label="${labels.del}" />
+		<listbox id="relTitleLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="5" pagingPosition="both" width="650px">
+			<listhead>
+				<listheader width="40px"/>
+				<listheader label="${labels.edit}" align="center" width="60px"/>
+				<!-- 相關題名編號 -->
+				<listheader width="250px" label="${labels.ermTypeRes.relatedTitleId}"/>
+				<!-- 相關題名 -->
+				<listheader width="300px" label="${labels.ermTypeRes.relatedTItleName}"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell>
+						<!-- 編輯 -->
+						<button label="${labels.edit}" target="${each.resourcesId},${each.relatedTitleId}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("resTitleId",  self.getTarget());
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermResMainDbws/relTitleEdit.zul", ermTypeResWin,map);
+										newAdd.doModal();
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell label="${each.relatedTitleId}"></listcell>
+					<listcell label="${each.name}"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+		<html>
+			<hr/>
+		</html>
+		<label value="${labels.ermTypeRes.subjectType}" />
+		<separator/>
+		<!-- 新增-->
+		<button label="${labels.add}" id="subjectAddBtn"/>
+		<!-- 刪除-->
+		<button id="delSubjectBtn" label="${labels.del}" />
+		<listbox id="subjectLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="5" pagingPosition="both" width="490px">
+			<listhead>
+				<listheader width="40px"/>
+				<!-- 主題編號 -->
+				<listheader width="250px" label="${labels.ermTypeRes.subjectId}"/>
+				<!-- 主題 -->
+				<listheader width="200px" label="${labels.ermTypeRes.subjectName}"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.subjectId}"></listcell>
+					<listcell label="${each.subjectName}"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+		<div id="divDbtype">
+			<html>
+			<hr/>
+			</html>
+			<label value="${labels.ermTypeRes.dbtype}" />
+			<separator/>
+			<!-- 新增-->
+			<button label="${labels.add}" id="dbtypeAddBtn"/>
+			<!-- 刪除-->
+			<button id="delDbtypeBtn" label="${labels.del}" />
+			<listbox id="dbtypeLix" checkmark="true" multiple="true"
+				mold="paging" pageSize="5" pagingPosition="both" width="490px">
+				<listhead>
+					<listheader width="40px"/>
+					<!-- 類型編號 -->
+					<listheader width="250px" label="${labels.ermTypeRes.dbtypeId}"/>
+					<!-- 類型 -->
+					<listheader width="200px" label="${labels.ermTypeRes.dbtypeName}"/>
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell></listcell>
+						<listcell label="${each.dbtypeId}"></listcell>
+						<listcell label="${each.dbtypeName}"></listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+		<html>
+			<hr/>
+		</html>
+		<!-- 電子資源管理_採購細節 -->
+		<label value="${labels.ermTypeRes.odetails}" />
+		<separator/>
+		<!-- 新增-->
+		<button label="${labels.add}" id="odetailsAddBtn"/>
+		<!-- 刪除-->
+		<button id="delOdetailsBtn" label="${labels.del}" />
+		<listbox id="odetailsLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="5" pagingPosition="both" width="650px">
+			<listhead>
+				<listheader width="40px"/>
+				<listheader label="${labels.edit}" align="center" width="60px"/>
+				<!-- 採購年度 -->
+				<listheader width="250px" label="${labels.ermTypeRes.odetailsYear}"/>
+				<!-- 採購金額 -->
+				<listheader width="300px" label="${labels.ermTypeRes.odetailsMoney}"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell>
+						<!-- 編輯 -->
+						<button label="${labels.edit}" target="${each.resourcesId},${each.year}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("resYearId",  self.getTarget());
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermResMainDbws/odetailsEdit.zul", ermTypeResWin,map);
+										newAdd.doModal();
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell label="${each.year}"></listcell>
+					<listcell label="${each.money}"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+		<!-- 電子資源管理_推薦資源單位 -->
+		<label value="${labels.ermTypeRes.recomResOrg}" />
+		<separator/>
+		<label id="dbMessage" />
+		<separator/>
+		<!-- 新增-->
+		<button label="${labels.add}" id="recommonAddBtn"/>
+		<!-- 刪除-->
+		<button id="delRecommonBtn" label="${labels.del}" />
+		<listbox id="recommonLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="5" pagingPosition="both" width="650px">
+			<listhead>
+				<listheader width="40px"/>
+				<!-- 單位名稱 -->
+				<listheader label="${labels.accountApplyNumber.unitName}"/>
+				<!-- 所屬資料庫 -->
+				<listheader width="180px" id="dbNameLhd"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.orgName}"/>
+					<listcell label="${each.dbName}"/>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

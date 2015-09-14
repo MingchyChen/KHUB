@@ -1,0 +1,125 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webCooperationPassWin" apply="com.claridy.admin.composer.WebCooperationComposer" width="66%" 
+title="${labels.webCooperation.passTitle }" border="normal" position="center,center" closable="true">
+	<vlayout>
+		<grid>
+			<rows>
+				<row>
+				<!-- 申請日期 -->
+					<cell width="20%"><label hflex="2" value="${labels.webErwSource.applyDate }"></label></cell>
+					<cell width="50%"><label hflex="3" id="applyDateLbl"></label></cell>
+				</row>
+				<!-- 申請人姓名 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.accNameBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="applyName"></label></cell>
+				</row>
+				<!-- 申請單位 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webErwSource.applyOrg }"></label></cell>
+					<cell width="50%"><label hflex="3" id="applyOrgNameLbl"></label></cell>
+				</row>
+				<!-- 期刊名 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.jourNameBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="titleZhTwLbl"></label></cell>
+				</row>
+				<!-- 篇名 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.titleBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="atitleLbl"></label></cell>
+				</row>
+				<!-- 作者 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.authorBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="pidLbl"></label></cell>
+				</row>
+				<!-- ISSN -->
+				<row>
+					<cell width="20%"><label hflex="2" value="ISSN:"></label></cell>
+					<cell width="50%"><label hflex="3" id="issnLbl"></label></cell>
+				</row>
+				<!-- 卷號 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.volumeNumBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="volumeLbl"></label></cell>
+				</row>
+				<!-- 期號 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.issueNumBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="issueLbl"></label></cell>
+				</row>
+				<!-- 頁面起 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.pageSBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="spageLbl"></label></cell>
+				</row>
+				<!-- 頁面迄 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.pageEBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="epageLbl"></label></cell>
+				</row>
+				<!-- DOI -->
+				<row>
+					<cell width="20%"><label hflex="2" value="DOI:"></label></cell>
+					<cell width="50%"><label hflex="3" id="doiLbl"></label></cell>
+				</row>
+				<!-- 出版日期 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webNoticeCoopEdit.pubDateBtn }"></label></cell>
+					<cell width="50%"><label hflex="3" id="publishDateLbl"></label></cell>
+				</row>
+				<!-- 受理單位處理者-->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webCooperation.AcceptEmployee }"></label></cell>
+					<cell width="50%"><label hflex="3" id="acceptEmployeeLbl"></label></cell>
+				</row>
+				<!-- 回復日期 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webCooperation.replyDate }"></label></cell>
+					<cell width="50%"><label hflex="3" id="replyDateLbl"></label></cell>
+				</row>
+				<!-- 附件 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webCooperation.uploadFile }"></label></cell>
+					<cell width="50%">
+						<label hflex="3" id="uploadFileLbl" visible="false"></label>
+						<textbox hflex="3" id="uploadFiletbox"></textbox>
+						<button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" ></button>
+						<button id="deleeNewsFile" label="${labels.delFile }" visible="false"></button>
+					</cell>
+				</row>
+				<!-- 下載資料庫 -->
+				<row>
+					<cell width="20%"><label hflex="2" value="${labels.webCooperation.nameZhTw }"></label></cell>
+					<cell width="50%"><label hflex="3" id="downoadDbidLbl" visible="false"></label>
+						<combobox hflex="3" id="downoadDbidCbox" readonly="true"></combobox>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+	<hbox>
+		<textbox visible="false" id="uuidTBox"></textbox>
+		<button label="${labels.webCooperation.seeEmail }" id="seeNOEmailBtn">
+			<attribute name="onClick">
+					<![CDATA[
+						Map arg=new HashMap();
+						arg.put("uuid",uuidTBox.getValue());
+						arg.put("webctype","1");
+						if(uploadFiletbox.getValue()!=null&&!uploadFiletbox.getValue().equals("")){
+							Window see=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webCooperation/webCooperationSee.zul",null,arg);
+							see.doModal();
+						}else{
+							com.claridy.common.util.ZkUtils.showExclamation(org.zkoss.util.resource.Labels.getLabel("webCooperation.selectFile"),org.zkoss.util.resource.Labels.getLabel("info"));
+						}
+						
+					]]>
+			</attribute>
+		</button>
+		<button label="${labels.webCooperation.out }" id="outBtn"></button>
+		<button label="${labels.cancel }" onClick="webCooperationPassWin.detach();"></button>
+	</hbox>
+</window>
+</zk>

@@ -1,0 +1,71 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="firstTopLinkAddWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.FirstTopComposer">
+		
+	<vlayout>
+			<grid>
+				<rows>
+					<row>
+					<!-- 鏈接名稱 -->
+						<label value="${labels.firstTopLink.ljmc}" style="color:red;"></label>
+						<textbox id="tboxNameZhTwtxt" value=""  width="80%" maxlength="50"/>
+					</row>
+					<!-- 是否開啟 -->
+					<row>
+						<label value="${labels.firstTopLink.sfkq}" ></label>
+						<radiogroup id="isOpenRdo"> 
+							<radio label="${labels.firstTopLink.close}" value="0" hflex="1"></radio>
+							<radio label="${labels.firstTopLink.open}" value="1" hflex="1"></radio>
+						</radiogroup>
+					</row>
+					<!-- 鏈接方式 -->
+					<row>
+						<label value="${labels.firstTopLink.ljfs}"></label>
+						<radiogroup id="linkTypeRdo"> 
+							<radio label="${labels.firstTopLink.bykq}" value="0" hflex="1"></radio>
+							<radio label="${labels.firstTopLink.kxsc}" value="1" hflex="1"></radio>
+						</radiogroup>
+					</row>
+					<!-- 選單樣式 -->
+					<row>
+						<label value="${labels.firstTopLink.xdys}"></label>
+						<radiogroup id="menuTypeRdo"> 
+							<radio label="${labels.firstTopLink.sflj}" value="1" hflex="1"></radio>
+							<radio label="${labels.firstTopLink.xd}" value="2" hflex="1"></radio>
+						</radiogroup>
+					</row>
+					<!-- 是否使用EZProxy -->
+					<row>
+						<label value="${labels.ermCodeDb.isUserEz}"></label>
+						<radiogroup id="isEzproxyRdo">
+							<radio label="${labels.no}" value="0" hflex="1" checked="true"></radio>
+							<radio label="${labels.yes}" value="1" hflex="1"></radio>
+						</radiogroup>
+					</row>
+					<row>
+						<!-- 排序 -->
+						<label value="${labels.firstTopLink.sort}"></label>
+						<intbox id="sortIxt" width="80%" maxlength="50"/>
+					</row>
+					<row>
+						<!-- 鏈接網址 -->
+						<label value="${labels.firstTopLink.ljwz}" style="color:red"></label>
+						<textbox id="linkUrltxt" maxlength="50" value="" width="80%" />
+					</row>
+					<row>
+						<!-- 點擊數 -->
+						<label value="${labels.firstTopLink.djs}" ></label>
+						<intbox maxlength="50" id="clickNumIxt" width="80%"/>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.save}" id="saveBtn" onClick="" />
+				<button label="${labels.cancel}" id="cancelBtn"
+					onClick="firstTopLinkAddWin.detach();" />
+			</div>
+		</vlayout>
+</window>
+</zk>

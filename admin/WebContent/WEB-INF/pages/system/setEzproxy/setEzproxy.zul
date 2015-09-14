@@ -1,0 +1,40 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:x="xhtml">
+<style src="/css/basic.css" />
+<style src="/css/zk.css" />
+ <script type="text/javascript">
+ function loadData(url,user,pwd){
+ document.getElementById("url").value=url;
+ document.getElementById("user").value=user;
+ document.getElementById("pass").value=pwd;
+ }
+ 
+function restart(p){
+document.form0.action=p;
+document.form0.submit();
+}
+
+</script>
+<window title="" id="resManageWindow" border="none" apply="com.claridy.admin.composer.SystemEzproxyComposer">
+<hbox>
+<!-- 更新按鈕 -->
+<button id="update_button" label="${labels.update}"/>
+<!-- Ezproxy restart按鈕 -->
+<button id="ezproxy_restart_button" label="Ezproxy Restart"/>
+</hbox>
+<div style="height: 300px;width: 730px;margin-top: 30px;">
+<label style="color:red" value="${labels.setEzproxy.notice}"/>
+<textbox id="txtContent" rows="18" width="730px"/>
+</div>
+<!-- Ezproxy form -->
+<x:form action="" name="form0"  method="post" target="_blank">
+<x:input type="hidden" id="url" name="url" value="" />
+<x:input type="hidden" id="user" name="user" value="" />
+<x:input type="hidden" id="pass" name="pass" value=""/>
+</x:form>
+<x:form action="/restart" name="form1"  method="post">
+<x:input type="hidden" name="pid" value=""/>
+<x:input type="hidden" name="confirm" value="restart" size="8" maxlength="8"/> 
+</x:form>
+</window>
+</zk>

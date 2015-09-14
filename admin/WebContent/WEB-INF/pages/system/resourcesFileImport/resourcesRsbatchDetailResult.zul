@@ -1,0 +1,18 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window border="none" apply="com.claridy.admin.composer.ResourcesRsbatchDetailResult">
+<label id="pagePath"></label>
+<separator height="10px"/>
+<hbox>
+<label id="warn1"></label><label id="sucessNumber" style="color:red;"></label><label id="warn2"></label>，<label id="existResources_label" style="color:red;"></label><label id="warn3"></label>，<label id="noExistResources_label" style="color:red;"></label><label id="warn4"></label>
+</hbox>
+<separator height="10px"/>
+<listbox id="isExist_list"></listbox>
+<separator height="10px"/>
+<listbox id="detailData"></listbox>
+<vbox>
+<button id="insertDB"></button>
+<button id="export"></button>
+</vbox>
+</window>
+</zk>

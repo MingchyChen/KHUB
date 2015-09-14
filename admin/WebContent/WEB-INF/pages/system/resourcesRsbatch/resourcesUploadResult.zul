@@ -1,0 +1,20 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title=""  apply="com.claridy.admin.composer.ResourceUploadResultComposer">
+<label id="path_label"></label><!-- 頁面路徑 -->
+<separator height="10px"/>
+<hbox>
+<label id="warn1"></label><label id="allResources_label"></label><label id="warn2"></label>，<label id="existResources_label"></label><label id="warn3"></label>，<label id="noExistResources_label"></label><label id="warn4"></label>
+</hbox>
+<separator height="10px"/>
+<hbox>
+<label id="warn5"></label>:<combobox id="resources_cobobox" readonly="true"></combobox>
+</hbox>
+<grid id="resources_grid" ></grid><!-- 存在未存在的數據 -->
+<separator height="10px"/>
+<hbox>
+<button id="replace_button"></button><!-- 取代 -->
+<button id="insert_button"></button><!-- 存為新紀錄 -->
+</hbox>
+</window>
+</zk>

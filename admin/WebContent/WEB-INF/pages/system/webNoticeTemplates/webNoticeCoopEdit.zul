@@ -1,0 +1,127 @@
+<?page id="noticeEditPage" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>  
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<window id="editWebNoticeTempWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebNoticeTempComposer">
+		<script type="text/JavaScript"> 
+		<![CDATA[       
+			function setText(text)  
+			{ 
+				for ( var i in CKEDITOR.instances) {
+					CKEDITOR.instances[i].insertText(text);
+				}
+			} 
+		]]> 
+		</script>
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+							<!-- 通知單名稱 -->
+							<label value="${labels.webNoticeTemplatesEdit.nameZhTw}" style="color:red;"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="nameZhTw" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 通知單狀態 -->
+							<label value="${labels.webNoticeTemplatesEdit.isOpen}" style="color:red"></label>
+						</cell>
+						<cell width="80%">
+							<radiogroup id="isOpen" width="80%">
+								<radio label="開啟" value="1"/>
+								<radio label="關閉" value="0"/>
+							</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 通知單主題 -->
+							<label value="${labels.webNoticeTemplatesEdit.tboxSubject}" style="color:red"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="tboxSubject" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 備註 -->
+							<label value="${labels.webNoticeTemplatesEdit.remarks}"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="remarks" width="60%" rows="7" />
+						</cell>
+					</row>
+					<row width="100%">
+						<cell width="20%">
+							<!-- 人員資訊 -->
+							<label value="${labels.webNoticeCoopEdit.person}" style="color:red"></label>
+						</cell> 
+						<cell width="80%">
+							<html>
+								<button id="accNameBtn" style="width:100px" onclick="setText('[accname]')">${labels.webNoticeCoopEdit.accNameBtn}</button>
+								<button id="accEmailBtn" style="width:110px" onclick="setText('[accemail]')">${labels.webNoticeCoopEdit.accEmailBtn}</button>
+								<button id="accOrgBtn" style="width:100px" onclick="setText('[accorgname]')">${labels.webNoticeCoopEdit.accOrgBtn}</button>
+								<br/>
+								<button id="empNameBtn" style="width:100px" onclick="setText('[empname]')">${labels.webNoticeCoopEdit.empNameBtn}</button>
+								<button id="empEmailBtn" style="width:110px" onclick="setText('[empemail]')">${labels.webNoticeCoopEdit.empEmailBtn}</button>
+								<button id="empOrgBtn" style="width:100px" onclick="setText('[emporgname]')">${labels.webNoticeCoopEdit.empOrgBtn}</button>
+								<br/>
+								<button id="applyOrgManageBtn" style="width:120px" onclick="setText('[applyorgmanage]')">${labels.webNoticeCoopEdit.applyOrgManageBtn}</button>
+							</html>
+						</cell>
+					</row>
+					<row width="100%">
+						<cell width="20%">
+							<!-- 電子資料庫資訊 -->
+							<label value="${labels.webNoticeCoopEdit.resources}" style="color:red"></label>
+						</cell> 
+						<cell width="80%">
+							<html>
+								<button id="jourNameBtn" style="width:100px" onclick="setText('[journal]')">${labels.webNoticeCoopEdit.jourNameBtn}</button>
+								<button id="issnBtn" style="width:110px" onclick="setText('[issn]')">${labels.webNoticeCoopEdit.issnBtn}</button>
+								<button id="pubDateBtn" style="width:100px" onclick="setText('[publisherdate]')">${labels.webNoticeCoopEdit.pubDateBtn}</button>
+								<br/>
+								<button id="volumeNumBtn" style="width:100px" onclick="setText('[volume]')">${labels.webNoticeCoopEdit.volumeNumBtn}</button>
+								<button id="issueNumBtn" style="width:110px" onclick="setText('[issue]')">${labels.webNoticeCoopEdit.issueNumBtn}</button>
+								<button id="pageSBtn" style="width:100px" onclick="setText('[pagestart]')">${labels.webNoticeCoopEdit.pageSBtn}</button>
+								<br/>
+								<button id="pageEBtn" style="width:100px" onclick="setText('[pageend]')">${labels.webNoticeCoopEdit.pageEBtn}</button>
+								<button id="titleBtn" style="width:110px" onclick="setText('[title]')">${labels.webNoticeCoopEdit.titleBtn}</button>
+								<button id="authorBtn" style="width:100px" onclick="setText('[author]')">${labels.webNoticeCoopEdit.authorBtn}</button>
+								<br/>
+								<button id="doiBtn" style="width:100px" onclick="setText('[doi]')">DOI</button>
+								<button id="applyBtn" style="width:110px" onclick="setText('[applydate]')">${labels.webNoticeCoopEdit.applyDate}</button>
+								<button id="checkBtn" style="width:100px" onclick="setText('[checkdate]')">${labels.webNoticeCoopEdit.checkDate}</button>
+								<br/>
+								<button id="rejectReasonBtn" style="width:100px" onclick="setText('[rejectreason]')">${labels.webNoticeCoopEdit.rejectReasonBtn}</button>
+							</html>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%">
+							<!-- E-Mail通知單內容 -->
+							<label value="${labels.webNoticeTemplatesEdit.emailCon}" style="color:red"></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="98%" colspan="2">
+							<ckeditor id="emailCon" width="850"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+
+			<div align="center">
+				<!-- 確定存檔 -->
+				<button id="updBtn" label="${labels.webNoticeTemplatesEdit.updBtn}"/>
+				<!-- 取消編輯，回列表檢視模式 -->
+				<button id="cancelBtn" label="${labels.webNoticeTemplatesEdit.cancelBtn} " onClick="editWebNoticeTempWin.detach();"/>
+			</div>
+		</vlayout>
+	</window>
+</zk>

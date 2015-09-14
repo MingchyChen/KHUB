@@ -1,0 +1,78 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="webOrgWin" apply="com.claridy.admin.composer.WebOrgListComposer">
+		<vlayout width="600px">
+			<label value="${labels.webOrg.weborgLix.searchName}"/>
+			<hlayout>
+				<label value="${labels.webOrg.weborgLix.orgName}" />:
+				<textbox width="200px" id="orgNameBox"/>
+			</hlayout>
+			<hlayout>
+				<label value="${labels.webOrg.weborgLix.parentOrgName}" />:
+				<combobox id="orgParentNameBox" readonly="true"/>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 搜尋 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+			<!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="weborgLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<!-- 單位名稱 -->
+				<listheader label="${labels.webOrg.weborgLix.orgName}" sort="auto(orgName)"></listheader>
+				<!-- 上層單位 -->
+				<listheader label="${labels.webOrg.weborgLix.parentOrgName}" sort="auto(orgIdParent)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.dataowner}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動記錄 -->
+				<listheader label="${labels.createdate}" sort="auto(createDate)"></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.orgName }"></listcell>
+					<listcell label="${each.orgIdParent }"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+						<!-- 異動記錄 -->
+						<button label="${labels.changeRecord }" target="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "org_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map = new HashMap();
+										map.put("orgId",  self.getTarget());
+										int currentPage=weborgLix.getActivePage();
+										map.put("currentPage", String.valueOf(currentPage));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webOrg/webOrgEdit.zul", webOrgWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

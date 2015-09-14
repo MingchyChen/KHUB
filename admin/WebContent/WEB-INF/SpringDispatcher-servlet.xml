@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<import resource="classpath:applicationContext.xml" />
+
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="location">
+			<value>classpath:/spring-excel-views.xml</value>
+		</property>
+	</bean>
+
+	<!-- Scans within the base package of the application for @Components to 
+		configure as beans -->
+	<!-- @Controller, @Service, @Configuration, etc. -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.claridy" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	</bean>
+	<!-- Resolve logical view names to .jsp resources in the /WEB-INF/views 
+		directory -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".zul" />
+	</bean>
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<mvc:resources mapping="/document/**" location="/document/" />
+	<bean id="multipartResolver" class="com.claridy.common.pb.PJCommonsMultipartResolver">
+		<!-- 設置上傳檔的最大尺寸為10MB -->
+		<property name="maxUploadSize">
+			<value>1048576000</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+	
+	<!-- 測試排程 86400000代表24個小時 3600000代表1個小時-->	
+	<bean id="TestTimerTask" class="com.claridy.timer.TestTimerTask" />
+	<bean id="TestTimer" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<!-- 延遲啟動時間 單位毫秒 -->
+		<property name="delay" value="36000"></property>
+		<!-- 間隔時間 單位毫秒 -->
+		<property name="period" value="36000"></property>
+		<property name="timerTask" ref="TestTimerTask"></property>
+	</bean>
+	
+	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<!-- 這裏可以添加多個排程,local為上面的bean TestTimer等 -->
+				<ref local="TestTimer"></ref>
+			</list>
+		</property>
+	</bean>
+</beans>

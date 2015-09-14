@@ -1,0 +1,105 @@
+<style><![CDATA[
+.z-loading { top: 50% !important; left: 45% !important; align:
+	  center; vertical-align: middle; }
+.header {
+	background-image:url(images/system/top_bg.png); width:100%; height:141px;
+}
+.pageleft {
+	background-image:url(images/system/logopage_bg.png); width:405px; height:112px;position:absolute;z-index:2;
+}
+.pagelogo{
+	position:absolute;
+	z-index:3;
+	width: 260px;
+	height: 70px;
+	left: 20px;
+	top: 30px;
+}
+.pageright{
+	background-image:url(images/system/right_photo.png); width:327px; height:140px; float:right;z-index:3;
+}
+.pageright .ti{	 width:150px; height:25px;float:right; line-height:25px; text-align:right; color:#111111;font-size:12px; margin-right:5px; margin-top:2px;
+}
+.pageright .image{width:135px; height:25px; float:right;
+}
+.header-bar {
+    height: 12px
+}
+.header-title1 {
+    color: white;
+    font-family: Tahoma;
+    font-size: 22px;
+    font-weight: bold;
+}
+.header-title2 {
+    color: #efefef;
+    font-family: Georgia;
+    font-size: 14px;
+    font-style: italic;
+}
+.center-left {
+    border-left: 1px solid #CFCFCF;
+	background-color:#e8e8e8;
+    /*padding: 8px;*/
+}
+.center-left-inner {
+    border-right: 1px solid #CFCFCF;
+    color: #6f6f6f;
+	
+}
+.center-right {
+    border-right: 1px solid #CFCFCF;
+	padding: 15px;
+	/* 英文單字自動換行 */
+	word-wrap: break-word;
+}
+.center-right .bread-dump{
+	/*font-family:微軟正黑體;*/
+	font-size:14px;
+	line-height:25px;
+
+}
+.sidebar-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+.sidebar-bar {
+    border-top: 1px dotted gray;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+.content-date {
+    color: #999999;
+    font-family: 'Trebuchet MS',Trebuchet;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+}
+.content-title {
+    color: #015182;
+    font-family: 'Trebuchet MS',Trebuchet;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    text-decoration: none;
+}
+.content-title:hover {
+    text-decoration: underline
+}
+.content-desc {
+    color: gray;
+    font-family: 'Trebuchet MS',Trebuchet;
+    font-size: 14px;
+    white-space: normal;
+}
+.content-more {
+    color: gray;
+    font-family: 'Trebuchet MS',Trebuchet;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+}
+.footer {
+    text-align: center;
+	background: #99c57f;
+}
+]]></style>

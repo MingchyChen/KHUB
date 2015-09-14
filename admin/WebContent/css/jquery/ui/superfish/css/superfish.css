@@ -1,0 +1,342 @@
+/*** ESSENTIAL STYLES ***/
+.sf-menu,.sf-menu * {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sf-menu {
+	line-height: 1.0;
+}
+
+.sf-menu ul {
+	position: absolute;
+	top: -999em;
+	width: 10em; /* left offset of submenus need to match (see below) */
+}
+
+.sf-menu ul li {
+	width: 100%;
+}
+
+.sf-menu li:hover {
+	visibility: inherit; /* fixes IE7 'sticky bug' */
+}
+
+.sf-menu li {
+	float: left;
+	position: relative;
+}
+
+.sf-menu a {
+	display: block;
+	position: relative;
+}
+
+.sf-menu li:hover ul,.sf-menu li.sfHover ul {
+	left: 0;
+	top: 2.5em; /* match top ul list item height */
+	z-index: 99;
+}
+
+ul.sf-menu li:hover li ul,ul.sf-menu li.sfHover li ul {
+	top: -999em;
+}
+
+ul.sf-menu li li:hover ul,ul.sf-menu li li.sfHover ul {
+	left: 10em; /* match ul width */
+	top: 0;
+}
+
+ul.sf-menu li li:hover li ul,ul.sf-menu li li.sfHover li ul {
+	top: -999em;
+}
+
+ul.sf-menu li li li:hover ul,ul.sf-menu li li li.sfHover ul {
+	left: 10em; /* match ul width */
+	top: 0;
+}
+
+/*** DEMO SKIN ***/
+.sf-menu {
+	float: left;
+	margin-bottom: 1em;
+}
+
+.sf-menu a {
+	border-left: 1px solid #fff;
+	padding: .75em 1em;
+	text-decoration: none;
+}
+
+.sf-menu a,.sf-menu a:visited {
+	/* visited pseudo selector so IE6 applies text colour*/
+	color: #fff;
+}
+
+.sf-menu li {
+	background: rgb(181, 189, 200); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: -moz-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(130, 140, 149, 1) 53%, rgba(40, 52, 59, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(181,
+		189, 200, 1) ), color-stop(53%, rgba(130, 140, 149, 1) ),
+		color-stop(100%, rgba(40, 52, 59, 1) ) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(130, 140, 149, 1) 53%, rgba(40, 52, 59, 1) 100% );
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(130, 140, 149, 1) 53%, rgba(40, 52, 59, 1) 100% );
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(130, 140, 149, 1) 53%, rgba(40, 52, 59, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(181, 189, 200, 1) 0%,
+		rgba(130, 140, 149, 1) 53%, rgba(40, 52, 59, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#b5bdc8',
+		endColorstr='#28343b', GradientType=0 ); /* IE6-8 */
+}
+
+.sf-menu li:first-child {
+	-webkit-border-top-left-radius: .5em;
+	-moz-border-radius-topleft: .5em;
+	border-top-left-radius: .5em;
+	-webkit-border-bottom-left-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+}
+
+.sf-menu li:last-child {
+	-webkit-border-top-right-radius: .5em;
+	-moz-border-radius-topright: .5em;
+	border-top-right-radius: .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright: .5em;
+	border-bottom-right-radius: .5em;
+}
+
+.sf-menu li li {
+	background: rgb(181, 189, 200); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background:
+		url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2I1YmRjOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2MzZDQ0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAlIiBzdG9wLWNvbG9yPSIjMTMxMzFjIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(60, 61, 68, 1) 0%, rgba(19, 19, 28, 1) 10% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(181,
+		189, 200, 1) ), color-stop(0%, rgba(60, 61, 68, 1) ),
+		color-stop(10%, rgba(19, 19, 28, 1) ) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(60, 61, 68, 1) 0%, rgba(19, 19, 28, 1) 10% );
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(60, 61, 68, 1) 0%, rgba(19, 19, 28, 1) 10% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(181, 189, 200, 1) 0%,
+		rgba(60, 61, 68, 1) 0%, rgba(19, 19, 28, 1) 10% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(181, 189, 200, 1) 0%,
+		rgba(60, 61, 68, 1) 0%, rgba(19, 19, 28, 1) 10% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#b5bdc8',
+		endColorstr='#13131c', GradientType=0 ); /* IE6-8 */
+}
+
+.sf-menu li li:first-child {
+	-webkit-border-top-right-radius: .5em;
+	-moz-border-radius-topright: .5em;
+	border-top-right-radius: .5em;
+	-webkit-border-top-left-radius: 0em;
+	-moz-border-radius-topleft: 0em;
+	border-top-left-radius: 0em;
+	-webkit-border-bottom-left-radius: 0em;
+	-moz-border-radius-bottomleft: 0em;
+	border-bottom-left-radius: 0em;
+}
+
+.sf-menu li li:last-child {
+	-webkit-border-top-right-radius: 0em;
+	-moz-border-radius-topright: 0em;
+	border-top-right-radius: 0em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright: .5em;
+	border-bottom-right-radius: .5em;
+	-webkit-border-bottom-left-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+}
+
+.sf-menu li li li {
+	background: #9AAEDB;
+	border-top: 1px solid #CFDEFF;
+}
+
+.sf-menu li li li:first-child {
+	-webkit-border-top-right-radius: .5em;
+	-moz-border-radius-topright: .5em;
+	border-top-right-radius: .5em;
+	-webkit-border-top-left-radius: 0em;
+	-moz-border-radius-topleft: 0em;
+	border-top-left-radius: 0em;
+	-webkit-border-bottom-left-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+}
+
+.sf-menu li li li:last-child {
+	-webkit-border-top-right-radius: 0em;
+	-moz-border-radius-topright: 0em;
+	border-top-right-radius: 0em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright: .5em;
+	border-bottom-right-radius: .5em;
+	-webkit-border-bottom-left-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+}
+
+.sf-menu li:hover,.sf-menu li.sfHover,.sf-menu a:focus,.sf-menu a:hover,.sf-menu a:active
+	{
+	background: rgb(69, 72, 77); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background:
+		url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNDU0ODRkIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+	background: -moz-linear-gradient(top, rgba(69, 72, 77, 1) 100%,
+		rgba(0, 0, 0, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(100%, rgba(69
+		, 72, 77, 1) ), color-stop(100%, rgba(0, 0, 0, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(69, 72, 77, 1) 100%,
+		rgba(0, 0, 0, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(69, 72, 77, 1) 100%,
+		rgba(0, 0, 0, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(69, 72, 77, 1) 100%,
+		rgba(0, 0, 0, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(69, 72, 77, 1) 100%,
+		rgba(0, 0, 0, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#45484d',
+		endColorstr='#000000', GradientType=0 ); /* IE6-8 */
+}
+
+.sf-menu li:first-child:hover,.sf-menu li:first-child.sfHover,.sf-menu li:first-child a:focus,.sf-menu li:first-child a:hover,.sf-menu li:first-child a:active
+	{
+	-webkit-border-top-left-radius: .5em;
+	-moz-border-radius-topleft: .5em;
+	border-top-left-radius: .5em;
+	-webkit-border-bottom-left-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+}
+
+.sf-menu li:last-child:hover,.sf-menu li:last-child.sfHover,.sf-menu li:last-child a:focus,.sf-menu li:last-child a:hover,.sf-menu li:last-child a:active
+	{
+	-webkit-border-top-right-radius: .5em;
+	-moz-border-radius-topright: .5em;
+	border-top-right-radius: .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright: .5em;
+	border-bottom-right-radius: .5em;
+}
+
+.sf-menu li.childItem:first-child:hover,.sf-menu li.childItem:first-child.sfHover,.sf-menu li.childItem:first-child a:focus,.sf-menu li.childItem:first-child a:hover,.sf-menu li.childItem:first-child a:active
+	{
+	-webkit-border-top-right-radius: .5em;
+	-moz-border-radius-topright: .5em;
+	border-top-right-radius: .5em;
+	-webkit-border-bottom-right-radius: 0em;
+	-moz-border-radius-bottomright: 0em;
+	border-bottom-right-radius: 0em;
+	-webkit-border-top-left-radius: 0em;
+	-moz-border-radius-topleft: 0em;
+	border-top-left-radius: 0em;
+	-webkit-border-bottom-left-radius: 0em;
+	-moz-border-radius-bottomleft: 0em;
+	border-bottom-left-radius: 0em;
+}
+
+.sf-menu li.childItem:hover,.sf-menu li.childItem.sfHover,.sf-menu li.childItem a:focus,.sf-menu li.childItem a:hover,.sf-menu li.childItem a:active
+	{
+	-webkit-border-top-right-radius: 0em;
+	-moz-border-radius-topright: 0em;
+	border-top-right-radius: 0em;
+	-webkit-border-bottom-right-radius: 0em;
+	-moz-border-radius-bottomright: 0em;
+	border-bottom-right-radius: 0em;
+	-webkit-border-top-left-radius: 0em;
+	-moz-border-radius-topleft: 0em;
+	border-top-left-radius: 0em;
+	-webkit-border-bottom-left-radius: 0em;
+	-moz-border-radius-bottomleft: 0em;
+	border-bottom-left-radius: 0em;
+}
+
+.sf-menu li.childItem:last-child:hover,.sf-menu li.childItem:last-child.sfHover,.sf-menu li.childItem:last-child a:focus,.sf-menu li.childItem:last-child a:hover,.sf-menu li.childItem:last-child a:active
+	{
+	-webkit-border-top-right-radius: 0em;
+	-moz-border-radius-topright: 0em;
+	border-top-right-radius: 0em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright: .5em;
+	border-bottom-right-radius: .5em;
+	-webkit-border-top-left-radius: 0em;
+	-moz-border-radius-topleft: 0em;
+	border-top-left-radius: 0em;
+	-webkit-border-bottom-left-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+}
+
+/*** arrows **/
+.sf-menu a.sf-with-ul {
+	padding-right: 2.25em;
+	min-width: 1px;
+	/* trigger IE7 hasLayout so spans position accurately */
+}
+
+.sf-sub-indicator {
+	position: absolute;
+	display: block;
+	right: .20em;
+	top: 1.05em; /* IE6 only */
+	width: 10px;
+	height: 10px;
+	text-indent: -999em;
+	overflow: hidden;
+	background: url('../images/arrows-ffffff.png') no-repeat -10px -100px;
+	/* 8-bit indexed alpha png. IE6 gets solid image only */
+}
+
+a>.sf-sub-indicator { /* give all except IE6 the correct values */
+	top: .8em;
+	background-position: 0 -100px;
+	/* use translucent arrow for modern browsers*/
+}
+/* apply hovers to modern browsers */
+a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,li:hover>a>.sf-sub-indicator,li.sfHover>a>.sf-sub-indicator
+	{
+	background-position: -10px -100px;
+	/* arrow hovers for modern browsers*/
+}
+
+/* point right for anchors in subs */
+.sf-menu ul .sf-sub-indicator {
+	background-position: -10px 0;
+}
+
+.sf-menu ul a>.sf-sub-indicator {
+	background-position: 0 0;
+}
+/* apply hovers to modern browsers */
+.sf-menu ul a:focus>.sf-sub-indicator,.sf-menu ul a:hover>.sf-sub-indicator,.sf-menu ul a:active>.sf-sub-indicator,.sf-menu ul li:hover>a>.sf-sub-indicator,.sf-menu ul li.sfHover>a>.sf-sub-indicator
+	{
+	background-position: -10px 0; /* arrow hovers for modern browsers*/
+}
+
+/*** shadows for all but IE6 ***/
+.sf-shadow ul {
+	background: url('../images/shadow.png') no-repeat bottom right;
+	padding: 0 8px 9px 0;
+	-moz-border-radius-bottomleft: 17px;
+	-moz-border-radius-topright: 17px;
+	-webkit-border-top-right-radius: 17px;
+	-webkit-border-bottom-left-radius: 17px;
+}
+
+.sf-shadow ul.sf-shadow-off {
+	background: transparent;
+}

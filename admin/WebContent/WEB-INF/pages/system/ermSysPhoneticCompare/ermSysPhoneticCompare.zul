@@ -1,0 +1,71 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window apply="com.claridy.admin.composer.ErmSysPhoneticCompareListComposer" id="ermSysPhoneticCompareWin" >
+	<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.ermSysPhoneticCompare.characterCn}:"></label>
+				<textbox hflex="3" id="characterCnTbx"></textbox>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+			<!--新增,清空，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="clearBtn" label="${labels.clear }"/>
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="ermSysPhoneticLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>  
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.ermSysPhoneticCompare.characterCn}" sort="auto(characterCn)"></listheader>
+				<listheader label="${labels.ermSysPhoneticCompare.characterNum}" sort="auto(characterNum)"></listheader>
+				<listheader label="${labels.ermSysPhoneticCompare.phoneticOne }" sort="auto(phoneticOne)"></listheader>
+				<listheader label="${labels.ermSysPhoneticCompare.phoneticTwo }" sort="auto(phoneticTwo)"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.createdate }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.characterCn }"></listcell>
+					<listcell label="${each.characterNum }"></listcell>
+					<listcell label="${each.phoneticOne }"></listcell>
+					<listcell label="${each.phoneticTwo }"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}">
+						<button label="${labels.changeRecord }" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "phoneTic_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("ermSysPhoneticUuid",  self.getTarget());
+										int currentPage = ermSysPhoneticLix.getActivePage();
+										map.put("currentPage", String.valueOf(currentPage));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermSysPhoneticCompare/ermSysPhoneticCompareEdit.zul", ermSysPhoneticCompareWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+</window>
+</zk>

@@ -1,0 +1,61 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="ermResReportWin"
+		apply="com.claridy.admin.composer.ErmResReportListComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="200px">
+							<!-- 報表類型 -->
+							<label
+								value="${labels.ermResReport.reportType}">
+							</label>
+						</cell>
+						<cell>
+							<radiogroup id="reportType">
+								<radio
+									label="${labels.ermResReport.yearReport}" value="0"
+									hflex="1">
+								</radio>
+								<radio
+									label="${labels.ermResReport.monthReport}" value="1"
+									hflex="1">
+								</radio>
+							</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="200px">
+							<!-- 統計區間 -->
+							<label
+								value="${labels.ermResReport.timeConfig}">
+							</label>
+						</cell>
+						<cell>
+							<hlayout>
+								<intbox id="firstyear"></intbox>
+								<label value="${labels.ermResReport.year}" id="oneyear"></label>
+								<combobox id="firstmonth"></combobox>
+								<label value="${labels.ermResReport.month}" id="onemonth"></label>
+								~
+								<intbox id="secondyear"></intbox>
+								<label value="${labels.ermResReport.year}" id="twoyear"></label>
+								<combobox id="secondmonth"></combobox>
+								<label value="${labels.ermResReport.month}" id="twomonth"></label>
+							</hlayout>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div>
+				<button label="${labels.ermResReport.send}" id="send"
+					onClick="" />
+				<button label="${labels.ermResReport.export}"
+					id="export" onClick="" />
+			</div>
+		</vlayout>
+		<grid id="grid"></grid>
+	</window>
+</zk>

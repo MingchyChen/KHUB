@@ -1,0 +1,326 @@
+@charset "utf-8";
+
+/* CSS Document */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,note
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+}
+
+body {
+	background: url(../../images/system/bg.gif) repeat-x;
+	color: #525252;
+	margin: 0;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: #666666;
+}
+
+a:hover,.footer a:hover {
+	color: #000;
+}
+
+/* header */
+#header {
+	margin: auto;
+	width: 370px;
+	height: 115px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 20px;
+}
+
+#header1 {
+	float: left;
+	height: 80px;
+}
+
+#header2 {
+	height: 80px;
+	padding-top: 30px;
+}
+
+#header p {
+	color: #ffffff;
+	padding-top: 25px;
+}
+
+#header p a {
+	color: #ffffff;
+}
+
+/* content */
+#wrap {
+	margin: 0 auto;
+	width: 900px;
+}
+
+#container {
+	margin: 0 auto;
+	width: 900px;
+	background-color: transparent;
+}
+
+#content {
+	float: right;
+	width: 700px;
+	background-color: transparent;
+	margin-left: 20px;
+}
+
+#content h1 {
+	background: url(../images/vmenuarrow2.gif) no-repeat top left;
+	color: #474747;
+	font-size: 15px;
+	padding: 0 0 20px 10px;
+}
+
+/* sidebar */
+#sidebar {
+	float: left;
+	width: 150px;
+	padding: 10px 10px 50px 10px;
+	border: 1px solid #c6c6c6;
+	background: url(../images/bgcode.gif);
+}
+
+#sidebar h1 {
+	background: url(../images/li-02.gif) no-repeat;
+	color: #303030;
+	font-size: 1.3em;
+	font-weight: bold;
+	padding: 20px 0 0 30px;
+}
+
+/* clear */
+#clear {
+	height: 30;
+	clear: both;
+}
+
+#clearing {
+	height: 100;
+	clear: both;
+}
+
+/* footer */
+#footer {
+	clear: both;
+	width: 970px;
+	margin: 0px auto;
+	height: 30px;
+	color: #909090;
+	font-size: 1em;
+	padding-top: 10px;
+	text-align: center;
+	border-top: 1px solid #ababab;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////left menu start*/
+#leftmenu {
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	padding-left: 15px;
+}
+
+#leftmenu a {
+	display: block;
+	background: url(../images/vmenuarrow.gif) no-repeat center left;
+	color: #804b00;
+	padding: 0 0 0 15px;
+	text-decoration: none;
+	line-height: 2em;
+}
+
+#leftmenu a:hover {
+	color: #c56100;
+	background: url(../images/vmenuarrowhover.gif) no-repeat center left;
+}
+
+.leftarticle {
+	background: #EEEEEE url(../images/li.gif) no-repeat left;
+	color: #808080;
+	font-size: 17px;
+	font-weight: bold;
+	margin: 10px 0 14px 10px;
+	padding: 8px 15px;
+}
+
+/*///////////////////////////////////////////////////////////////////////////// font start*/
+.line {
+	border-bottom: 1px dotted #ababab;
+	padding: 6px 0 20px 0;
+}
+
+.font1 {
+	color: #aa7811;
+	font-size: 12px;
+	padding-bottom: 6px;
+}
+
+.font2 {
+	color: #464646;
+	font-size: 13px;
+	line-height: 24px;
+}
+
+/*///////////////////////////////////////////////////////////////////////////// table start*/
+.newstable {
+	border: 1px solid #c6c6c6;
+	font-size: 12px;
+	margin: 10px 0;
+	width: 700px;
+}
+
+.newstable th {
+	font-size: 12px;
+	background: #FFF8E8 url(../images/bg_td4.gif) repeat-x;
+	border-right: 1px solid #c6c6c6;
+	height: 47px;
+	font-weight: bold;
+}
+
+.newstable td {
+	border-top: 1px solid #c6c6c6;
+	border-right: 1px solid #c6c6c6;
+	text-align: center;
+	word-wrap: break-word;
+	word-break: break-all;
+	padding: 5px;
+}
+
+.newstable .odd {
+	text-align: left;
+}
+
+/*///////////////////////////////////////////////////////////////////////////// login start*/
+#login {
+	margin: 0 auto;
+	width: 300px;
+	height: 210px;
+	margin-top: 100px;
+	padding: 20px 30px;
+	font-size: 130%;
+	border: 1px solid #c6c6c6;
+	background: url(../images/bgcode.gif);
+}
+
+#login table {
+	margin: 0 auto;
+}
+
+#login h1 {
+	background: url(../images/liadmin.gif) no-repeat left bottom;
+	color: #303030;
+	font-size: 120%;
+	font-weight: bold;
+	border-bottom: 1px dotted #c6c6c6;
+	padding: 20px 0 0 24px;
+}
+
+#login footer {
+	margin: 0 auto;
+}
+
+/*///////////////////////////////////////////////////////////////////////////// forms start*/
+.cssform p {
+	width: 350px;
+	clear: left;
+	margin: 0;
+	padding: 5px 0 8px 0;
+	padding-left: 155px;
+	/*width of left column containing the label elements*/
+	border-top: 1px dashed gray;
+	height: 1%;
+}
+
+.cssform label {
+	font-weight: bold;
+	float: left;
+	margin-left: -155px; /*width of left column*/
+	width: 150px;
+	/*width of labels. Should be smaller than left column (155px) to create some right margin*/
+}
+
+.cssform input[type="text"] {
+	/*width of text boxes. IE6 does not understand this attribute*/
+	width: 180px;
+}
+
+.cssform textarea {
+	width: 300px;
+	height: 200px;
+}
+
+/*.threepxfix class below:
+Targets IE6- ONLY. Adds 3 pixel indent for multi-line form contents.
+to account for 3 pixel bug: http://www.positioniseverything.net/explorer/threepxtest.html
+*/
+.formbutton {
+	cursor: pointer;
+	border: outset 1px #ccc;
+	background: #999;
+	color: #666;
+	font-weight: bold;
+	padding: 3px 10px 2px 10px;
+	background: url(../images/formbg.gif) repeat-x left top;
+}
+
+.search {
+	border-bottom: 1px dotted #ababab;
+	padding: 10px 0 10px 115px;
+	background: url(../images/search001.gif) no-repeat left top;
+}
+
+/*///////////////////////////////////////////////////////// pages start*/
+/*CSS meneame orange style pagination*/
+DIV.meneame {
+	FONT-SIZE: 80%;
+	MARGIN: 3px;
+	COLOR: #2e2e2e;
+	PADDING: 3px;
+	TEXT-ALIGN: center;
+}
+
+DIV.meneame A {
+	BORDER: #c6c6c6 1px solid;
+	BACKGROUND-POSITION: 50% bottom;
+	COLOR: #515151;
+	MARGIN-RIGHT: 3px;
+	TEXT-DECORATION: none;
+	PADDING: 5px 7px;
+}
+
+DIV.meneame A:hover {
+	BORDER: #c6c6c6 1px solid;
+	COLOR: #000;
+	BACKGROUND-COLOR: #dbdbdb;
+}
+
+DIV.meneame A:active {
+	BORDER: #c6c6c6 1px solid;
+	COLOR: #000;
+	BACKGROUND-COLOR: #dbdbdb;
+}
+
+DIV.meneame SPAN.current {
+	BORDER: #c6c6c6 1px solid;
+	FONT-WEIGHT: bold;
+	COLOR: #303030;
+	MARGIN-RIGHT: 3px;
+	BACKGROUND-COLOR: #dbdbdb;
+	PADDING: 5px 7px;
+}
+
+DIV.meneame SPAN.disabled {
+	BORDER: #c6c6c6 1px solid;
+	COLOR: #c6c6c6;
+	MARGIN-RIGHT: 3px;
+	PADDING: 5px 7px;
+}

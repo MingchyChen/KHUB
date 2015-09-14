@@ -1,0 +1,68 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="replynWin" title="${labels.edit}"  apply="com.claridy.admin.composer.WebReplyListComposer" width="66%"
+		border="normal" position="center,center" closable="true">
+<vlayout>
+		
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+						<!-- 標題-->
+						<label value="${labels.ermNews.title}:"></label>
+						</cell>
+						<cell width="80%">
+							<label id="namela" value="" width="80%"></label>
+						</cell>
+					</row>
+					<row>
+						<!-- 內容 -->
+						<cell width="100%" colspan="2" style="TextAlign:Center">
+							<label value="${labels.searchInfo.contentZhTw}" ></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<textbox id="contentZhTwtbx" rows="7" cols="160"  readonly="true"/>
+						</cell>	
+					</row>
+					<row>
+						<cell width="20%">
+						<!--回復管理者-->
+						<label value="${labels.opinion.owner}:"></label>
+						</cell>
+						<cell width="80%">
+							<label id="employeela" value="" width="80%"></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!--回復時間-->
+						<label value="${labels.opinion.time}:"></label>
+						</cell>
+						<cell width="80%">
+							<label id="datela" value="" width="80%"></label>
+						</cell>
+					</row>
+					<row>
+						<!-- 回復內容 -->
+						<cell width="100%" colspan="2" style="TextAlign:Center">
+							<label value="${labels.opinion.con}" ></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<ckeditor id="replyZhTwEdt" width="850" toolbar="simple"  
+							customConfigurationsPath="/js/config.js" ></ckeditor>
+						</cell>	
+					</row>	
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="editBtn" onClick="" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="replynWin.detach();"/>
+			</div>
+		</vlayout>
+</window>
+</zk>

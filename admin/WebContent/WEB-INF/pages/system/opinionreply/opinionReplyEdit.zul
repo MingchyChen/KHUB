@@ -1,0 +1,82 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="editWebOpinionWin" title="${labels.edit}"  apply="com.claridy.admin.composer.WebOpinionComposer" width="66%"
+		border="normal" position="center,center" closable="true">
+<vlayout>
+		
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+						<!-- 標題-->
+						<label value="${labels.ermNews.title}:"></label>
+						</cell>
+						<cell width="80%">
+							<label id="namela" value="" width="80%"></label>
+						</cell>
+					</row>
+					<row>
+						<!-- 內容 -->
+						<cell width="100%" colspan="2" style="TextAlign:Center">
+							<label value="${labels.searchInfo.contentZhTw}" ></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<textbox id="contentZhTwtbx" rows="7" cols="160"  readonly="true"/>
+						</cell>	
+					</row>	
+				</rows>
+			</grid>
+			<listbox id="webOpinionReplylbx" multiple="true"
+				mold="paging" pagingPosition="both">
+				<template name="model">
+					<listitem>
+						<listcell >${each.replyWebEmployee.employeeName}    ${labels.opinion.time} : ${each.latelyChangedDate}    
+							<button label="${labels.opinion.change}" target="${each.uuid}"> 
+								<attribute name="onClick">        
+						    	 <![CDATA[       
+									Map params = new HashMap();
+									params.put("uuid",  self.getTarget());
+									Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/opinionreply/replyEdit.zul", null,params);
+									newWindow.doModal();
+									editWebOpinionWin.detach();
+						    	 ]]>        
+						   	   </attribute> 
+							</button>
+							<button label="${labels.del}" class="deleteTest" target="${each.uuid}">
+							 
+							</button>
+							<separator ></separator>
+							${labels.opinion.con}
+							<separator ></separator>
+							${each.replyZhTw}		
+							</listcell>
+					</listitem>
+				</template>
+			</listbox>
+			<grid>
+				<rows>
+					<row>
+						<!-- 本次回復內容 -->
+						<cell width="100%" colspan="2" style="TextAlign:Center">
+							<label value="${labels.opinion.now}" ></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<ckeditor id="replyZhTwEdt" width="850" toolbar="simple"  
+							customConfigurationsPath="/js/config.js" ></ckeditor>
+						</cell>	
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="editBtn" onClick="" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="editWebOpinionWin.detach();"/>
+			</div>
+		</vlayout>
+</window>
+</zk>

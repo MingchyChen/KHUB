@@ -1,0 +1,83 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="webErwSourceWin" apply="com.claridy.admin.composer.WebErwSourceListComposer">
+		<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.webErwSource.nameZhTw}:"></label>
+				<textbox hflex="3" id="nameZhTw"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.webErwSource.dbid }:"></label>
+				<textbox hflex="3" id="dbid"></textbox>
+			</hlayout>			
+		</vlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+			<!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="webErwSourceListBox" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.webErwSource.nameZhTw}" sort="auto(nameZhTw)"></listheader>
+				<listheader label="${labels.webErwSource.dbid}" sort="auto(dbid)"></listheader>
+				<listheader label="${labels.webErwSource.publisher }"></listheader>
+				<listheader label="${labels.webErwSource.orgName }"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.createdate }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.nameZhTw }"></listcell>
+					<listcell label="${each.dbid }"></listcell>
+					<listcell label="${each.publisher }"></listcell>
+					<listcell>
+						<zk forEach="${each.webErwSources}">
+                            <label>
+                                ${each.webOrgOrg.orgName }
+                            </label><div></div>
+                        </zk>
+						
+						<!-- <template name="${each.webErwSources}" var="webErwSources">
+							<label>${webErwSources.webOrgOrg.orgName }111</label>
+						</template> -->
+					</listcell>					
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}">
+					<button label="${labels.changeRecord }" target="${each.uuid}">
+						<attribute name="onClick">
+							<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "weberesource_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+							]]>
+						</attribute>
+					</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("webErwSourceId",  self.getTarget());
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webErwSource/webErwSourceEdit.zul", webErwSourceWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

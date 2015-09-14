@@ -1,0 +1,72 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="com.claridy.admin.composer.WebOpinionListComposer"
+		id="webOpinion">
+		<vlayout width="300px">
+			<hlayout>
+				<!-- 關鍵字 -->
+				<label value="${labels.keyword}:" hflex="1"/>
+				<textbox id="titleTxt" hflex="3"/>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.opinion.search}" id="opinionBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+		</hbox>
+		<listbox id="webOpinionlbx" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<!-- 標題 -->
+				<listheader label="${labels.ermNews.title}"></listheader>
+				<!-- 申請人 -->
+				<listheader label="${labels.webErwSource.apployPeople}" sort="auto(titleZhTw)"></listheader>
+				<!-- 狀態 -->
+				<listheader label="${labels.searchInfo.isDisplay}" sort="auto(titleZhTw)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.ermNews.creater}"></listheader>
+				<!-- 建立日/異動紀錄 -->
+				<listheader label="${labels.firstTopLink.changeRecord}" ></listheader>
+				<!-- 回復-->
+				<listheader></listheader>
+			</listhead>
+		 <template name="model">
+				<listitem>
+					<listcell label="${each.titleZhTw }"></listcell>
+					<listcell label="${each.webAccount.nameZhTw }"></listcell>
+					<listcell label="${each.type }"></listcell>
+					<listcell label="${each.createUser}"></listcell>
+					<listcell label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss'))}">
+						<button label="${labels.changeRecord} "
+							target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "webopinionreply_"+self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					
+					<listcell >
+						<button label="${labels.opinionReply}" target="${each.uuid}">
+						 <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("uuid",  self.getTarget());
+							params.put("currentPage",String.valueOf(webOpinionlbx.getActivePage()));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/opinionreply/opinionReplyEdit.zul", webOpinion,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						     </button>
+					</listcell> 
+				</listitem>
+			</template> 
+		</listbox>
+	</window>
+</zk>

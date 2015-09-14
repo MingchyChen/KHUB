@@ -1,0 +1,43 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermResourcesCkRSWin" apply="com.claridy.admin.composer.ErmResourcesCKRSComposer">
+	<vlayout  width="300px">
+		<hlayout>
+			<label hflex="1" value="${labels.ermSysNotifyConfig.resourceType }"></label>
+			<combobox hflex="3" id="typeCBox" readonly="true">
+			</combobox>
+		</hlayout>
+		<hlayout>
+			<label hflex="1" value="${labels.ermResourceCKRS.title }"></label>
+			<textbox hflex="3" id="nameTBox"></textbox>
+		</hlayout>
+	</vlayout>
+	
+	<hbox>
+		<button id="searhcBtn" label="${labels.search }"></button>
+		<button id="showAll" label="${labels.showAll }"></button>
+		<button id="deleteBtn" label="${labels.del}"></button>
+		<button id="addBtn" label="${labels.add}"></button>
+		<button id="batchAddBtn" label="${labels.ermResourceCKRS.batchAll }"></button>
+	</hbox>
+	
+	<listbox id="ckRsLix" checkmark="true" multiple="true"  mold="paging" pageSize="10" pagingPosition="both">
+						
+		<listhead>
+			<listheader align="center" width="45px"></listheader>
+			<listheader label="${labels.ermSysNotifyConfig.resourceType }" sort="auto(typeId)"></listheader>
+			<listheader label="${labels.ermResourceRscon.idsn }" sort="auto(resourcesId)"></listheader>
+			<listheader label="${labels.ermResourceCKRS.title }" sort="auto(title)"></listheader>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell></listcell>
+				<listcell label="${labels.sysMenuResMainEjeb }" if="${each.typeId eq 'EJ' }"></listcell>
+				<listcell label="${labels.sysMenuResMainDbws}" if="${each.typeId eq 'DB' }"></listcell>
+				<listcell label="${each.resourcesId }"></listcell>
+				<listcell label="${each.title }"></listcell>
+			</listitem>
+		</template>
+	</listbox>
+</window>
+</zk>

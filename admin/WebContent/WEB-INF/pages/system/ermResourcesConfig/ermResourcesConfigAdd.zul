@@ -1,0 +1,289 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermResourcesConfigAddWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmResourcesConfigComposer">
+	<vlayout>
+			<grid>
+				<rows>
+					<!--  -->
+					<row>
+						<label hflex="1" id="codeName" value="${labels.ermResourcesConfig.name }"></label>
+						<combobox hflex="3" id="nameCBox" readonly="true"></combobox>
+					</row>
+					<!-- 提名 -->
+					<row>
+						<checkbox id="titleCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.title }"></label>
+						<intbox id="titletbox"></intbox>
+					</row>
+					<!-- URL -->
+					<row>
+						<checkbox id="urlCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.url1 }"></label>
+						<intbox id="urltbox"></intbox>
+					</row>
+					<!-- 相關URL -->
+					<row>
+						<checkbox id="urlTwoCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.url2 }"></label>
+						<intbox id="urlTwotbox"></intbox>
+					</row>
+					<!-- 採購注記 -->
+					<row>
+						<checkbox id="remarkCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.remark }"></label>
+						<intbox id="remarktbox"></intbox>
+					</row>
+					<!-- 起訂日期 -->
+					<row>
+						<checkbox id="starorderdateCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.starorderdate }"></label>
+						<intbox id="starorderdatetbox"></intbox>
+					</row>
+					<!-- 迄訂日期 -->
+					<row>
+						<checkbox id="endorderdateCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.endorderdate }"></label>
+						<intbox id="endorderdatetbox"></intbox>
+					</row>
+					<!-- 收錄年代 -->
+					<row>
+						<checkbox id="coverageCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.coverage }"></label>
+						<intbox id="coveragetbox"></intbox>
+					</row>
+					<!-- 合法IP -->
+					<row>
+						<checkbox id="regllipCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.regllyip }"></label>
+						<intbox id="reglliptbox"></intbox>
+					</row>
+					<!-- 賬號密碼 -->
+					<row>
+						<checkbox id="idpwdCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.idpwd }"></label>
+						<intbox id="idpwdtbox"></intbox>
+					</row>
+					<!-- 其他資訊 -->
+					<row>
+						<checkbox id="othersCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.others }"></label>
+						<intbox id="othertbox"></intbox>
+					</row>
+					<!-- 資源簡述摘要 -->
+					<row>
+						<checkbox id="eriefCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.erief1 }"></label>
+						<intbox id="erieftbox"></intbox>
+					</row>
+					<!-- 資源簡述摘要（英文） -->
+					<row>
+						<checkbox id="eriefEngCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.erief2 }"></label>
+						<intbox id="eriefEngtbox"></intbox>
+					</row>
+					<!-- 語言 -->
+					<row>
+						<checkbox id="languageidCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.languageid }"></label>
+						<intbox id="languageidtbox"></intbox>
+					</row>
+					<!-- 代理商 -->
+					<row>
+						<checkbox id="agentedidCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.agentedid }"></label>
+						<intbox id="agentedidtbox"></intbox>
+					</row>
+					<!-- 出版商 -->
+					<row id="publisherrow" visible="false">
+						<checkbox id="publisheridCKbox" ></checkbox>
+						<label value="${labels.ermResourcesConfig.publisherid }"></label>
+						<intbox id="publisheridtbox"></intbox>
+					</row>
+					<!-- 更新頻率/刊期 -->
+					<row>
+						<checkbox id="frenquencyCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.frenquency }"></label>
+						<intbox id="frenquencytbox"></intbox>
+					</row>
+					<!-- 使用說明 -->
+					<row>
+						<checkbox id="introCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.intro }"></label>
+						<intbox id="introtbox"></intbox>
+					</row>
+					<!-- 同時上線人數 -->
+					<row>
+						<checkbox id="concurCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.concur }"></label>
+						<intbox id="concurtbox"></intbox>
+					</row>
+					<!-- 連線方式 -->
+					<row>
+						<checkbox id="connectidCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.connectid }"></label>
+						<intbox id="connectidtbox"></intbox>
+					</row>
+					<!-- 核心 -->
+					<row id="corerow" visible="false">	
+						<checkbox id="coreCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.core }"></label>
+						<intbox id="coretbox"></intbox>
+					</row>
+					<!-- 出版地 -->
+					<row>
+						<checkbox id="pubplaceCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.pubplace }"></label>
+						<intbox id="pubplacetbox"></intbox>
+					</row>
+					<!-- 所屬資料庫 -->
+					<row id="dbidrow" visible="false">
+						<checkbox id="dbidCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.dbid }"></label>
+						<intbox id="dbidtbox" visible="false"></intbox>
+					</row>
+					<!-- 出版商首頁 -->
+					<row id="publisherurlrow" visible="false">
+						<checkbox id="publisherurlCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.publisherurl }"></label>
+						<intbox id="publisherurltbox"></intbox>
+					</row>
+					<!-- ISSN(PRINTED) -->
+					<row id="issnprintedrow" visible="false">
+						<checkbox id="issnprintedCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.issnprinted }"></label>
+						<intbox id="issnprintedtbox"></intbox>
+					</row>
+					<!-- ISSN(ONLINE) -->
+					<row id="ssnonlinerow" visible="false">
+						<checkbox id="ssnonlineCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.ssnonline }"></label>
+						<intbox id="ssnonlinetbox"></intbox>
+					</row>
+					<!-- SBN(PRINTED) -->
+					<row id="isbnprintedrow" visible="false">
+						<checkbox id="isbnprintedCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.isbnprinted }"></label>
+						<intbox id="isbnprintedtbox"></intbox>
+					</row>
+					<!-- ISBN(ONLINE) -->
+					<row id="isbnonlinerow" visible="false">
+						<checkbox id="isbnonlineCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.isbnonline }"></label>
+						<intbox id="isbnonlinetbox"></intbox>
+					</row>
+					<!-- EMBARGO -->
+					<row id="embargorow" visible="false">
+						<checkbox id="embargoCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.embargo }"></label>
+						<intbox id="embargotbox"></intbox>
+					</row>
+					<!-- 電子書分類號 -->
+					<row id="cnrow" visible="false">
+						<checkbox id="cnCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.cn }"></label>
+						<intbox id="cntbox"></intbox>
+					</row>
+					<!-- 電子書索書號 -->
+					<row id="callnrow" visible="false">
+						<checkbox id="callnCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.calln }"></label>
+						<intbox id="callntbox"></intbox>
+					</row>
+					<!-- 館藏資訊 -->
+					<row id="eholdingsrow" visible="false">
+						<checkbox id="eholdingsCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.eholdings }"></label>
+						<intbox id="eholdingstbox"></intbox>
+					</row>
+					<!-- 圖書館經費 -->
+					<row>
+						<checkbox id="libaryMoneyCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.libaryMoney }"></label>
+						<intbox id="libaryMoneytbox"></intbox>
+					</row>
+					<!-- 圖片URL -->
+					<row>
+						<checkbox id="imgurlCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.imgurl }"></label>
+						<intbox id="imgurltbox"></intbox>
+					</row>
+					<!-- 作者 -->
+					<row id="authorrow" visible="false">
+						<checkbox id="authorCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.author }"></label>
+						<intbox id="authortbox"></intbox>
+					</row>
+					<!-- 存放地點 -->
+					<row id="placeidrow" visible="false">
+						<checkbox id="placeidCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.placeid }"></label>
+						<intbox id="placeidtbox"></intbox>
+					</row>
+					<!-- 版本 -->
+					<row id="versionrow" visible="false">
+						<checkbox id="versionCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.version }"></label>
+						<intbox id="versiontbox"></intbox>
+					</row>
+					<!-- 相關題名 -->
+					<row>
+						<checkbox id="relatedtitleCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.relatedtitle }"></label>
+						<intbox id="relatedtitletbox"></intbox>
+					</row>
+					<!-- 主題 -->
+					<row>
+						<checkbox id="subjectCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.subject }"></label>
+						<intbox id="subjecttbox"></intbox>
+					</row>
+					<!-- 資料庫類型 -->
+					<row id="typerow" visible="false">
+						<checkbox id="typeCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.type }"></label>
+						<intbox id="typetbox"></intbox>
+					</row>
+					<!-- 適用學院 -->
+					<row>
+						<checkbox id="suitCollegeCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.suitCollege }"></label>
+						<intbox id="suitCollegetbox"></intbox>
+					</row>
+					<!-- 適用系所 -->
+					<row id="suitdeprow" visible="false">
+						<checkbox id="suitdepCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.suitdep }"></label>
+						<intbox id="suitdeptbox"></intbox>
+					</row>
+					<!-- 訂購學院 -->
+					<row id="orderColleerow" visible="false">
+						<checkbox id="orderCollegeCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.orderCollege }"></label>
+						<intbox id="orderCollegetbox"></intbox>
+					</row>
+					<!-- 訂購系所 -->
+					<row id="orderdeprow" visible="false">
+						<checkbox id="orderdepCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.orderdep }"></label>
+						<intbox id="orderdeptbox"></intbox>
+					</row>
+					<!-- 上傳檔案 -->
+					<row>
+						<checkbox id="uploadfileCKbox"></checkbox>
+						<label value="${labels.ermResourcesConfig.uploadfile }"></label>
+						<intbox id="uploadfiletbox"></intbox>
+					</row>
+				</rows>
+			</grid>
+	</vlayout>
+	
+	
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="ermResourcesConfigAddWin.detach();" />
+			</div>
+</window>
+</zk>

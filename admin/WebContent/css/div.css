@@ -1,0 +1,186 @@
+@CHARSET "UTF-8";
+
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: #FFFFFF;
+}
+
+#mask {
+	position: relative;
+	min-height: 700px;
+}
+
+#header {
+	width: 100%;
+	height: 70px;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+#content-wrapper {
+	width: 100%;
+	min-height: 640px;
+	position: relative;
+	overflow: hidden;
+}
+
+#topcol {
+	position: relative;
+	z-index: 1;
+	min-height: 37px;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+	margin: 5px;
+}
+
+#content {
+	background: none repeat scroll 0% 0% rgb(246, 246, 246);
+	border: 1px solid rgb(204, 204, 204);
+	position: relative;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	min-height: 600px;
+	padding: 5px;
+	margin: 5px;
+}
+
+#footer {
+	font-size: 12px;
+	position: relative;
+}
+
+#clearfooter {
+	height: 25px;
+	clear: both;
+}
+
+label.error {
+	color: red;
+	font-style: italic;
+	width: auto;
+	font-size: 10pt;
+}
+
+#d_clip_button {
+	
+}
+
+#d_clip_button.hover {
+	background-color: #eee;
+}
+
+#d_clip_button.active {
+	background-color: #aaa;
+}
+
+/*天人修改開始*/
+/*-----------------------------------問題內容頁*/
+#content .question_detail {
+	width: 900px;
+	position: relative;
+}
+
+#content .question_detail fieldset {
+	padding: 0;
+	margin: 0 0 20px 0;
+	width: 900px;
+	float: left;
+	position: relative;
+	border: 1px solid #F7BE81;
+}
+
+#content .question_detail fieldset legend {
+	margin-left: 10px;
+	color: #F7BE81;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+#content .question_detail fieldset a {
+	text-decoration: none;
+}
+
+#content .question_detail fieldset a:hover {
+	text-decoration: underline;
+}
+
+#content .question_detail fieldset img {
+	border: 0;
+	margin: 0 1px;
+}
+
+#content .question_detail fieldset .list_table {
+	width: 100%;
+}
+
+#content .question_detail fieldset .list_table th {
+	width: 18%;
+	vertical-align: top;
+	text-align: right;
+}
+
+#content .question_detail fieldset .list_table td {
+	width: 32%;
+}
+
+#content .question_detail fieldset .list_table td.long_entry {
+	width: 82%;
+}
+
+#content .question_detail fieldset .list_table td span {
+	margin: 0 5px;
+}
+
+#content .question_detail fieldset textarea {
+	width: 640px;
+	height: 30px;
+}
+
+#content .question_detail fieldset .moreWords textarea {
+	height: 150px;
+}
+
+#content .question_detail fieldset .fold_box {
+	height: 1em;
+	padding: 3px 0;
+}
+
+#content .question_detail fieldset .fold_box img {
+	vertical-align: middle;
+}
+
+#content .question_detail fieldset .fold_box a {
+	color: green;
+	font-size: 10pt;
+}
+
+#content .question_detail .other .owner div {
+	width: 25%;
+	float: left;
+}
+
+#content .question_detail .other .owner div span {
+	font-weight: bold;
+}
+
+#content .question_detail .other .history {
+	clear: both;
+}
+
+#content .question_detail .multiSubanswer .oneSubanswer {
+	float: left;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+}
+
+#content .question_detail .multiSubanswer .oneSubanswer .view_subAns {
+	right: 0px;
+	position: absolute;
+	padding: 3px 0;
+}
+/*天人修改結束*/

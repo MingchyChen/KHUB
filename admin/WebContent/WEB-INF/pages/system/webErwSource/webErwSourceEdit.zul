@@ -1,0 +1,92 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<zscript>
+
+</zscript>
+	<window id="addWebErwSourceWin" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebErwSourceComposer">
+		<vlayout>
+			<label id="message" style="color:red;"></label>
+			<grid>
+				<rows>
+					<row>
+						<!-- 資料庫名稱 -->
+						<cell width="20%" align="right"><label value="${labels.webErwSource.nameZhTw}:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox maxlength="50" id="nameZhTw" value="${addWebErwSourceWin$composer.webErwSource.nameZhTw }"  width="80%"/></cell>
+					</row>
+					<row>
+						<!-- 資料庫ID -->
+						<cell width="20%" align="right"><label value="${labels.webErwSource.dbid}:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox maxlength="50" id="dbid" value="${addWebErwSourceWin$composer.webErwSource.dbid }" width="80%"/></cell>
+					</row>
+					<!-- 出版商 -->
+					<row>
+						<cell width="20%" align="right"><label value="${labels.webErwSource.publisher }:"></label></cell>
+						<cell width="50%"><textbox maxlength="500" id="publisher" value="${addWebErwSourceWin$composer.webErwSource.publisher }" width="80%"></textbox></cell>
+					</row>					
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn"/>
+				<button label="${labels.add}${labels.webErwSource.orgName}" id="addWebErwSourceUnit" />
+				<button id="cancelBtn" />
+			</div>
+		</vlayout>
+		<hbox>
+			<!-- 刪除 -->
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="webErwSourceUnitListBox" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="50px"></listheader>
+				<listheader label="${labels.webErwSourceUnit.webOrgOrg}" sort="auto(webOrgOrg.orgName)"></listheader>
+				<listheader label="${labels.webErwSourceUnit.isCooperation}" sort="auto(isCooperation)"></listheader>
+				<listheader label="${labels.webErwSourceUnit.webEmployeesn }" sort="auto(webEmployeesn.employeeName)"></listheader>
+				<listheader label="${labels.webErwSourceUnit.roundNum }" sort="auto(roundNum)"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(dataOwner.employeeName)"></listheader>
+				<listheader label="${labels.createdate }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.webOrgOrg.orgName }"></listcell>
+					<listcell label="${each.isCooperation == 1 ? labels.yes : labels.no}"></listcell>
+					<listcell label="${each.webEmployeesn.employeeName }"></listcell>
+					<listcell label="${each.roundNum }"></listcell>					
+					<listcell label="${each.dataOwner.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}">
+					<button label="${labels.changeRecord }" target="${each.uuid}">
+						<attribute name="onClick">
+							<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "weberesource_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+							]]>
+						</attribute>
+					</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.uuid}" context="${addWebErwSourceWin$composer.webErwSource.uuid }">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("webErwSourceUnitId",  self.getTarget());
+										map.put("webErwSourceId",  self.getContext());
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webErwSource/webErwSourceUnitEdit.zul",addWebErwSourceWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

@@ -1,0 +1,99 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="${labels.add}"  id="addWebEduTrainWin"  apply="com.claridy.admin.composer.WebEduTrainingComposer" width="66%"
+		border="normal" position="center,center" closable="true" >
+	<vlayout>
+		<grid>
+			<rows>
+				<row>
+					<cell width="20%" style="color:red">
+						<!-- 發佈日期 -->
+						<label value="${labels.eduTrain.onDate}: " ></label>
+						</cell>
+						<cell>
+							<datebox id="startDatedbx" readonly="true"></datebox>
+						</cell>
+				</row>
+				<row>
+					<cell width="20%" style="color:red">
+						<!-- 訓練日期 -->
+						<label value="${labels.eduTrain.trainDate}: " ></label>
+						</cell>
+						<cell>
+							<datebox id="trainingDatedbx" readonly="true"></datebox>
+						</cell>
+				</row>
+				<row>
+					<cell width="20%">
+						<!-- 下架日期 -->
+						<label value="${labels.ermNews.shelvesDate}: " ></label>
+					</cell>
+					<cell>
+						<datebox id="closeDateDbx"></datebox>
+					</cell>
+				</row>
+				<row>
+						<cell width="20%" style="color:red">
+						<!-- 標題 -->
+						<label value="${labels.eduTrain.title}:"></label>
+						</cell>
+						<cell>
+							<textbox id="titleTxt" value="" width="80%" maxlength="50"></textbox>
+						</cell>
+				</row>
+				<row>
+						<cell width="20%">
+						<!-- 點擊數 -->
+						<label value="${labels.eduTrain.clickNum}: " ></label>
+						</cell>
+						<cell>
+							<intbox id="clickNumtbx" width="80%"></intbox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<label value="${labels.eduTrain.document }"></label>
+						</cell>
+						<cell width="80%">
+						<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+						<button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" visible="true">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadFileNameTxt.setValue(media.getName());
+								]]></attribute>
+						</button>
+						<button label="刪除文檔" id="delFile" ></button>
+						<label value="${labels.eduTrain.fileType }"></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 參考網址 -->
+							<label value="${labels.eduTrain.webSite}:"></label>
+						</cell>
+						<cell>
+							<textbox id="webSiteTbx" value="" width="80%"></textbox>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2" style="color:red;TextAlign:Center">
+						<!-- 內容 -->
+						<label value="${labels.eduTrain.content}:"></label>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<ckeditor id="contentCedit" value="" ></ckeditor>
+						</cell>
+					</row>
+			</rows>
+		</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addWebEduTrainWin.detach();"/>
+				<button label="${labels.clearArchives}" id="clearBtn" />
+			</div>
+	</vlayout>
+</window>
+</zk>

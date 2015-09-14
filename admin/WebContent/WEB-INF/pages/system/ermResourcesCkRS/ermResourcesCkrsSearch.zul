@@ -1,0 +1,43 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="ErmResourcesCkRSSearchWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmResourcesCKRSSearchComposer">
+		<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.ermResourceRscon.idsn }"></label>
+				<textbox id="idTBox" hflex="3"></textbox>
+			</hlayout>
+			<hlayout>
+				<label hflex="1" value="${labels.ermResourceCKRS.title }"></label>
+				<textbox hflex="3" id="titleTBox"></textbox>
+			</hlayout>
+		</vlayout>
+		
+		<hbox>
+			<button id="searhcBtn" label="${labels.search }"></button>
+			<button id="showAll" label="${labels.showAll }"></button>
+		</hbox>
+		
+		<listbox id="ckRsLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.ermResourceRscon.idsn }" sort="auto(resourcesId)"></listheader>
+				<listheader label="${labels.ermResourceCKRS.title }" sort="auto(title)"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.resourcesId }"></listcell>
+					<listcell label="${each.title }"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+		<div align="center">
+			<button label="${labels.save}" id="saveBtn" />
+			<button label="${labels.cancel}" id="cancelBtn"
+				onClick="ErmResourcesCkRSSearchWin.detach();" />
+		</div>
+	</window>
+</zk>

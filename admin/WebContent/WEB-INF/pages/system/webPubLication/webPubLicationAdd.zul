@@ -1,0 +1,102 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="addWenPubLicationWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebPubLicationComposer">
+	<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<!-- 書名 -->
+						<cell width="20%"><label  value="${labels.webPubLication.title }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxtitle" value=""  width="80%" maxlength="50"/></cell>
+					</row>
+					<row>
+					<!-- 作者 -->
+						<cell width="20%"><label value="${labels.webNoticeCoopEdit.authorBtn }"></label></cell>
+						<cell width="50%"><textbox id="tboxAuthor"></textbox></cell>
+						
+					</row>
+					<!-- isbn -->
+					<row>
+						<cell width="20%"><label value="ISBN:" ></label></cell>
+						<cell width="50%"><textbox id="isbntbox" width="80%"></textbox></cell>
+						
+					</row>
+					<!-- issn -->
+					<row>
+						<cell width="20%"><label value="ISSN:"></label></cell>
+						<cell width="50%"><textbox id="issntbox" width="80%"></textbox></cell>
+					</row>
+					<!-- url -->
+					<row>
+						<cell width="20%"><label value="URL:"></label></cell>
+						<cell width="50%"><textbox id="url" width="80%"></textbox></cell>
+					</row>
+					<!-- 電子書URL -->
+					<row>
+						<cell width="20%"><label value="${labels.webPubLication.ebookURL }"></label></cell>
+						<cell width="50%"><textbox width="80%" id="ebookURL"></textbox></cell>
+					</row>
+					<!-- pdfURL -->
+					<row>
+						<cell width="20%"><label value="PDF URL:"></label></cell>
+						<cell width="50%"><textbox width="50%" id="pdfurl"></textbox></cell>
+					</row>
+					<!-- 是否顯示 -->
+					<row>
+						<cell width="20%"><label value="${labels.webPubLication.isShow }:" ></label></cell>
+						<cell width="50%">
+							<radiogroup id="isShowRdb">
+								<radio label="${labels.yes }" value="1"></radio>
+								<radio label="${labels.no }" value="0"></radio>
+							</radiogroup>
+						</cell>
+					</row>
+					<row>
+					<!-- 出版社 -->
+						<cell width="20%">
+							<label value="${labels.webPubLication.publisher }:"></label>
+							
+							
+						</cell>
+						<cell width="50%">
+							<textbox id="publishertbox"></textbox>
+						</cell>
+					</row>
+					<row>
+					<!-- 出版年 -->
+						<cell width="20%"><label value="${labels.webPubLication.pyear }"></label></cell>
+						<cell width="50%"><datebox id="byeartdbox" format="yyyy-MM"></datebox></cell>
+					</row>
+					<row>
+					<!-- 上傳書封 -->
+						<cell width="20%"><label value="${labels.webPubLication.img }:" style="color:red;"></label></cell>
+						<cell width="50%">
+							<button id="deleeImg" label="${labels.deleteImg }" visible="false"></button>
+							<button id="upload" upload="true,maxsize=-1" label="${labels.webPubLication.borwse }"/>
+							<image id="img" width="240px" height="320px"  />
+						</cell>
+					</row>
+					<row>
+					<!-- 點擊數 -->
+						<cell width="20%"><label value="${labels.webEduTraining.clickNum }:"></label></cell>
+						<cell width="50%"><intbox id="clickNumtbox"></intbox></cell>
+					</row>
+					<row>
+					<!-- 內容 -->
+						<cell width="20%"><label value="${labels.webPubLication.des }" style="color:red;"></label></cell>
+						<cell width="50%">
+							<textbox rows="7" id="destbox" cols="50"></textbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" onClick="" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="addWenPubLicationWin.detach();" />
+			</div>
+		</vlayout>
+</window>
+</zk>

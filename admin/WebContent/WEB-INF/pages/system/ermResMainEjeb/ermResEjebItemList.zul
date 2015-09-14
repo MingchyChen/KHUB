@@ -1,0 +1,95 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="ermResEjebItemListWin"
+		apply="com.claridy.admin.composer.ErmResEjebItemListComposer">
+		<vlayout width="500px">
+			<hlayout>
+				<div width="60px">
+					<label value="${labels.ermTypeRes.resName}"/><!-- 資源名稱 -->
+				</div>
+				<textbox id="resType" value="${labels.sysMenuResMainEjeb}" disabled="true"></textbox><!-- 資源類型 -->
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+					<label value="${labels.ermTypeRes.resId}"/><!-- 資源編號 -->
+				</div>
+				<textbox id="resourcesIdTxt" disabled="true"></textbox><!-- 編號-->
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+					<label value="${labels.ermTypeRes.resTitle}"/><!-- 資源題名 -->
+				</div>
+				<textbox id="titleTxt" disabled="true"></textbox><!-- 題名 -->
+			</hlayout>
+			<hlayout>
+				<div width="120px">
+					<button id="editTitleNameBtn" label="${labels.ermResMainEjeb.editTile}" width="120px"></button>
+				</div>
+			</hlayout>
+			<hlayout>
+				<div width="300px">
+					<button id="addResBtn" label="${labels.ermResMainEjeb.addssRes}" width="120px"></button><!-- 新增所屬資料庫 -->
+					<button id="ejebItemCancelBtn" label="${labels.webNoticeTemplatesEdit.cancelBtn}" width="200px"/>
+				</div>
+			</hlayout>
+		</vlayout>
+		<!-- 刪除-->
+		<button id="delEjebItemBtn" label="${labels.del}" />
+		<listbox id="resMainEjebItemLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<!-- 資料庫名稱 -->
+				<listheader label="${labels.webErwSource.nameZhTw}" sort="auto(dbId)"></listheader>
+				<!-- 出版商 -->
+				<listheader label="${labels.webErwSource.publisher}" sort="auto(publisherId)"></listheader>
+				<!-- url-->
+				<listheader label="URL" sort="auto(url1)"></listheader>
+				
+				<!-- 建立者-->
+				<!-- <listheader label="${labels.creator}" sort="auto(webEmployee.employeeName)"></listheader>  -->
+				<!-- 建立日/異動記錄 -->
+				<!-- <listheader label="${labels.createDate}/${labels.changeRecord}"></listheader> -->
+				<!-- 編輯 -->
+				<listheader label="${labels.edit}"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.dbIdShowStr}"></listcell>
+					<listcell label="${each.publisherId}"></listcell>
+					<listcell label="${each.url1}"></listcell>
+				<!-- 	 <listcell label="${each.webEmployee.employeeName}">
+					</listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+						 ${labels.changeRecord}
+						<button label="${labels.changeRecord}" target="${each.resourcesId}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "templates_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>  -->
+					<listcell>
+						<!-- 編輯 -->
+						<button  label="${labels.edit}" target="${each.resourcesId},${each.dbId}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("resTitleId", self.getTarget());
+										map.put("numPage","1");
+										//int currentPage=resMainEjebLix.getActivePage();
+									//	map.put("currentPage", String.valueOf(currentPage));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermResMainEjeb/ermResMainEjebEdit.zul", ermResEjebItemListWin,map);
+										newAdd.doModal();
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

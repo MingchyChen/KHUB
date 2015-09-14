@@ -1,0 +1,65 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webfaqWin" apply="com.claridy.admin.composer.WebFaqComposer">
+	<hbox>
+		<label id="keywordlbl" value="${labels.wefaqtype.keyword }"></label>:
+		<textbox id="keywordtbox"></textbox>
+	</hbox>
+	
+	<hbox>
+		<button id="searchbtn" label="${labels.search }"></button>
+		<button id="showAll" label="${labels.showAll }"></button>
+		<button id="addbtn" label="${labels.add }"></button>
+		<button id="deletebtn" label="${labels.del }"></button>
+	</hbox>
+	
+	<listbox id="webfaqtypeLix" checkmark="true" multiple="true" mold="paging" pageSize="10" pagingPosition="both">
+		<listhead>
+			<listheader align="center" width="45px"></listheader>
+			<listheader label="${labels.webfaq.type }" sort="auto(webFaqType.titleZhTw)"></listheader>
+			<listheader label="${labels.webfaq.faqTitle }" sort="auto(titleZhTw)"></listheader>
+			<listheader label="${labels.webfaq.sort }" sort="auto(sortnum)"></listheader>
+			<listheader label="${labels.webfaq.isdisplay }" sort="auto(isdisplay)"></listheader>
+			<listheader label="${labels.dataowner }" sort="auto(webEmployee.employeeName)"></listheader>
+			<listheader label="${labels.createdate }" sort="auto(createDate)"></listheader>
+			<listheader></listheader>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell></listcell>
+				<listcell label="${each.webFaqType.titleZhTw }"></listcell>
+				<listcell label="${each.titleZhTw }"></listcell>
+				<listcell label="${each.sortnum }"></listcell>
+				<listcell label="${labels.yes }" if="${each.isdisplay==1 }"></listcell>
+				<listcell label="${labels.no }" if="${each.isdisplay==0 }"></listcell>
+				<listcell label="${each.webEmployee.employeeName }"></listcell>
+				<listcell label="${each.createDate }">
+				<button label="${labels.changeRecord }" target="${each.uuid}">
+					<attribute name="onClick">
+						<![CDATA[
+								Map arg = new HashMap();
+								arg.put("nlocate", "webfaq_" + self.getTarget());
+								Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+										arg);
+						]]>
+					</attribute>
+				</button>
+				</listcell>
+				<listcell>
+					<button label="${labels.edit}" target="${each.uuid }">
+						<attribute name="onClick" >
+							<![CDATA[
+								Map arg = new HashMap();
+								arg.put("uuid",self.getTarget());
+								arg.put("currentPage",String.valueOf(webfaqtypeLix.getActivePage()));
+								Window editWebFaq = Executions.createComponents("/WEB-INF/pages/system/webfaq/webfaqAE.zul",webfaqWin,arg);
+								editWebFaq.doModal();
+							]]>
+						</attribute>
+					</button>
+				</listcell>
+			</listitem>
+		</template>
+	</listbox>
+</window>
+</zk>

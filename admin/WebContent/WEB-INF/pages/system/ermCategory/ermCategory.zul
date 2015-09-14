@@ -1,0 +1,53 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="sysSettingWin" apply="com.claridy.admin.composer.ErmCategoryListComposer">
+		<vlayout>
+			<hlayout>
+				<!-- 資源種類 -->
+				<label value="${labels.ermCategoryLbx.resType}:"></label>
+				<combobox id="resTypeCbx" readonly="true"/>
+			</hlayout>
+			<hlayout>
+				<label value="${labels.resTypeCbx.categoryType}:"></label>
+				<radiogroup id="categoryTypeRdg">
+					<radio label="${labels.resTypeCbx.after}" value="1" checked="true"/>
+					<radio label="${labels.resTypeCbx.resources}" value="2"/>
+				</radiogroup>
+			</hlayout>
+		</vlayout>
+		<hbox align="center">
+			<!-- 查詢 -->
+			<button id="pagSearchBtn" label="${labels.search}" />
+		</hbox>
+
+		<listbox id="ermCategoryLbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="200" pagingPosition="both" width="60%">
+			<listhead sizable="true">
+				<listheader align="center" width="45px"/>
+				<!-- 代碼 -->
+				<listheader label="${labels.resTypeCbx.code}" sort="auto(categoryId)"/>
+				<!-- 名稱 -->
+				<listheader label="${labels.resTypeCbx.name}" sort="auto(categoryName)"/>
+			</listhead>
+			<template name="model">
+				<listitem selected="true" if="${each.history!='Y' }">
+					<listcell/>
+					<listcell label="${each.categoryId}"/>
+					<listcell label="${each.categoryName}"/>
+				</listitem>
+				<listitem selected="false" if="${each.history=='Y' }">
+					<listcell/>
+					<listcell label="${each.categoryId}"/>
+					<listcell label="${each.categoryName}"/>
+				</listitem>
+			</template>
+		</listbox>
+		<hbox align="center">
+			<!-- 存儲 -->
+			<button id="saveBtn" label="${labels.resTypeCbx.save}" />
+			<!-- 離開 -->
+			<button id="backBtn" label="${labels.resTypeCbx.back}" />
+		</hbox>
+	</window>
+</zk>

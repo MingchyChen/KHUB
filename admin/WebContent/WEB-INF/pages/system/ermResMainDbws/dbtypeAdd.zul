@@ -1,0 +1,47 @@
+<?page id="noticeEditPage" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>  
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<window id="addDbtypeWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmDbtypeComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="30%">
+						<!-- 資源編號 -->
+						<label value="${labels.ermTypeRes.resId}" style="color:red;"></label>
+						</cell>
+						<cell>
+						<textbox id="resIdBox" readonly="true" value="" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 類型編號  -->
+						<label value="${labels.ermTypeRes.dbtypeId}" style="color:red;"></label>
+						</cell>
+						<cell>
+						<textbox id="dbtypeIdBox" value="" width="80%"/>
+						<button label="${labels.select}" id="selectBtn" />
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 類型 -->
+							<label value="${labels.ermTypeRes.dbtypeName}" style="color:red;"></label>
+							</cell>
+							<cell>
+							<textbox id="dbtypeNameBox" readonly="true" value="" width="80%"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addDbtypeWin.detach();"/>
+			</div>
+		</vlayout>
+	</window>
+</zk>

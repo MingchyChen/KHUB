@@ -1,0 +1,145 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="webEmployeeWin" apply="com.claridy.admin.composer.WebAccountListComposer">
+
+
+		<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.account}:"></label>
+				<textbox hflex="3" id="accountIdBox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.name }:"></label>
+				<textbox hflex="3" id="accountNameBox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.unit }:"></label>
+				<combobox hflex="3" id="orgNameBox"  readonly="true"></combobox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.ermCodePublisherperson.title }:"></label>
+				<combobox id="idTypeBox" hflex="3"  readonly="true">
+					<comboitem label="${labels.select }" value="0"></comboitem>
+					<comboitem label="${labels.webEmployeeAdd.tboxIdType.use }" value="3"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.fuse }" value="4"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.aidUse }" value="5"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.technician }" value="6"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.ftechnician }" value="7"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.other }" value="8"></comboitem>
+				</combobox>
+			</hlayout>
+			<hlayout>
+					<!-- 狀態 -->
+					<label value="${labels.state }:"></label>
+					<radiogroup id="rgroupstate" width="80%">
+						<radio label="${labels.start }" value="1" width="50%"></radio>
+						<radio label="${labels.disable } " value="0" width="50%"></radio>
+					</radiogroup>
+			</hlayout>
+			<hlayout>
+					<!-- 是否是前台註冊-->
+					<label value="${labels.webAccount.isoragridlregister }:"></label>
+					<radiogroup id="registerRgp" width="80%">
+						<radio label="${labels.ermNews.is }" value="1" width="50%"></radio>
+						<radio label="${labels.ermNews.no } " value="0" width="50%"></radio>
+					</radiogroup>
+			</hlayout>
+			<hlayout>
+					<!-- 審核狀態 -->
+					<label hflex="1" value="${labels.webAccount.isCheck }:"></label>
+					<combobox hflex="3" id="isCheckCBbox" readonly="true">
+						<comboitem label="${labels.select }" value="-1"></comboitem>
+						<comboitem label="${labels.webAccount.isCheckPend }" value="0"></comboitem>
+						<comboitem label="${labels.webAccount.isCheckOK }" value="1"></comboitem>
+						<comboitem label="${labels.webAccount.isCheckNO }" value="2"></comboitem>
+					</combobox>
+			</hlayout>
+		</vlayout>
+
+
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button><!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+			<button id="auditOkBtn" label="${labels.webAccount.isCheckOK }"></button>
+			<button id="auditNOBtn" label="${labels.webAccount.isCheckNO }"></button>
+			<button label="${labels.ermResReport.export }" id="execleBtn"></button>
+		</hbox>
+		<listbox id="accountLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.account}" sort="auto(accountId)"></listheader>
+				<listheader label="${labels.name}" sort="auto(nameZhTw)"></listheader>
+				<listheader label="${labels.unit }" sort="auto(parentOrgName)"></listheader>
+				<listheader label="E-Mail" sort="auto(email)"></listheader>
+				<listheader label="${labels.phone }" sort="auto(tel)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.title }" sort="auto(type)"></listheader>
+				<listheader label="${labels.state }" sort="auto(status)"></listheader>
+				<listheader label="${labels.webAccount.isCheck }" sort="auto(isCheck)"></listheader>
+				<listheader label="${labels.logindate }" sort="auto(loginDate)"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.createdate }" sort="auto(createDate)"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.accountId }"></listcell>
+					<listcell label="${each.nameZhTw }"></listcell>
+					<listcell label="${each.parentOrgName }" if="${each.orgName==''}"></listcell>
+					<listcell label="${each.parentOrgName }-${each.orgName }" if="${each.orgName!=''}"></listcell>
+					<listcell label="${each.email }"></listcell>
+					<listcell label="${each.tel }"></listcell>
+					<listcell label="${labels.webEmployeeAdd.tboxIdType.use }" if="${each.type==3 }"></listcell>
+					<listcell label="${labels.webEmployeeAdd.tboxIdType.unit }" if="${each.type==2 }"></listcell>
+					<listcell label="${labels.webEmployeeAdd.tboxIdType.coaManagers }" if="${each.type==1 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.fuse }" if="${each.type==4 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.aidUse }" if="${each.type==5 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.technician }" if="${each.type==6 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.ftechnician }" if="${each.type==7 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.other }" if="${each.type==8 }"></listcell>
+					<listcell label="${labels.start }" if="${each.status==1 }"></listcell>		
+					<listcell label="${labels.disable }" if="${each.status==0 }"></listcell>
+					<listcell label="${labels.webAccount.isCheckPend }" if="${each.isCheck==0 }"></listcell>
+					<listcell label="${labels.webAccount.isCheckOK }" if="${each.isCheck==1 }"></listcell>
+					<listcell label="${labels.webAccount.isCheckNO }" if="${each.isCheck==2 }"></listcell>
+					<listcell label="${each.loginDate==null?each.loginDate:(c:formatDate(each.loginDate, 'yyyy-MM-dd HH:mm:ss'))}"></listcell>
+					<listcell label="${each.webEmployee.employeeName }" if="${each.isRegister!=1 }"></listcell>
+					<listcell label="${each.nameZhTw }" if="${each.isRegister==1 or each.isRegister==''}"></listcell>
+					<listcell label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss'))}" >
+						<button label="${labels.changeRecord }" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "account_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("uuid",  self.getTarget());
+										int currentPage=accountLix.getActivePage();
+										map.put("currentPage", String.valueOf(currentPage));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webAccount/webAccountEdit.zul", webEmployeeWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

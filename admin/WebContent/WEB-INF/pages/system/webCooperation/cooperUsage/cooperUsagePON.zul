@@ -1,0 +1,51 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="parentOrgNameWin" title="${labels.report.cooperUsagePON}" width="66%"
+		mode="modal" border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.CooperUsagePONListComposer">
+		<label id="pcondition" width="100%"></label>
+		<separator></separator>
+		<label id="punit" width="100%"></label>
+		<hlayout>
+			<div>
+				<button label="${labels.ermResUserList.export}"
+					id="export" onClick="" />
+			</div>
+		</hlayout>
+		<listbox id="parentOrgNameLbx" mold="paging" pageSize="10"
+			pagingPosition="both">
+			<listhead sizable="true">
+				<listheader
+					label="${labels.accountNumber.parentOrgName}"
+					sort="auto(parentOrgName)">
+				</listheader>
+				<listheader label="${labels.accountNumber.cooperNumber}"
+					sort="auto(cooperNumber)">
+				</listheader>
+
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.parentOrgName}"></listcell>
+					<listcell if="${each.cooperNumber!=0}">
+						<a label="${each.cooperNumber} "
+							zclass="${each.pUrl}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("pUrl", self.getZclass());
+									Executions.createComponents("/WEB-INF/pages/system/webCooperation/cooperUsage/cooperUsageCN.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.cooperNumber }"
+						if="${each.cooperNumber==0 }">
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

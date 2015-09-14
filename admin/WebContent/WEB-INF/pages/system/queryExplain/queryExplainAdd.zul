@@ -1,0 +1,69 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="addWebSearchInfoWin" title="${labels.add}" apply="com.claridy.admin.composer.WebSearchInfoComposer" width="66%"
+		border="normal" position="center,center" closable="true">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+						<!-- 查詢說明主題名稱-->
+						<label value="${labels.searchInfo.nameZhTw}:" style="color:red;"></label>
+						</cell>
+						<cell>
+						<textbox maxlength="50" id="nameZhTwtbx" value=""  width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 是否開啟 -->
+						<label value="${labels.searchInfo.sfkq}:"></label>
+						</cell>
+						<cell>
+						<radiogroup id="isOpenRdb"> 
+							<radio label="${labels.searchInfo.close}" value="0" hflex="1"></radio>
+							<radio label="${labels.searchInfo.open}" value="1" hflex="1"></radio>
+						</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 排序 -->
+						<label value="${labels.searchInfo.sortNum}: " ></label>
+						</cell>
+						<cell>
+							<intbox id="sortNumIbx"  width="80%" maxlength="50"></intbox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 點擊數 -->
+						<label value="${labels.searchInfo.clickNum}: " ></label>
+						</cell>
+						<cell>
+							<intbox id="clickNumIbx"  width="80%" maxlength="50"></intbox>
+						</cell>
+					</row>
+					<row>
+						<!-- 內容 -->
+						<cell width="100%" colspan="2" style="color:red;TextAlign:Center">
+							<label value="${labels.searchInfo.contentZhTw}" ></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<ckeditor id="contentZhTwEdt" width="850" toolbar="simple"  
+							customConfigurationsPath="/js/config.js" ></ckeditor>
+						</cell>	
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="addWebSearchInfoWin.detach();"/>
+			</div>
+		</vlayout>
+
+</window>
+</zk>

@@ -1,0 +1,79 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window apply="com.claridy.admin.composer.WebSearchInfoListComposer" id="webSearchInfo">
+	<hbox align="center">
+			<!-- 關鍵字 -->
+			<label value="${labels.searchInfo.nameZhTw}:"/>
+			<textbox id="titleName" />
+	</hbox>
+	<hbox align="center">
+			<!-- 查詢，新增，修改，刪除 -->
+			<!-- 搜尋 -->
+			<button id="pagSearchBtn" label="${labels.search}" />
+			<button id="addBtn" label="${labels.add}" />
+			<!-- <button id="editBtn" label="${labels.edit}" /> -->
+			<button id="deleteBtn" label="${labels.del}" />
+			<button id="showAll" label="${labels.searchInfo.showAll}"></button>
+			<button id="open" label="${labels.openZt}" />
+			<button id="close" label="${labels.closeZt}"></button>
+	</hbox>
+	<listbox id="webSearchInfolbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+		<listhead sizable="true">
+				<listheader align="center" width="45px"></listheader>
+				<!-- 連接名稱 -->
+				<listheader label="${labels.searchInfo.nameZhTw} " sort="auto(nameZhTw)" ></listheader>
+				<!-- 狀態 -->
+				<listheader label="${labels.searchInfo.isDisplay}" sort="auto(isDisplay)"></listheader>
+				<!-- 排序-->
+				<listheader label="${labels.searchInfo.sortNum}" sort="auto(sortNum)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.searchInfo.dataOwner}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動紀錄 -->
+				<listheader label="${labels.searchInfo.changeRecord}"></listheader>
+				<!-- 編輯 -->
+				<listheader align="center" label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.nameZhTw}"></listcell>
+					<listcell label="${labels.searchInfo.open }" if="${each.isDisplay==1}"></listcell>
+					<listcell label="${labels.searchInfo.close }" if="${each.isDisplay==0}"></listcell>
+					<listcell label="${each.sortNum }"></listcell>
+					<listcell label="${each.webEmployee.employeeName}"></listcell>
+					 <listcell label="${c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss') }">
+						<button label="${labels.changeRecord} "
+							target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "websearchinfo_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					
+					<listcell >
+						<button label="${labels.edit}" target="${each.uuid}">
+						 <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("uuid",  self.getTarget());
+							params.put("currentPage",String.valueOf(webSearchInfolbx.getActivePage()));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/queryExplain/queryExplainEdit.zul", webSearchInfo,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						     </button>
+     				 
+					</listcell> 
+				</listitem>
+			</template> 
+	</listbox>
+</window>
+</zk>

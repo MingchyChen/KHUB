@@ -1,0 +1,17 @@
+<window apply="com.claridy.admin.composer.HeaderComposer">
+	<div style="width: 100%">
+		<div class="pageright">
+			<div class="image">
+				<a id="toLogot">
+					<image src="../../../images/system/logout.png" width="65" height="26" border="0" id="Image3" />
+				</a>
+			</div>
+			<div class="ti"><!-- 登入者 -->${labels.loginUser}:${webEmployee.employeeName }</div>
+		</div>
+		<div class="pagelogo">
+			<image src="../../../images/system/logo.png" width="260" height="70" />
+		</div>
+		<div class="pageleft"></div>
+	</div>
+</window>
+

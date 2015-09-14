@@ -1,0 +1,120 @@
+<?page id="noticeEditPage" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>  
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<window id="editRelTitleWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmOdetailsComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="30%">
+						<!-- 資源編號 -->
+						<label value="${labels.ermTypeRes.resId}"></label>
+						</cell>
+						<cell>
+						<textbox id="resIdBox" readonly="true" value="" width="40%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 採購年度 -->
+							<label value="${labels.ermTypeRes.odetailsYear}" style="color:red;"></label>
+							</cell>
+							<cell>
+							<textbox id="yearBox" value="" width="40%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 採購金額 -->
+							<label value="${labels.ermTypeRes.odetailsMoney}"></label>
+							</cell>
+							<cell>
+							<textbox id="moneyBox" value="" width="40%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 採購註記 -->
+							<label value="${labels.ermResMainDbws.remarkId}"></label>
+							</cell>
+							<cell>
+							<combobox id="remarkCbx" value="" width="40%" readonly="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 起訂日期 -->
+							<label value="${labels.ermResMainDbws.starOrderDate}"></label>
+							</cell>
+							<cell>
+							<datebox id="starOrderDateBox" width="40%" />
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 訖訂日期 -->
+							<label value="${labels.ermResMainDbws.endOrderDate}"></label>
+							</cell>
+							<cell>
+							<datebox id="endOrderDateBox" width="40%" />
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 代理商 -->
+							<label value="${labels.ermResourcesConfig.agentedid}"></label>
+							</cell>
+							<cell>
+							<label id="agentedIdBox" style="display:none;"/>
+							<textbox id="agentedNameBox" value="" width="40%"/>
+							<button label="請選擇" id="selectBtn" />
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 承辦人員 -->
+							<label value="${labels.ermTypeRes.orderUser}"></label>
+							</cell>
+							<cell>
+							<textbox id="orderUserBox" value="" width="40%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 備註 -->
+							<label value="${labels.webNoticeTemplatesEdit.remarks}"></label>
+							</cell>
+							<cell>
+							<textbox id="noteBox" value="" width="40%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 上傳檔案 -->
+							<label value="${labels.ermResourcesConfig.uploadfile}"></label>
+						</cell>
+						<cell>
+							<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+							<button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" visible="true">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadFileNameTxt.setValue(media.getName());
+								]]></attribute>
+							</button>
+							<button label="刪除文檔" id="delFile" ></button>
+							<label value="${labels.eduTrain.fileType }"></label>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<!-- 確定存檔 -->
+				<button id="updBtn" label="${labels.webNoticeTemplatesEdit.updBtn}"/>
+				<!-- 取消編輯，回列表檢視模式 -->
+				<button id="cancelBtn" label="${labels.webNoticeTemplatesEdit.cancelBtn} " onClick="editRelTitleWin.detach();"/>
+			</div>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,79 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="codePublisherWin" apply="com.claridy.admin.composer.CodePublisherListComposer">
+		
+		<vlayout>
+			<hlayout>
+				<!-- 代碼查詢 -->
+				<label value="${labels.codePublisher.codePublisherTbx.publisherId_sc}:"></label>
+				<textbox id="publisherIdBox"></textbox>
+				<!-- 名稱查詢 -->
+				<label value="${labels.codePublisher.codePublisherTbx.name_sc}:"></label>
+				<textbox width="150%"  id="publisherNameBox"></textbox>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 查詢，顯示全部,新增，刪除 -->
+			<button id="pagSearchBtn" label="${labels.search}" />
+			<button label="${labels.showAll}" id="showAllBtn"></button>
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="codePublisherLbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead sizable="true">
+				<listheader align="center" width="45px"></listheader>
+				<!-- 名稱 -->
+				<listheader label="${labels.codePublisher.codePublisherTbx.name} " sort="auto(name)"></listheader>
+				<!-- 首頁URL -->
+				<listheader label="${labels.codePublisher.codePublisherTbx.url}" sort="auto(url)"></listheader>
+				<!-- 聯繫方式 -->
+				<listheader label="${labels.codePublisher.codePublisherCbx.contact}" sort="auto(contact)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.dataowner}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動記錄 -->
+				<listheader label="${labels.createdate}/${labels.changeRecord}"></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.name}"></listcell>
+					<listcell label="${each.url}"></listcell>
+					<listcell label="${each.contactName}"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+						<!-- 異動紀錄 -->
+						<button label="${labels.changeRecord} "
+							target="${each.publisherId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "codePublisher_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button label="${labels.edit}" target="${each.publisherId}">
+						    <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("publisherId",  self.getTarget());
+							params.put("currentPage",String.valueOf(codePublisherLbx.getActivePage()));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/codePublisher/codePublisherEdit.zul", codePublisherWin,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

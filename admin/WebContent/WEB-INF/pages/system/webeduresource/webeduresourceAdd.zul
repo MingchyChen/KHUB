@@ -1,0 +1,140 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="addWebadwallWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebEduresourcesComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="50%">
+						<!-- 標題中 -->
+						<label value="${labels.webeduresource.titlezhtw}" style="color:red;"/>
+						</cell>
+						<cell width="50%">
+						<textbox id="titlezhtwTxt" value=""  width="80%" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 標題英 -->
+						<label value="${labels.webeduresource.titleenus}" style="color:red;"/>
+						</cell>
+						<cell width="50%">
+						<textbox id="titleenusTxt" value=""  width="80%" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 連接方式 -->
+						<label value="${labels.firstTopLink.ljfs}"/>
+						</cell>
+						<cell width="50%">
+						<radiogroup id="linkTypeRdo"> 
+							<radio label="${labels.firstTopLink.bykq}" value="0" hflex="1"></radio>
+							<radio label="${labels.firstTopLink.kxsc}" value="1" hflex="1"></radio>
+						</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 是否顯示 -->
+						<label value="${labels.firstTopLink.sfkq}" />
+						</cell>
+						<cell width="50%">
+						<radiogroup id="isShowRdo"> 
+							<radio label="${labels.ermNews.no}" value="0" hflex="1"/>
+							<radio label="${labels.ermNews.is}" value="1" hflex="1"/>
+						</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 排序 -->
+						<label value="${labels.firstTopLink.sort}"/>
+						</cell>
+						<cell width="50%">
+						<intbox id="sortIxt" width="80%" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 檔案上傳-->
+						<label value="${labels.uploadFile}"/>
+						</cell>
+						<cell width="50%">
+						<a><label id="uploadNameTbx" maxlength="500" width="200px"/></a>
+						<button label="${labels.resources_rsbatch.upload}" id="upload"
+							upload="true,maxsize=-1" visible="true">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadNameTbx.setValue(media.getName());
+								]]></attribute>
+						</button>
+						<button id="delLoadFile"
+							label="${labels.del}" visible="false">
+						</button>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 上架日期 -->
+						<label value="${labels.ermNews.shelves}${labels.ermNews.zxDate}" style="color:red;"/>
+						</cell>
+						<cell width="50%">
+						<datebox maxlength="50" id="startDateDbx" readonly="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 下架日期 -->
+						<label value="${labels.ermNews.soldOut}${labels.ermNews.zxDate}" />
+						</cell>
+						<cell width="50%">
+						<datebox maxlength="50" id="endDateDbx" readonly="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 點擊數 -->
+						<label value="${labels.firstTopLink.djs}" />
+						</cell>
+						<cell width="50%">
+						<intbox maxlength="50" id="clickNumIxt" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+						<!-- 連接網址 -->
+						<label value="${labels.firstTopLink.ljwzs}"/>
+						</cell>
+						<cell width="50%">
+						<textbox id="linkUrltxt" maxlength="500" value="" width="80%" />
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+							<label value="${labels.webadwall.contentZhTw}" style="color:red;"/>
+						</cell>
+						<cell width="50%">
+							<label value="${labels.webadwall.contentEnUs}" style="color:red;"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="50%">
+							<ckeditor  id="descZhTwCdr" width="100%"/>
+						</cell>
+						<cell width="50%">
+							<ckeditor  id="descEnUsCdr" width="100%"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" onClick="" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addWebadwallWin.detach();" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

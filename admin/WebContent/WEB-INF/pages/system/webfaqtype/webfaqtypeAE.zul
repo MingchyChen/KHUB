@@ -1,0 +1,37 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webFaqTypeAEWin" width="66%"
+		border="normal" position="center,center" closable="true" apply="com.claridy.admin.composer.WebFaqTypeAEComposer">
+	<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%"><label style="color:red;" value="${labels.webfaqtype.titlezh }"></label></cell>
+						<cell width="50%"><textbox id="titleZhtbox" maxlength="50" width="60%"></textbox></cell>
+					</row>
+					<row>
+						<cell width="20%"><label style="color:red;" value="${labels.webfaqtype.titleus }"></label></cell>
+						<cell width="50%"><textbox id="titleUstbox" maxlength="50" width="60%"></textbox></cell>
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.webfaqtype.isdisplay }"></label></cell>
+						<cell width="50%"><radiogroup id="isdisplayrdgroup">
+							<radio value="1" label="${labels.yes }" selected="true"></radio>
+							<radio value="0" label="${labels.no }"></radio>
+						</radiogroup></cell>
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.webfaqtype.sort }"></label></cell>
+						<cell width="50%"><intbox id="sortNumibox" maxlength="10"></intbox></cell>
+					</row>
+				</rows>
+			</grid>
+	</vlayout>
+	<div align="center">
+		<button id="saveBtn" label="${labels.saveOrUpdMessage }" />
+		<button id="updateBtn" label="${labels.saveOrUpdMessage }"></button>
+		<button id="cancelBtn"
+			onClick="webFaqTypeAEWin.detach();" />
+	</div>
+</window>
+</zk>

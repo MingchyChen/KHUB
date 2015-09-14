@@ -1,0 +1,23 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<script type="text/JavaScript"> 
+<![CDATA[       
+function test()  
+{
+	for ( var i in CKEDITOR.instances) {
+		if(i.indexOf("5") >0 ){  
+			CKEDITOR.instances[i].insertText(' some 5555 here '); 
+		}else{
+			CKEDITOR.instances[i].insertText(' some text here ');
+		}
+	}
+} 
+]]> 
+</script> 
+<window id="win" title="My First Window" border="normal" width="600px">
+<html>
+<button onclick="test()">測試</button>
+</html>
+<ckeditor id="emailCon" width="100%"/> 
+</window> 
+</zk> 

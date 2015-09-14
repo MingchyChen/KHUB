@@ -1,0 +1,50 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="addErmCodePublisherpersonWin" title="${labels.add}"
+		width="66%" border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmCodePublisherpersonComposer">
+	
+		<vlayout>
+			<grid>
+				<rows>
+					<!-- 代理商或出版商代碼 -->
+					<row>
+						<cell width="20%"><label  value="${labels.ermCodePublisherperson.publisherId }:" style="color:red;"></label></cell>
+						<cell width="50%"><combobox id="tboxPublisherId" value=""  width="80%"/></cell>
+					</row>
+					<!-- 聯絡人姓名 -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodePublisherperson.personname }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxPersonname" width="80%" maxlength="50"/></cell>
+					</row>
+					<!-- email -->
+					<row>
+						<cell width="20%"><label value="email :"/></cell>
+						<cell width="50%"><textbox id="tboxEmail" width="80%" maxlength="50"/></cell>
+					</row>
+					<!-- 電話號碼 -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodePublisherperson.telephone }:"/></cell>
+						<cell width="50%"><textbox id="tboxTelephone" width="80%" maxlength="20"/></cell>
+					</row>
+					<!-- 傳真號碼 -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodePublisherperson.fax }:"/></cell>
+						<cell width="50%"><textbox id="tboxFax" width="80%" maxlength="20"/></cell>
+					</row>
+					<!-- 職稱 -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodePublisherperson.title }:"></label></cell>
+						<cell width="50%"><textbox id="tboxTitle" width="80%" maxlength="20"/></cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" onClick="" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addErmCodePublisherpersonWin.detach();" />
+			</div>
+		</vlayout>
+
+	</window>
+</zk>

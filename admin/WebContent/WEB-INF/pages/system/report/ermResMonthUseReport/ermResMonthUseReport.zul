@@ -1,0 +1,85 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="ermResMonthUseWin"
+		apply="com.claridy.admin.composer.ErmResMonthUseListComposer">
+		<hlayout>
+			<div width="80px">
+				<label value="${labels.ermResReport.reportType}"
+					style="color:red;">
+				</label>
+			</div>
+			<div>
+				<radiogroup id="reportType">
+					<radio label="${labels.ermResReport.yearReport}"
+						value="0" hflex="1">
+					</radio>
+					<radio label="${labels.ermResReport.monthReport}"
+						value="1" hflex="1">
+					</radio>
+				</radiogroup>
+			</div>
+		</hlayout>
+		<hlayout>
+			<div width="80px">
+				<label value="${labels.ermResUserList.musterDate}"
+					style="color:red;">
+				</label>
+			</div>
+			<combobox id="firstyear" width="80px" readonly="true"></combobox>
+			<label value="${labels.ermResReport.year}" id="oneyear"></label>
+			<combobox id="firstmonth" width="50px" readonly="true"></combobox>
+			<label value="${labels.ermResReport.month}" id="onemonth"></label>
+			~
+			<combobox id="secondyear" width="80px" readonly="true"></combobox>
+			<label value="${labels.ermResReport.year}" id="twoyear"></label>
+			<combobox id="secondmonth" width="50px" readonly="true"></combobox>
+			<label value="${labels.ermResReport.month}" id="twomonth"></label>
+		</hlayout>
+		<hlayout> 
+			<div width="80px">
+				<label value="${labels.ermResUserList.resourceType}"
+					style="color:red;">
+				</label>
+			</div>
+			<combobox id="resType" readonly="true"></combobox>
+		</hlayout>
+		<hlayout>
+			<div width="80px">
+				<label id="dataBaseLb"
+					value="${labels.ermResUserList.dataBase}">
+				</label>
+			</div>
+			<button id="dataBaseBtn" label="${labels.select}" />
+			<div>
+				<listbox id="dataBasesLbx"></listbox>
+			</div>
+		</hlayout>
+		<hlayout>
+			<div width="80px">
+				<label value="${labels.ermResUserList.unit}"
+					style="color:red;">
+				</label>
+			</div>
+			<button id="unitBtn" label="${labels.select}" />
+			<div>
+				<listbox id="unitsLbx"></listbox>
+			</div>
+		</hlayout>
+		<hlayout>
+			<div width="80px">
+				<label value="${labels.ermResUserList.resourceTitle}">
+				</label>
+			</div>
+			<textbox id="resTitle" />
+		</hlayout>
+		<hlayout>
+			<button id="search" label="${labels.ermResUnitUse.search}" />
+			<button id="export" label="${labels.ermResUserList.export}" />
+		</hlayout>
+		<hlayout>
+			<listbox id="dataLbx">
+			</listbox>
+		</hlayout>
+	</window>
+</zk>

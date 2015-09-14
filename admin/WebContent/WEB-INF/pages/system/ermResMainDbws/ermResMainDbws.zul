@@ -1,0 +1,167 @@
+<?page id="resourcesDbws" title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>        
+<window id="ermResMainDbwsWin" apply="com.claridy.admin.composer.ErmResMainDbwsListComposer">
+		<vlayout width="500px">
+			<!-- 資源類型 -->
+			<!-- <hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.resType}"></label>
+				</div>
+				<combobox id="resourcesCbx" readonly="true"></combobox>
+			</hlayout> -->
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.title}"></label>
+				</div>
+				<textbox id="titleBox"></textbox><!-- 題名 -->
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.languageId}"></label>
+				</div>
+				<label id="languageSearch" style="display:none;"></label>
+				<textbox id="langTbx" readonly="true"></textbox><!-- 語言-->
+				<button id="searchLangBtn" label="${labels.ermResMainDbws.selLanguage}"></button>
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.publisherId}"></label>
+				</div>
+				<label id="publisherSearch" style="display:none;"></label>
+				<textbox id="pubTbx" readonly="true"></textbox><!-- 出版商-->
+				<button id="searchPubBtn" label="${labels.ermResMainDbws.selPublisher}"></button>
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.agentedId}"></label>
+				</div>
+				<label id="agentedSearch" style="display:none;"></label>
+				<textbox id="agenTbx" readonly="true"></textbox><!-- 代理商-->
+				<button id="searchAgenBtn" label="${labels.ermResMainDbws.selAgentedId}"></button>
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.starOrderDate}"></label>
+				</div>
+				<datebox id="startDateDbx" readonly="true"></datebox><!-- 起訂日期 -->
+				<label value="${labels.ermResMainDbws.endOrderDate}"></label>
+				<datebox id="endDateDbx" readonly="true"></datebox><!-- 迄訂日期 -->
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.remarkId}"></label>
+				</div>
+				<combobox id="remarkCbx" readonly="true"></combobox><!-- 採購注記 -->
+				<label value="${labels.ermResMainDbws.state}"></label>
+				<combobox id="stateCbx" readonly="true"></combobox><!-- 狀態 -->
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+					<!-- 主題  -->
+					<label value="${labels.ermTypeRes.subjectName}"></label>
+				</div>
+					<textbox id="subjectNameBox" readonly="true" value="" width="80%" />
+					<textbox id="subjectIdBox" visible="false"/>
+					<button label="${labels.select}" id="selectBtn" ></button>
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+					<label value="${labels.ermCodeDb.dw}"></label>
+				</div>
+				<combobox id="providerCbx" readonly="true"></combobox><!-- 提供單位-->
+			</hlayout>
+			<hlayout>
+				<div width="60px">
+				<label value="${labels.ermResMainDbws.history}"></label>
+				</div>
+				<radiogroup id="historyRgp"><!-- 停用註記-->
+					<radio id="historyYes" value="Y" label="${labels.yes}"></radio>
+					<radio id="historyNo" value="N" label="${labels.no}" selected="true"></radio>
+				</radiogroup>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search}" id="pagSearchBtn"></button>
+			<!-- 顯示全部 -->
+			<button label="${labels.showAll}" id="showAllBtn"></button>
+			<!-- 新增，刪除，審核，匯出Excel，匯出ISO -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+			<button id="clearBtn" label="${labels.ermResMainEjeb.clearTj}" />
+			<!-- <button id="checkBtn" label="${labels.ermResMainDbws.check}" />-->
+			<button id="eptExcelBtn" label="${labels.ermResMainDbws.excel}" />
+			<button id="eptExcelAllBtn" label="${labels.ermResMainDbws.excelAll}" />
+			<!--<button id="eptISOBtn" label="${labels.ermResMainDbws.iso}" /> -->
+		</hbox>
+		<listbox id="resMainDbwsLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<!-- 資源類型
+				<listheader label="${labels.ermResMainDbws.resType}" sort="auto(typeId)"></listheader> -->
+				<!-- 題名 -->
+				<listheader label="${labels.ermResMainDbws.title}" sort="auto(title)"></listheader>
+				<!-- 迄訂日期 -->
+				<listheader label="${labels.ermResMainDbws.endOrderDate}" sort="auto(endOrderDate)" width="150px"></listheader>
+				<!-- 採購注記 -->
+				<listheader label="${labels.ermResMainDbws.remarkId}" sort="auto(remarkId)" width="80px"></listheader>
+				<!-- 語言 -->
+				<listheader label="${labels.ermResMainDbws.languageId}" sort="auto(languageId)" width="120px"></listheader>
+				<!-- 狀態 -->
+				<!-- <listheader label="${labels.ermResMainDbws.state}" sort="auto(state)"></listheader> -->
+				<!-- 停用註記 -->
+				<listheader label="${labels.ermResMainDbws.history}" sort="auto(history)" width="80px"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.creator}" sort="auto(createName)" width="80px"></listheader> 
+				<!-- 建立日/異動記錄 -->
+				<listheader label="${labels.createDate}/${labels.changeRecord}" sort="auto(createDate)" width="150px"></listheader> 
+				<!-- 編輯 -->
+				<listheader label="${labels.edit}" width="120px"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<!-- <listcell label="${each.typeId}"></listcell> -->
+					<listcell label="${each.title}"></listcell>
+					<listcell label="${each.endOrderDate==null?each.endOrderDate:(c:formatDate(each.endOrderDate,'yyyy-MM-dd'))}"></listcell>
+					<listcell label="${each.remarkCn}"></listcell>
+					<listcell label="${each.languageCn}"></listcell>
+					<!-- <listcell label="${each.state=='1'?labels.start:labels.disable }"/> -->
+				    <listcell label="${labels.no}" if="${each.history!='Y'}"></listcell>
+					<listcell label="${labels.yes}" if="${each.history=='Y'}"></listcell>
+					<listcell label="${each.createName}">
+					</listcell>
+					<listcell label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss'))}">
+						<button label="${labels.changeRecord }" target="${each.resourcesId }">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "resourcesmaindbws_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<!-- 編輯 -->
+						<button  label="${labels.edit}" target="${each.resourcesId}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										int currentPage=resMainDbwsLix.getActivePage();
+										map.put("currentPage", String.valueOf(currentPage));
+										map.put("resourcesId",  self.getTarget());
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermResMainDbws/ermResMainDbwsEdit.zul", ermResMainDbwsWin,map);
+										newAdd.doModal();
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

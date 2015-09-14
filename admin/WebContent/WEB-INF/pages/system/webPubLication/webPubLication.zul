@@ -1,0 +1,79 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webPubLicationWin" apply="com.claridy.admin.composer.WebPubLicationListComposer" >
+	<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.webPubLication.title }"></label>
+				<textbox hflex="3" id="titletbox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label hflex="1" value="${labels.webPubLication.isShow }"></label>
+				<radiogroup hflex="3" id="displayrdb">
+					<radio value="1" label="${labels.yes }"></radio>
+					<radio value="0" label="${labels.no }"></radio>
+				</radiogroup>
+			</hlayout>
+		</vlayout>
+
+
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAllBtn"></button><!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+			<!-- <button id="startBtn" label="${labels.startDisplay }"></button>
+			<button id="closeBtn" label="${labels.closeDisplay }"></button> -->
+		</hbox>
+		<listbox id="WebPubLicationLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.webPubLication.title}" sort="auto(titleZhTw)"></listheader>
+				<listheader label="${labels.webEduTraining.clickNum }" sort="auto(clickNum)"></listheader>
+				<listheader label="${labels.webPubLication.isShow}" sort="auto(isDisplay)"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.changeRecord }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.titleZhTw }"></listcell>
+					<listcell label="${each.clickNum }"></listcell>
+					<listcell label="${labels.no }" if="${each.isDisplay==0 }"></listcell>
+					<listcell label="${labels.yes }" if="${each.isDisplay==1 }"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${each.latelyChangedDate==null?each.latelyChangedDate:(c:formatDate(each.latelyChangedDate, 'yyyy-MM-dd HH:mm:ss')) }">
+						<button label="${labels.changeRecord }" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "webPubLication_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("uuid",  self.getTarget());
+										int currentPage=WebPubLicationLix.getActivePage();
+										map.put("currentPage", String.valueOf(currentPage));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webPubLication/webPubLicationEdit.zul", webPubLicationWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+</window>
+</zk>

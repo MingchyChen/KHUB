@@ -1,0 +1,85 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>  
+ 
+<zk>
+	<window id="editWebOrgWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebOrgComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="30%">
+						<!-- 單位名稱 -->
+						<label value="${labels.webOrg.weborgLix.orgName}:"/>
+						</cell>
+						<cell>
+						<textbox id="orgNameBox" value="" width="80%" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 上層單位 -->
+						<label value="${labels.webOrg.weborgLix.parentOrgName}:"/>
+						</cell>
+						<cell>
+						<combobox id="orgParentNameBox" width="80%" readonly="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 排序 -->
+						<label style="color:red;" value="${labels.firstTopLink.sort}:"/>
+						</cell>
+						<cell>
+						<intbox id="sort" width="80%" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 是否可查詢所有資料 -->
+						<label value="${labels.webOrg.weborgLix.isSelect} " />
+						</cell>
+						<cell>
+						<radiogroup id="isAuthGrp">
+							<radio label="${labels.no }" value="0"></radio>
+							<radio label="${labels.yes }" value="1"></radio>
+						</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 權限 -->
+						<label value="${labels.power} " ></label>
+						</cell>
+						<cell>
+							<checkbox id="checkAll" label="${labels.selectAll}"/>
+							<tree id="tree" height="200px;" style="overflow:auto;"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 前端首頁上方連接權限 -->
+						<label value="${labels.webOrg.WebTopPower} " ></label>
+						</cell>
+						<cell id="webTopCell">
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 首頁選單權限 -->
+						<label value="${labels.webOrg.WebMenuPower} " ></label>
+						</cell>
+						<cell id="webMenuCell">
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="updateBtn" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="editWebOrgWin.detach();"/>
+			</div>
+		</vlayout>
+	</window>
+</zk>

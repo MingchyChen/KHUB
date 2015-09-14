@@ -1,0 +1,99 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<window id="generalCodeWin" apply="com.claridy.admin.composer.GeneralCodeListComposer">
+	<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.webOrg.weborgLix.searchName}"></label>
+			</hlayout>
+			<hlayout>
+			   <label  hflex="1" value="${labels.generalcode.itemid}:"></label>
+			   <combobox hflex="3" id="itemIdBox"  readonly="true"></combobox>
+			   <label  hflex="1" value="${labels.generalcode.generalcode_id}:"></label>
+			   <textbox hflex="3" id="generalcodeIdBox" maxlength="50"></textbox>
+			</hlayout>
+			<hlayout>
+			   <label  hflex="1" value="${labels.generalcode.name1}:"></label>
+			    <textbox hflex="3" id="name1Box"></textbox>
+			   <label  width="50px" value="${labels.generalcode.name2}:"></label>
+			   <textbox hflex="3" id="name2Box" maxlength="50"></textbox>
+			</hlayout>
+			<hlayout>
+			  <label  hflex="1" value="${labels.generalcode.history}:"></label>
+				<radiogroup id="yesOrNoRdp" hflex="3">
+					<radio label="否" value="N"></radio>
+					<radio label="是" value="Y"></radio>
+				</radiogroup>
+			</hlayout>
+	</vlayout>
+	<hbox align="center">
+			<!-- 查詢，顯示全部,新增，修改，刪除 -->
+			<button id="pagSearchBtn" label="${labels.search}" />
+			<button label="${labels.showAll}" id="showAllBtn"></button>
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+	</hbox>
+	<listbox id="generalCodeLbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+	<listhead sizable="true">
+	<listheader align="center" width="45px"></listheader>
+				<!-- 類別 -->
+				<listheader label="${labels.generalcode.itemid} " sort="auto(ermCodeItem.itemId)"></listheader>
+				<!-- 代碼 -->
+				<listheader label="${labels.generalcode.generalcode_id}" sort="auto(generalcodeId)"></listheader>
+				<!-- 名稱 -->
+				<listheader label="${labels.generalcode.name1}" sort="auto(name1)"></listheader>
+				<!-- 名稱(英文) -->
+				<listheader label="${labels.generalcode.name2}" sort="auto(name2)"></listheader>
+				<!-- 停用註記 -->
+				<listheader label="${labels.generalcode.history}" sort="auto(history)"></listheader>
+				<listheader label="${labels.creator}" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.createdate }"></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+	</listhead>
+	<template name="model">
+				<listitem>
+				    <listcell></listcell>
+				    <listcell label="${each.ermCodeItem.name1}"></listcell>
+					<listcell label="${each.generalcodeId}"></listcell>
+					<listcell label="${each.name1}"></listcell>
+					<listcell label="${each.name2}"></listcell>
+					<listcell label="${labels.no}" if="${each.history=='N'}"></listcell>
+					<listcell label="${labels.yes}" if="${each.history=='Y'}"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+                    <listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}">
+						<button label="${labels.changeRecord }" target="${each.ermCodeItem.itemId},${each.generalcodeId}">
+							<attribute name="onClick">
+								<![CDATA[
+										String[] str=self.getTarget().split(",");
+										Map arg = new HashMap();
+										arg.put("nlocate", "generalcode_" + str[0]+str[1]);
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button label="${labels.edit}" target="${each.ermCodeItem.itemId},${each.generalcodeId}">
+						    <attribute name="onClick">        
+						     <![CDATA[       
+							    String[] str=self.getTarget().split(",");
+								Map params = new HashMap();
+								params.put("itemId",  str[0]);
+								params.put("generalcodeId",  str[1]);
+								params.put("currentPage",String.valueOf(generalCodeLbx.getActivePage()));
+								Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+										"/WEB-INF/pages/system/generalCode/generalCodeEdit.zul", generalCodeWin,
+										params);
+								newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+	</listbox>
+</window>
+</zk>

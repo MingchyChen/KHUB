@@ -1,0 +1,45 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="addSysSettingWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.SystemSettingComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="30%">
+						<!-- 功能 -->
+						<label value="${labels.systemSetting.sysSettingLbx.funcId}" style="color:red;"></label>
+						</cell>
+						<cell>
+						<textbox id="tboxFuncId" value="" width="80%" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 參數值 -->
+						<label value="${labels.systemSetting.sysSettingLbx.funcValue}" style="color:red"></label>
+						</cell>
+						<cell>
+						<textbox id="tboxFuncValue" value=""  width="80%" maxlength="500"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+						<!-- 參數名稱 -->
+						<label value="${labels.systemSetting.sysSettingLbx.funcName}" style="color:red"></label>
+						</cell>
+						<cell>
+						<textbox id="tboxFuncName"  value=""  width="80%" maxlength="500"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" onClick="" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addSysSettingWin.detach();" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

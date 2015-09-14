@@ -1,0 +1,129 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="webEmployeeWin" apply="com.claridy.admin.composer.WebEmployeeListComposer">
+
+
+		<vlayout width="400px">
+			<hlayout>
+				<label hflex="1" value="${labels.account}:"></label>
+				<textbox hflex="3" id="employeeIdBox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.name }:"></label>
+				<textbox hflex="3" id="employeeNameBox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.unit }:"></label>
+				<combobox hflex="3" id="orgNameBox" readonly="true"></combobox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.identity }:"></label>
+				<combobox readonly="true" id="idTypeBox" hflex="3"  width="80%">
+					<comboitem label="${labels.select }" value="0"></comboitem>
+					<comboitem label="${labels.webEmployeeAdd.tboxIdType.coaManagers }" value="1"></comboitem>
+					<comboitem label="${labels.webEmployeeAdd.tboxIdType.unit }" value="2"></comboitem>
+					<comboitem label="${labels.webEmployeeAdd.tboxIdType.use }" value="3"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.fuse }" value="4"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.aidUse }" value="5"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.technician }" value="6"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.ftechnician }" value="7"></comboitem>
+					<comboitem label="${labels.webEmployee.tboxIdType.other }" value="8"></comboitem>
+				</combobox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.condition }:"></label>
+				<radiogroup id="orOrAnd" hflex="3">
+					<radio label="Or" value="2"></radio>
+					<radio label="And" value="1"></radio>
+				</radiogroup>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.webEmployeeAdd.isUnitHeadLab.isNY }:"></label>
+				<radiogroup id="rgroupIsManager" hflex="3">
+					<radio label="${labels.yes }" value="1"></radio>
+					<radio label="${labels.no}" value="0"></radio>
+				</radiogroup>
+			</hlayout>
+		</vlayout>
+
+
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+			<!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+			<button label="${labels.ermResReport.export }" id="execleBtn"></button>
+		</hbox>
+		<listbox id="employeeLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.account}" sort="auto(employeeId)"></listheader>
+				<listheader label="${labels.name}" sort="auto(employeeName)"></listheader>
+				<listheader label="${labels.unit }" sort="auto(parentWebOrg.orgName)"></listheader>
+				<listheader label="E-Mail" sort="auto(email)"></listheader>
+				<listheader label="${labels.phone }" sort="auto(tel)"></listheader>
+				<listheader label="${labels.identity }" sort="auto(idType)"></listheader>
+				<listheader label="${labels.state }" sort="auto(isLock)"></listheader>
+				<listheader label="${labels.logindate }" sort="auto(loginDate)"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(dataOwner)"></listheader>
+				<listheader label="${labels.createdate }" sort="auto(createDate)"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.employeeId }"></listcell>
+					<listcell label="${each.employeeName }"></listcell>
+					<listcell label="${each.parentWebOrg.orgName }" if="${each.weborg.orgId==''}"></listcell>
+					<listcell label="${each.parentWebOrg.orgName }-${each.weborg.orgName }" if="${each.weborg.orgId!=''}"></listcell>
+					<listcell label="${each.email }"></listcell>
+					<listcell label="${each.tel }"></listcell>
+					<listcell label="${labels.webEmployeeAdd.tboxIdType.use }" if="${each.idType==3 }"></listcell>
+					<listcell label="${labels.webEmployeeAdd.tboxIdType.unit }" if="${each.idType==2 }"></listcell>
+					<listcell label="${labels.webEmployeeAdd.tboxIdType.coaManagers }" if="${each.idType==1 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.fuse }" if="${each.idType==4 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.aidUse }" if="${each.idType==5 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.technician }" if="${each.idType==6 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.ftechnician }" if="${each.idType==7 }"></listcell>
+					<listcell label="${labels.webEmployee.tboxIdType.other }" if="${each.idType==8 }"></listcell>
+					<listcell label="${labels.start }" if="${each.isLock==0 }"></listcell>
+					<listcell label="${labels.disable }" if="${each.isLock==1 }"></listcell>
+					<listcell label="${each.loginDate==null?each.loginDate:(c:formatDate(each.loginDate, 'yyyy-MM-dd HH:mm:ss'))}"></listcell>
+					<listcell label="${each.dataOwner }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}">
+						<button label="${labels.changeRecord }" target="${each.employeesn}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "employee_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.employeesn}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map map=new HashMap();
+										map.put("employeesn",  self.getTarget());
+										int currentPage=employeeLix.getActivePage();
+										map.put("currentPage", String.valueOf(currentPage));
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/webemployee/webEmployeeEdit.zul", webEmployeeWin,
+												map);
+										newAdd.doModal();
+									
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

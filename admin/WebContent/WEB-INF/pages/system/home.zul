@@ -1,0 +1,6 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+<window>
+<html><h1><!-- 歡迎進入行政院農業委員會管理系統 -->${labels.welcomeLogin }${labels.systemName }</h1></html>
+</window>
+</zk>

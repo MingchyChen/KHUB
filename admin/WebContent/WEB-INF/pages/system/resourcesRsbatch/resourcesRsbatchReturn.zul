@@ -1,0 +1,15 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none"  apply="com.claridy.admin.composer.ResourcesRsbatchReturnComposer">
+<label id="path_label"></label><!-- 頁面路徑 -->
+<separator height="10px"/>
+<hbox>
+<label id="warn1"></label><label id="success_resources"></label><label id="warn2"></label>
+</hbox>
+<separator height="10px"/>
+<hbox>
+<button id="leava_btn"></button>
+<button id="return_btn"></button>
+</hbox>
+</window>
+</zk>

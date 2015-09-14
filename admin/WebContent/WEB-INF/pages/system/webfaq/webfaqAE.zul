@@ -1,0 +1,68 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webFaqAEWin" width="66%"
+		border="normal" position="center,center" closable="true" apply="com.claridy.admin.composer.WebFaqAEComposer">
+	<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%"><label style="color:red;" value="${labels.webfaq.titlezh }"></label></cell>
+						<cell width="50%"><textbox id="titleZhtbox" maxlength="50" width="60%"></textbox></cell>
+					</row>
+					<row>
+						<cell width="20%"><label style="color:red;" value="${labels.webfaq.titleus }"></label></cell>
+						<cell width="50%"><textbox id="titleUstbox" maxlength="50" width="60%"></textbox></cell>
+					</row>
+					<row>
+						<cell width="20%"><label style="color:red;" value="FAQ${labels.webfaq.type }"></label></cell>
+						<cell width="50%"><combobox id="webfaqTypecbox" readonly="true"></combobox></cell>
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.webfaqtype.isdisplay }"></label></cell>
+						<cell width="50%"><radiogroup id="isdisplayrdgroup">
+							<radio value="1" label="${labels.yes }" selected="true"></radio>
+							<radio value="0" label="${labels.no }"></radio>
+						</radiogroup></cell>
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.webfaqtype.sort }"></label></cell>
+						<cell width="50%"><intbox id="sortNumibox" maxlength="10"></intbox></cell>
+					</row>
+					
+					<row>
+						<cell width="20%"><label value="${labels.webfaq.fileupdalod }"></label></cell>
+						<cell width="50%"><a id="upfilea"></a>
+						<button label="${labels.webfaq.selectcontent }" id="upload" upload="true,maxsize=-1"></button>
+						<button label="${labels.ermResourcesConfig.delFile }" id="deletebtn" visible="false"></button>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<grid>
+				<rows>
+					<row>
+						<cell width="48%"><label style="color:red;" value="${labels.webfaq.descriptionzh }"></label></cell>
+						<cell width="50%"><label style="color:red;" value="${labels.webfaq.descriptionus }"></label></cell>
+					</row>
+					<row>
+						<cell width="48%"><ckeditor id="descriptionZhCedit" value="" ></ckeditor></cell>
+						<cell width="50%"><ckeditor id="descriptionUsCedit" value="" ></ckeditor></cell>
+					</row>
+					<row>
+						<cell width="48%"><label style="color:red;" value="${labels.webfaq.questionzh }"></label></cell>
+						<cell width="50%"><label style="color:red;" value="${labels.webfaq.questionus }"></label></cell>
+					</row>
+					<row>
+						<cell width="48%"><ckeditor id="answerZhCedit" value="" ></ckeditor></cell>
+						<cell width="50%"><ckeditor id="answerUsCedit" value="" ></ckeditor></cell>
+					</row>
+				</rows>
+			</grid>
+	</vlayout>
+	<div align="center">
+		<button id="saveBtn" label="${labels.saveOrUpdMessage }" />
+		<button id="updateBtn" label="${labels.saveOrUpdMessage }"/>
+		<button id="cancelBtn" onClick="webFaqAEWin.detach();" />  
+	</div>
+</window>
+</zk>

@@ -1,0 +1,43 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="ermResUserNumberWin"
+		title="${labels.report.applyCooperNumber}" width="66%" mode="modal"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmResUnitUseNumberComposer">
+		<hlayout>
+			<button id="export" label="${labels.ermResUserList.export}" />
+		</hlayout>
+		<label id="condition" width="100%"></label>
+		<separator></separator>
+		<label id="nunit" width="100%"></label>
+		<separator></separator>
+		<label id="ndb" width="100%"></label>
+		<grid id="grid"></grid>
+		<listbox id="accountLix" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader label="${labels.ermResUserList.no }" align="center" sort="auto(show1)"></listheader>
+				<listheader label="${labels.ermResUserList.account }" sort="auto(shows2)"></listheader>
+				<listheader label="${labels.ermResUserList.userName }" sort="auto(shows3)"></listheader>
+				<listheader label="${labels.ermResUserList.unit }" sort="auto(shows4)"></listheader>
+				<listheader label="${labels.ermResUserList.group }" sort="auto(shows5)"></listheader>
+				<listheader label="${labels.ermResUserList.resourceTitle }" sort="auto(shows6)"></listheader>
+				<listheader label="${labels.ermResUserList.dataBase }" sort="auto(shows7)"></listheader>
+				<listheader label="${labels.ermResUserList.musterDate }" sort="auto(shows8)"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.show1 }"></listcell>
+					<listcell label="${each.shows2 }"></listcell>
+					<listcell label="${each.shows3 }"></listcell>
+					<listcell label="${each.shows4 }"></listcell>
+					<listcell label="${each.shows5 }"></listcell>
+					<listcell label="${each.shows6 }"></listcell>
+					<listcell label="${each.shows7 }"></listcell>
+					<listcell label="${each.shows8 }"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

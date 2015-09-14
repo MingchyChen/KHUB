@@ -1,0 +1,73 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="applyCooperNumberWin"
+		title="${labels.report.applyCooperNumber}" width="66%" mode="modal"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ApplyCooperNumberComposer">
+		<label id="condition" width="100%"></label>
+		<separator></separator>
+		<label id="unit" width="100%"></label>
+		<separator></separator>
+		<label id="db" width="100%"></label>
+		<hlayout>
+			<div>
+				<button label="${labels.ermResUserList.export}"
+					id="export" onClick="" />
+			</div>
+		</hlayout>
+		<listbox id="applyCooperNumberLbx" mold="paging" pageSize="10"
+			pagingPosition="both">
+			<listhead>
+				<listheader label="${labels.applyCooper.applyOdd }"
+					sort="auto(uuid)">
+				</listheader>
+				<listheader label="${labels.webErwSource.applyTitle }"
+					sort="auto(atitle)">
+				</listheader>
+				<listheader label="${labels.webErwSource.apployPeople }"
+					sort="auto(applyAccount.nameZhTw)">
+				</listheader>
+				<listheader label="${labels.webErwSource.applyOrg }"
+					sort="auto(applyAccount.parentOrgName)">
+				</listheader>
+				<listheader label="${labels.webErwSource.applyDate }"
+					sort="auto(createDate)">
+				</listheader>
+				<listheader label="${labels.webErwSource.acceptOrg }"
+					sort="auto(acceptEmployee.parentWebOrg.orgName)">
+				</listheader>
+				<listheader label="${labels.applyCooper.retStatus }"
+					sort="auto(status)">
+				</listheader>
+			</listhead>
+
+			<template name="model">
+				<listitem>
+					<listcell label="${each.uuid }"></listcell>
+					<listcell label="${each.atitle }"></listcell>
+					<listcell label="${each.applyAccount.nameZhTw }"></listcell>
+					<listcell
+						label="${each.applyAccount.parentOrgName }">
+					</listcell>
+					<listcell
+						label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss'))}">
+					</listcell>
+					<listcell
+						label="${each.acceptEmployee.parentWebOrg.orgName }">
+					</listcell>
+					<listcell
+						label="${labels.webCooperation.statusNoDispose }"
+						if="${each.status==0 }">
+					</listcell>
+					<listcell label="${labels.webCooperation.statusOK }"
+						if="${each.status==1 }">
+					</listcell>
+					<listcell label="${labels.webCooperation.statusNO }"
+						if="${each.status==2 }">
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

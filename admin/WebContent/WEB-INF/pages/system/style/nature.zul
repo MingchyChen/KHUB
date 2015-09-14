@@ -1,0 +1,22 @@
+<zk>
+  <zscript>
+	  String themecolor = "#00502F";
+  </zscript>
+  <style><![CDATA[
+	.nature .header {
+	    background-color: ${themecolor};
+	    color: white;
+	    border-bottom: 1px solid #454545;
+	    padding-left: 75px;
+	}
+	.nature .content-title {
+	    color: #7F2000;
+	}
+	.nature .footer {
+	    background-color: ${themecolor};
+	    text-align: center;
+	    color: #EFEFEF;
+	    border-top : 1px solid gray;
+	}
+  ]]></style>
+</zk>

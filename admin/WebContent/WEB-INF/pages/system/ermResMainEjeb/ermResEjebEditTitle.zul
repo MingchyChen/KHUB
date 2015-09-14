@@ -1,0 +1,146 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermResEjebEditTitleWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true" apply="com.claridy.admin.composer.ErmResEjebEditTitleComposer">
+<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+							<!-- 編號-->
+							<label value="${labels.bianNo}" style="color:red;"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="resourceIdTxt" width="80%" disabled="true"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 題名-->
+							<label value="${labels.ermResMainDbws.title}" style="color:red;" ></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="title" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- ISSN(PRINTED)-->
+							<label value="ISSN(PRINTED)" ></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="issnPringtedTxt" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- ISSN(PRINTED)-->
+							<label value="ISSN(ONLINE)" ></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="issnOnlineTxt" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<!-- 資源簡述摘要 -->
+						<cell width="20%">
+							<label value="${labels.ermResourcesConfig.erief1}"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="brief1CKtxt" rows="7" cols="100"></textbox>
+						</cell>
+					</row>
+					<row>
+						<!-- 資源簡述摘要(英文) -->
+						<cell width="20%">
+							<label value="${labels.ermResourcesConfig.erief2}"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="brief2CKtxt" rows="7" cols="100"></textbox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 核心 -->
+							<label value="${labels.ermResourcesConfig.core}"></label>
+						</cell>
+						<cell width="80%">
+							<radiogroup id="isOpen" width="80%">
+								<radio label="${labels.yes}" value="Y" selected="true"/>
+								<radio label="${labels.no}" value="N"/>
+							</radiogroup>
+						</cell>
+					</row>
+					<row >
+						<cell width="20%">
+							<label value="${labels.ermResMainDbws.selLanguage}"></label>
+						</cell>
+						<cell width="80%">
+							<label id="languageSearch" style="display:none;"></label>
+							<textbox id="langTbx" disabled="true"></textbox><!-- 語言-->
+							<button id="searchLangBtn" label="${labels.ermResMainDbws.selLanguage}"></button>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.ermResourcesConfig.pic}"></label></cell>
+						<cell width="50%"><button label="${labels.fileuploud }" id="upload" upload="true,maxsize=-1">
+							
+						</button><image id="imgAccountPic" width="130px"  ></image><label if="imgAccountPic.getConntent()!=null" value="${labels.ermResourcesConfig.noChose}"></label>
+						<label if="imgAccountPic.getConntent()==null" value=""></label>
+						</cell>
+					</row>
+					<row>
+						<!-- 作者 -->
+						<cell width="20%">
+							<label value="${labels.webNoticeCoopEdit.authorBtn}"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="authorTxt"></textbox>
+						</cell>
+					</row>
+					<row>
+						<!-- 電子書索書號 -->
+						<cell width="20%">
+							<label value="${labels.ermResourcesConfig.calln}"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="callnTxt"></textbox>
+						</cell>
+					</row>
+					<row>
+						<!-- 電子書分類號 -->
+						<cell width="20%">
+							<label value="${labels.ermResourcesConfig.cn}"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="cnTxt"></textbox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<label value="${labels.eduTrain.document }"></label>
+						</cell>
+						<cell width="80%">
+						<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+						<button label="${labels.uploadFile }" id="uploadFile" upload="true,maxsize=-1" visible="true">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadFileNameTxt.setValue(media.getName());
+								]]></attribute>
+						</button>
+						<button label="刪除文檔" id="delFile" ></button>
+						<label value="${labels.eduTrain.fileType }"></label>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+
+			<div align="center">
+				<!-- 確定存檔 -->
+				<button id="editBtn" label="${labels.webNoticeTemplatesEdit.updBtn}"/>
+				<!-- 取消編輯，回列表檢視模式 -->
+				<button id="cancelBtn" label="${labels.webNoticeTemplatesEdit.cancelBtn} " onClick="ermResEjebEditTitleWin.detach();"/>
+			</div>
+		</vlayout>
+</window>
+</zk>

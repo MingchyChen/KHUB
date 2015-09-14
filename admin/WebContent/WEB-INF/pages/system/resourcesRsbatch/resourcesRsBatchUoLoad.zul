@@ -1,0 +1,27 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="normal" apply="com.claridy.admin.composer.ResourcesRsBatchUploadComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+						<label value="${labels.eduTrain.document }"></label>
+						</cell>
+						<cell width="80%">
+						<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+						<button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" visible="true">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadFileNameTxt.setValue(media.getName());
+								]]></attribute>
+						</button>
+						<button label="刪除文檔" id="delFile" ></button>
+						<label value="${labels.eduTrain.fileType }"></label>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</vlayout>
+	</window>
+</zk>

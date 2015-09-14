@@ -1,0 +1,118 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="addErmResDataBaseWin"
+		title="${labels.ermResMainEjeb.addRes}" width="66%" mode="modal"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmCodeDbAddEditComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+						<label value="${labels.bianNo}" style="color:red;" ></label><!-- 編號 -->
+						</cell>
+						<cell width="80%"><textbox id="dbIdTxt" disabled="true" maxlength="50"></textbox> </cell>					
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 資料庫名稱 --><label value="${labels.webErwSource.nameZhTw}" style="color:red;" ></label>
+						</cell>
+						<cell width="80%"><textbox id="dbNameTxt" width="45%" maxlength="100"></textbox> </cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 鏈接電子資料庫 --><label value="${labels.ermCodeDb.linkResources}" ></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="resourcesIdTxt" disabled="true" width="35%" maxlength="50"></textbox> 
+							<textbox id="resourcesNameTxt" disabled="true" width="35%" maxlength="500"></textbox>
+							<button id="resourcesDbwsBtn" label="${labels.select}"></button> 
+						</cell>
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.firstTopLink.sort}" /></cell>
+						<cell width="80%">
+							<intbox id="orderNoIbx"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">url</cell>
+						<cell width="80%">
+							<textbox id="urlTxt" width="80%" maxlength="1000"></textbox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%" style="color:red;">
+						<label value="${labels.ermCodeDb.isUserEz}" style="color:red;" ></label>
+						</cell><!-- 是否使用ezproxy -->
+						<cell>
+							<radiogroup id="ezproxyRdo">
+								<radio label="是" value="Y" selected="true"></radio>
+								<radio label="否" value="N"></radio>
+							</radiogroup>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			</vlayout>
+			<div align="center">
+				<!-- 確定存檔 -->
+				<button id="saveBtn" label="${labels.webNoticeTemplatesEdit.updBtn}"/>
+				<!-- 取消編輯，回列表檢視模式 -->
+				<button id="cancelBtn" label="${labels.saveCancel} " onClick="addErmResDataBaseWin.detach();"/>
+			</div>
+			<label value="${labels.ermCodeDb.proDw}" style="color:red;" ></label><!-- 設定提供單位 -->
+			<separator>
+			</separator>
+			<button id="addSuunitBtn" label="${labels.add}"></button><!-- 新增 -->
+			<button id="delSuunitBtn" label="${labels.del}"></button><!-- 刪除 -->
+		  	<listbox  id="resMainSuunitLix" checkmark="true" multiple="true"
+						mold="paging" pageSize="10" pagingPosition="both">
+					<listhead>
+						<!--單位名稱-->
+						<listheader label="${labels.webOrg.weborgLix.orgName}" sort="auto(suunitId)"></listheader>
+						<!-- 建立者 -->
+						<listheader label="${labels.creator}" sort="auto(webEmployee.employeeName)"></listheader>
+						<!-- 建立日/異動記錄 -->
+						<listheader label="${labels.createDate}/${labels.changeRecord}" sort="auto(createDate)"></listheader>
+						<!-- 編輯 -->
+					<!-- 	<listheader label="${labels.edit}"></listheader> -->
+					</listhead>
+					<template name="model">
+						<listitem>
+						<listcell label="${each.orgName}"></listcell>
+						 <listcell label="${each.webEmployee.employeeName}">
+							</listcell>
+							<listcell label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss'))}" >
+								${labels.changeRecord}
+								<button label="${labels.changeRecord}" target="${each.dbId}${each.suunitId}">
+									<attribute name="onClick">
+										<![CDATA[
+												Map arg = new HashMap();
+												arg.put("nlocate", "ermResSuunit_" + self.getTarget());
+												Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+													arg);
+										]]>
+									</attribute>
+								</button>
+							</listcell> 
+							<!-- <listcell>
+								${labels.edit}
+								<button  label="${labels.edit}" target="${each.dbId}">
+									<attribute name="onClick">
+										<![CDATA[
+												Map map=new HashMap();
+												map.put("dbId",  self.getTarget());
+												int currentPage=resMainSuunitLix.getActivePage();
+												map.put("currentPage", String.valueOf(currentPage));
+												Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermResMainEjeb/ermResSuunitAdd.zul", addErmResDataBaseWin,map);
+												newAdd.doModal();
+										]]>
+									</attribute>
+								</button>
+							</listcell> -->
+						</listitem>
+					</template>
+				</listbox>
+	</window>
+</zk>

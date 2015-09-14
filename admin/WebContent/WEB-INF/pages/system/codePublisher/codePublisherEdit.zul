@@ -1,0 +1,125 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="editCodePublisherWin" title="${labels.edit}" width="66%"
+			border="normal" position="center,center" closable="true" 
+			apply="com.claridy.admin.composer.CodePublisherComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+					<!-- 代碼 -->
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.publisherId}:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxPublisherId" readonly="true" value="" width="40%" maxlength="50"/></cell>
+					</row>
+					<row>
+						<!-- 名稱 -->
+						<cell width="20%"><label  value="${labels.codePublisher.codePublisherTbx.name}:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxNameZhTw" value=""  width="80%" maxlength="100"/></cell>
+					</row>
+					
+					<!-- 首頁url -->
+					<row>
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.url}:"></label></cell>
+						<cell width="50%"><textbox id="tboxUrl" width="80%" maxlength="1000"></textbox></cell>
+					</row>
+					<!-- 國家-->
+					<row>
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.country}:"></label></cell>
+						<cell width="50%"><textbox id="tboxCountry" width="80%" maxlength="50"></textbox></cell>
+					</row>
+					<!-- 郵遞區號-->
+					<row>
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.zip}:"></label></cell>
+						<cell width="50%"><textbox id="tboxZip" width="80%" maxlength="10"></textbox></cell>
+					</row>
+					<!-- 州縣市-->
+					<row>
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.city}:"></label></cell>
+						<cell width="50%"><textbox id="tboxCity" width="80%" maxlength="20"></textbox></cell>
+					</row>
+					<!-- 地址-->
+					<row>
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.address}:"></label></cell>
+						<cell width="50%"><textbox id="tboxAddress" width="80%" maxlength="100"></textbox></cell>
+					</row>
+					<row>
+					<!-- 聯繫方式 -->
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherCbx.contact}:"></label></cell>
+						<cell width="50%"><combobox id="cboxContact" width="40%" readonly="true" maxlength="50"></combobox></cell>
+					</row>
+					<!-- 備註-->
+					<row>
+						<cell width="20%"><label value="${labels.codePublisher.codePublisherTbx.note}:"></label></cell>
+						<cell width="50%"><textbox id="tboxNote" width="80%" rows="7" maxlength="2000"></textbox></cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="updateBtn" onClick="" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="editCodePublisherWin.detach();" />
+			</div>
+		</vlayout>
+		
+		<!-- 明細處理 -->
+		<hbox>
+			<!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		
+		<listbox id="publisherLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both" width="100%">
+			<listhead sizable="true">
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.publisherId}" sort="auto(publisherId)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.personname}" sort="auto(personName)"></listheader>
+				<listheader label="email" sort="auto(mail)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.telephone}" sort="auto(telephone)"></listheader>
+				<listheader label="${labels.ermCodePublisherperson.title}" sort="auto(title)"></listheader>
+				<listheader label="${labels.creator}" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.createdate }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.publisherId }"></listcell>
+					<listcell label="${each.personName }"></listcell>
+					<listcell label="${each.mail }"></listcell>
+					<listcell label="${each.telephone }"></listcell>
+					<listcell label="${each.title }"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+						<button label="${labels.changeRecord }" target="${each.publisherId},${each.personName}">
+							<attribute name="onClick">
+								<![CDATA[
+										String[] str=self.getTarget().split(",");
+										Map arg = new HashMap();
+										arg.put("nlocate", "ermCodePublisherperson_" + str[0]+"_"+str[1]);
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button  label="${labels.edit}" target="${each.publisherId},${each.personName}">
+							<attribute name="onClick">
+								<![CDATA[
+										String[] str=self.getTarget().split(",");
+										Map params = new HashMap();
+										params.put("publisherId",  str[0]);
+										params.put("personName",  str[1]);
+										Window newAdd=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/codePublisher/codePublisherpersonEdit.zul", editCodePublisherWin,
+												params);
+										newAdd.doModal();
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

@@ -1,0 +1,15 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="com.claridy.admin.composer.ResourcesRsbatchDetailError">
+<label id="pagePath"></label>
+<separator height="10px"/>
+<hbox>
+<label id="showResult" style="color:red;"></label><label id="warn1"></label>,<label id="noDoData_label" style="color:red;"></label><label id="warn2"></label>,<label id="failData_label" style="color:red;"></label><label id="warn3"></label>
+</hbox>
+<separator height="10px"/>
+<listbox id="noDoOrErrorData"></listbox>
+<separator height="10px"/>
+<listbox id="showData"></listbox>
+<button id="exportData"></button>
+</window>
+</zk>

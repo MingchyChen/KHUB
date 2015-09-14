@@ -1,0 +1,58 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript>
+
+</zscript>
+	<window id="addWebErwSourceWinUnit" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebErwSourceUnitComposer">
+		<vlayout>
+			<label id="message" style="color:red;"></label>
+			<grid>
+				<rows>
+					<row>
+						<!-- 單位-->
+						<cell width="20%" align="right"><label value="${labels.webErwSourceUnit.webOrgOrg}:" style="color:red;"></label></cell>
+						<cell width="50%">
+							<combobox id="webOrgOrg" readonly="true">
+			                    <template name="model">
+			                        <comboitem label="${each.orgName}" />
+			                    </template>
+			                </combobox>
+						</cell>
+					</row>
+					<row>
+						<!-- 是否提供館際合作處理 -->
+						<cell width="20%" align="right"><label value="${labels.webErwSourceUnit.isCooperation}:" style="color:red;"></label></cell>
+						<cell width="50%">
+							<radiogroup id="isCooperation">
+					            <radio label="${labels.no}" value="0" selected="true"/>
+					            <radio label="${labels.yes}" value="1"/>
+					        </radiogroup>
+						</cell>
+					</row>
+					<!-- 處理人員 -->
+					<row>
+						<cell width="20%" align="right"><label id="lblwebEmployeesn" value="${labels.webErwSourceUnit.webEmployeesn }:" style="color:red;"></label></cell>
+						<cell width="50%">
+							<combobox id="webEmployeesn" readonly="true">
+			                    <template name="model">
+			                        <comboitem label="${each.employeeName}" />
+			                    </template>
+			                </combobox>
+						</cell>
+					</row>		
+					<!-- 處理順序 -->
+					<row>
+						<cell width="20%" align="right"><label id="lblNum" value="${labels.webErwSourceUnit.roundNum }:" style="color:red;"></label></cell>
+						<cell width="50%"><intbox id="roundNum" value="${addWebErwSourceWinUnit$composer.webErwSourceUnit.roundNum }" width="37%"/></cell>
+					</row>				
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.cancel}${labels.add}" id="cancelBtn" />
+			</div>
+		</vlayout>		
+	</window>
+</zk>

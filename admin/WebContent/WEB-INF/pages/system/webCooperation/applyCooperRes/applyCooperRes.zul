@@ -1,0 +1,133 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="applyCooperResWin"
+		apply="com.claridy.admin.composer.ApplyCooperResListComposer">
+		<hlayout>
+			<div width="80px">
+				<label value="${labels.accountNumber.dateRange}"
+					style="color:red;">
+				</label>
+			</div>
+			<datebox id="startDateDbx" readonly="true"></datebox>
+			~
+			<datebox id="endDateDbx" readonly="true"></datebox>
+		</hlayout>
+		<hlayout>
+			<div>
+				<button label="${labels.opinion.search}" id="search"
+					onClick="" />
+			</div>
+			<div>
+				<button label="${labels.ermResUserList.export}"
+					id="export" onClick="" />
+			</div>
+		</hlayout>
+		<listbox id="applyCooperResLbx" mold="paging" pageSize="10"
+			pagingPosition="both">
+			<listhead>
+				<listheader
+					label="${labels.accountApplyNumber.unitName }" sort="auto(parentOrgName)">
+				</listheader>
+				<listheader label="${labels.applyCooperRes.dataBase}" sort="auto(dbName)">
+				</listheader>
+				<listheader label="${labels.applyCooperRes.apply }" sort="auto(applyNumber)">
+				</listheader>
+				<listheader label="${labels.applyCooperRes.nuclear }" sort="auto(nuclearNumber)">
+				</listheader>
+				<listheader
+					label="${labels.applyCooperRes.rejected }" sort="auto(rejectedNumber)">
+				</listheader>
+				<listheader
+					label="${labels.applyCooperRes.untreated}" sort="auto(untreatedNumber)">
+				</listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.parentOrgName}"></listcell>
+					<listcell label="${each.dbName }"></listcell>
+					<listcell if="${each.applyNumber!=0}">
+						<a label="${each.applyNumber} "
+							zclass="${each.parentId}" sclass="${each.dbId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("dbId", self.getSclass());
+									arg.put("status", "");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/webCooperation/applyCooperRes/applyCooperNumber.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.applyNumber }"
+						if="${each.applyNumber==0 }">
+					</listcell>
+					<listcell if="${each.nuclearNumber!=0}">
+						<a label="${each.nuclearNumber} "
+							zclass="${each.parentId}" sclass="${each.dbId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("dbId", self.getSclass());
+									arg.put("status", "1");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/webCooperation/applyCooperRes/applyCooperNumber.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.nuclearNumber }"
+						if="${each.nuclearNumber==0 }">
+					</listcell>
+					<listcell if="${each.rejectedNumber!=0}">
+						<a label="${each.rejectedNumber} "
+							zclass="${each.parentId}" sclass="${each.dbId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("dbId", self.getSclass());
+									arg.put("status", "2");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/webCooperation/applyCooperRes/applyCooperNumber.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.rejectedNumber }"
+						if="${each.rejectedNumber==0 }">
+					</listcell>
+					<listcell if="${each.untreatedNumber!=0}">
+						<a label="${each.untreatedNumber} "
+							zclass="${each.parentId}" sclass="${each.dbId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("dbId", self.getSclass());
+									arg.put("status", "0");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/webCooperation/applyCooperRes/applyCooperNumber.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.untreatedNumber }"
+						if="${each.untreatedNumber==0 }">
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

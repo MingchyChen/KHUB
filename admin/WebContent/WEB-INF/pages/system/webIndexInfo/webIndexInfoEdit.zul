@@ -1,0 +1,47 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="editWebIndexInfoWin" title="${labels.edit}"
+		border="normal" position="center,center" closable="true" apply="com.claridy.admin.composer.WebIndexInfoComposer" width="66%">
+	<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<!-- 姓名 -->
+						<cell width="20%"><label  value="${labels.matterName }:"></label></cell>
+						<cell width="80%"><textbox readonly="true" id="tboxMatterZhTw" value=""  width="80%"/></cell>
+					</row>
+					<row>
+						<!-- 狀態 -->
+						<cell width="20%"><label value="${labels.infoState }:"></label></cell>
+						<cell width="80%"><radiogroup id="rgroupstate" width="80%">
+							<radio label="${labels.startDisplay }" value="0" hflex="1"></radio>
+							<radio label="${labels.closeDisplay }" value="1" hflex="1"></radio>
+						</radiogroup></cell>
+					</row>
+					<!-- 檔案上傳 -->
+					<row>
+						<cell width="20%"><button id="deleeNewsFile" label="${labels.delFile }"></button></cell>
+						<cell width="80%"><button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" visible="false">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									tboxUploadFileName.setValue(media.getName());
+								]]></attribute>
+						</button>
+						<textbox id="tboxUploadFileName" readonly="true"></textbox></cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<label value="${labels.newsConten }" style="color:red;"></label>
+							<ckeditor  id="newscontentZhTwTor" width="100%" toolbar="simple"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="updateBtn" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="editWebIndexInfoWin.detach();" />
+			</div>
+		</vlayout>
+</window>
+</zk>

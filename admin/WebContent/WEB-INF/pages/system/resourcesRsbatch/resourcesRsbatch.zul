@@ -1,0 +1,55 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="com.claridy.admin.composer.ResourcesRsbatchComposer">
+<label id="path_label" style="font-size:14px;font-weight:bold" visible="false"></label><!-- 頁面路徑 -->
+<separator height="10px"/>
+<vbox>
+<label id="warn4" visible="false"></label>
+</vbox>
+<separator height="10px"/>
+<hbox>
+<label id="warn3"></label>:
+<combobox id="comb_resource_type" readonly="true"></combobox><!-- 资源类型 -->
+</hbox>
+<separator height="10px"/>
+<vbox>
+<button id="btn_upload" visible="false">
+	<attribute name="onUpload" ><![CDATA[
+						org.zkoss.util.media.Media media = event.getMedia();
+						uploadFileNameTxt.setValue(media.getName());
+					]]></attribute>
+</button><!-- 上传文件 -->
+	<cell width="20%">
+			<label value="${labels.eduTrain.document }"></label>
+			</cell>
+			<cell width="80%">
+			<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+			<button label="${labels.uploadFile }" id="uploadFile" upload="true,maxsize=-1" visible="true">
+				<attribute name="onUpload" ><![CDATA[
+						org.zkoss.util.media.Media media = event.getMedia();
+						uploadFileNameTxt.setValue(media.getName());
+					]]></attribute>
+			</button>
+			<button label="${labels.ermResourcesConfig.delFile}" id="delFile" visible="false"></button>
+			<!-- <label value="${labels.eduTrain.fileType }"></label> --><!-- 刪除文檔 -->
+			</cell>
+</vbox>
+<separator height="10px"/>
+<vbox>
+	<label id="warn1"></label>
+</vbox>
+<separator height="10px"/>
+<hbox>
+	<label id="warn2"></label>
+	<toolbarbutton id="dbtoolbar"  href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ejtoolbar" href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ebtoolbar" href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;" visible="false"/>
+	<toolbarbutton id="wstoolbar" href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;" visible="false"/>
+	<!--  
+	<toolbarbutton id="ottoolbar" label="其他" href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	-->
+</hbox>
+
+ 
+</window>
+</zk>

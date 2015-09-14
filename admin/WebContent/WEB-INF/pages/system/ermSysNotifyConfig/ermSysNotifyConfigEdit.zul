@@ -1,0 +1,67 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermSysNotifyConfigEdtWin" width="66%" title="${labels.edit}"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmSysNotifyCfgComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%">
+						<!-- 資源類型 -->
+							<label value="${labels.ermSysNotifyConfig.resourceType}" style="color:red;"></label>
+						</cell>
+						<cell width="80%">
+							<combobox id="resourceBox" hflex="5" readonly="true"  disabled="true">
+							</combobox>
+						</cell>
+					</row>
+					<!-- 收件群組 -->
+					<row>
+						<cell width="20%">
+							<label value="${labels.ermSysNotifyConfig.receiptGroup}" style="color:red;" ></label>
+						</cell>
+						<cell width="80%">
+							<combobox id="receiptGroupBox" hflex="5" readonly="true" disabled="true"> 
+							</combobox>
+						</cell>
+					</row>
+					<!-- 主旨 -->
+					<row>
+						<cell width="20%">
+							<label value="${labels.ermCodeItem.keyNote}" style="color:red;"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="subjectTxt" value="" maxlength="50"></textbox>
+						</cell>
+					</row>
+					<!--內文 -->
+					<row>
+						<cell width="20%">
+							<label value="${labels.ermCodeItem.content}" style="color:red;"></label>
+						</cell>
+						<cell width="80%">
+							<ckeditor id="contentEdt" width="100%" toolbar="simple"  
+								customConfigurationsPath="/js/config.js" >
+							</ckeditor>
+						</cell>
+					</row>
+					<row>
+						<!-- 提前幾天發送 -->
+						<cell width="20%">
+							<label value="${labels.ermSysNotifyConfig.beforeDays}" style="color:red;"></label>
+						</cell>
+						<cell width="80%">
+							<textbox id="beforeDaystxt" value="" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="editBtn" onClick="" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="ermSysNotifyConfigEdtWin.detach();" />
+			</div>
+		</vlayout>
+</window>
+</zk>

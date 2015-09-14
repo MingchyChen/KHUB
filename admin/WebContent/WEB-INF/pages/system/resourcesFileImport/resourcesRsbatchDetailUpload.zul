@@ -1,0 +1,60 @@
+<?page  contentType="text/html;charset=UTF-8"?>
+<zk>
+<window border="none" apply="com.claridy.admin.composer.ResourcesRsbatchDetailUpload">
+<vbox>
+<label id="pagePath" style="font-size:14px;font-weight:bold"></label>
+</vbox>
+<separator height="10px"/>
+<hbox>
+<label id="detail_type"></label><listbox id="DBtype_listbox"></listbox>
+</hbox>
+<separator height="10px"/>
+<hbox>
+<textbox id="filePathAndNameShow"></textbox>
+<div style="height:25px;overflow:hidden;">
+<fileupload id="fileUpload" style="z-index:2;width:70px;height:25px;filter:alpha(opacity=0);-moz-opacity:0.0;opacity: 0.0;"/>
+</div>
+<button id="btn_fileUpload" style="z-index:1;margin-left:-73px;width:70px;height:25px;"></button>
+</hbox>
+<separator height="10px"/>
+<vbox>
+	<label id="warn1"></label>
+</vbox>
+<separator height="5px"/> 
+<hbox>
+	<label id="warn3"></label>
+</hbox>
+<hbox>
+	<toolbarbutton id="db_title"  href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="db_subject"  href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="db_type"  href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="db_college_sy"  href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+</hbox>
+<separator height="5px"/>	
+<hbox>
+	<toolbarbutton id="ej_title" href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ej_subject" href="" style="color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ej_college_sy" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ej_department_sy" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ej_college_dg" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ej_department_dg" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+</hbox>
+<separator height="5px"/>	
+<hbox>
+	<toolbarbutton id="eb_title" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="eb_subject" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="eb_college_sy" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="eb_department_sy" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="eb_college_dg" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="eb_department_dg" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+</hbox>
+<separator height="5px"/>	
+<hbox>
+	<toolbarbutton id="ws_title" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ws_subject" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ws_college_sy" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	<toolbarbutton id="ws_department_sy" href="" style="display:none;color:#4682B4;font-size:14px;font-weight:600;text-decoration:underline;"/>
+	
+</hbox>
+</window>
+</zk>

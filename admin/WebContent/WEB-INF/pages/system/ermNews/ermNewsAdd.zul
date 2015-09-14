@@ -1,0 +1,127 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="addErmNewsWin"  apply="com.claridy.admin.composer.ErmNewsComposer" width="66%"
+		border="normal" position="center,center" closable="true" title="${labels.add }">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="20%" style="color:red">
+						<!-- 發佈日期 -->
+						<label value="${labels.ermNews.OnDate}: " ></label>
+						</cell>
+						<cell>
+							<datebox id="startDatedbx" readonly="true"></datebox>
+						</cell>
+					</row>
+					<row>
+						<!-- 下架日期 -->
+						<cell width="20%">
+							<label value="${labels.ermNews.shelvesDate}" ></label>
+						</cell>
+						<cell width="80%">
+							<datebox id="endDatedbx"></datebox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%" style="color:red">
+						<!-- 標題 -->
+						<label value="${labels.ermNews.title}:"></label>
+						</cell>
+						<cell>
+							<textbox id="titleTxt" value="" width="80%" maxlength="80"></textbox>
+						</cell>
+					</row>
+					<row id="isTopRow">
+						<cell width="20%">
+						<!-- 是否置頂 -->
+							<label value="${labels.ermNews.isTop}:"></label>
+						</cell>
+						<cell>
+							<radiogroup id="isTopRdb">
+								<radio label="${labels.ermNews.no}" value="0" hflex="1"></radio>
+								<radio label="${labels.ermNews.is}" value="1" hflex="1"></radio>
+							</radiogroup>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 排序 -->
+						<label value="${labels.ermNews.sort}: " ></label>
+						</cell>
+						<cell>
+							<intbox id="sortNumIbx" width="80%"></intbox>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 點擊數 -->
+						<label value="${labels.ermNews.clickNum}: " ></label>
+						</cell>
+						<cell>
+							<intbox id="clickNumIbx"  width="80%"></intbox>
+						</cell>
+					</row>
+					<!-- <row>
+						<cell width="20%">
+						<label value="${labels.ermNews.document }"></label>
+						</cell>
+						<cell width="80%">
+						<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+						<button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" visible="false">
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadFileNameTxt.setValue(media.getName());
+								]]></attribute>
+						</button>
+						<label value="${labels.ermNews.fileType }"></label>
+						</cell>
+					</row> -->
+					<row>
+						<cell width="20%">
+						<label value="${labels.ermNews.document }"></label>
+						</cell>
+						<cell width="80%">
+						<textbox id="uploadFileNameTxt" readonly="true"></textbox>
+						<button label="${labels.uploadFile }" id="upload" upload="true,maxsize=-1" >
+							<attribute name="onUpload" ><![CDATA[
+									org.zkoss.util.media.Media media = event.getMedia();
+									uploadFileNameTxt.setValue(media.getName());
+									delFile.setVisible(true);
+								]]></attribute>
+						</button>
+						<button label="刪除文檔" id="delFile" ></button>
+						<label value="${labels.ermNews.fileType }"></label>
+						</cell>
+					</row>
+					<row>
+						<cell width="20%">
+							<!-- 參考網址 -->
+							<label value="${labels.ermNews.webSite}:"></label>
+						</cell>
+						<cell>
+							<textbox id="webSiteTbx" value="" width="80%"></textbox>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2" style="color:red;TextAlign:Center">
+						<!-- 內容 -->
+						<label value="${labels.ermNews.content}:"></label>
+						</cell>
+					</row>
+					<row>
+						<cell colspan="2">
+							<ckeditor id="contentCedit" value="" ></ckeditor>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addErmNewsWin.detach();"/>
+				<button label="${labels.clearArchives}" id="clearBtn" />
+			</div>
+		</vlayout>
+</window>
+</zk>

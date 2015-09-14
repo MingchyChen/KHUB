@@ -1,0 +1,35 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="rejectWin" border="normal" apply="com.claridy.admin.composer.WebPhraseListComposer"
+ width="66%" title="${labels.webCooperation.rejectManage }" position="center,center" closable="true">
+	<vlayout>
+		<hlayout>
+			<label id="hidVal" style="display:none;"></label>
+			<label value="${labels.webCooperation.rejectKeword }"></label>
+			<textbox id="rejectKeyWord"></textbox>
+		</hlayout>
+	</vlayout>
+	<hbox>
+		<button id="searchBtn" label="${labels.search }"></button>
+		<button id="showAllBtn" label="${labels.showAll }"></button>
+	</hbox>
+	<listbox id="rejectLix" checkmark="true" multiple="true" mold="paging" pageSize="10" pagingPosition="both">
+		<listhead>
+			<listheader></listheader>
+			<listheader label="${labels.webCooperation.words }" sort="auto(phraseZhTw)"></listheader>
+			<listheader label="${labels.creator }" sort="auto(dataOwnerWeb.employeeName)"></listheader>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell></listcell>
+				<listcell label="${each.phraseZhTw }"></listcell>
+				<listcell label="${each.dataOwnerWeb.employeeName }"></listcell>
+			</listitem>
+		</template>
+	</listbox>
+	<hbox>
+		<button id="isOk" label="${labels.webCooperation.isOK }"></button>
+		<button label="${labels.cancel }" onClick="rejectWin.detach();"></button>
+	</hbox>
+</window>
+</zk>

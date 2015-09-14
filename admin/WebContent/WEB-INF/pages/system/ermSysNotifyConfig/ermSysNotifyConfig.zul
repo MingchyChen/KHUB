@@ -1,0 +1,83 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window apply="com.claridy.admin.composer.ErmSysNotifyCfgListComposer" id="ermSysNotifyConfig">
+
+	<vlayout width="300px">
+			<hlayout>
+				<label value="${labels.ermSysNotifyConfig.resourceType}:"/>
+				<combobox id="resourceBox" hflex="5" readonly="true" >
+				</combobox>
+			</hlayout>
+	</vlayout>
+	<vlayout width="300px">
+		<hbox align="center">
+				<!-- 查詢，新增，修改，刪除 -->
+				<!-- 搜尋 -->
+				<button id="pagSearchBtn" label="${labels.search}" />
+				<button id="addBtn" label="${labels.add}" />
+				<!-- <button id="editBtn" label="${labels.edit}" /> -->
+				<button id="deleteBtn" label="${labels.del}" />
+				<button id="showAll" label="${labels.showAll}"></button>
+		</hbox>
+	</vlayout>
+	<listbox id="ermSysNotifyConfiglbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<!-- 資源類型 -->
+				<listheader label="${labels.ermSysNotifyConfig.resourceType} " sort="auto(typeId)" ></listheader>
+				<!-- 收件群組-->
+				<listheader label="${labels.ermSysNotifyConfig.receiptGroup}" sort="auto(webOrg.orgName)"></listheader>
+				<!-- 提前幾天發送-->
+				<listheader label="${labels.ermSysNotifyConfig.beforeDays}" sort="auto(beforeDays)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.ermSysNotifyConfig.dataOwner}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動紀錄 -->
+				<listheader label="${labels.ermSysNotifyConfig.changeRecord}" ></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			 <template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.typeName}"></listcell>
+					<listcell label="${each.webOrg.orgName}"></listcell>
+					<listcell label="${each.beforeDays}"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss') }">
+						<button label="${labels.changeRecord} "
+							target="${each.typeId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "ermSysNotifyConfig_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					
+					<listcell >
+						<button label="${labels.edit}" target="${each.typeId},${each.webOrg.orgId}">
+						 <attribute name="onClick">        
+						     <![CDATA[       
+						    String[] str=self.getTarget().split(",");
+							Map params = new HashMap();
+							params.put("typeId",  str[0]);
+							params.put("groupId",  str[1]);
+							
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/ermSysNotifyConfig/ermSysNotifyConfigEdit.zul", null,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						     </button>
+     				 
+					</listcell> 
+				</listitem>
+			</template> 
+		</listbox>
+</window>
+</zk>

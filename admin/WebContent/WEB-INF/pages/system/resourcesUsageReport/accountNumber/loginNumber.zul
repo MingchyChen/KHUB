@@ -1,0 +1,35 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="loginNumberWin" title="${labels.report.loginNumber}" width="66%" mode="modal"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.LoginNumberListComposer">
+		<label id="condition" width="100%"></label>
+		<separator></separator>
+		<label id="unit" width="100%"></label>
+		<hlayout>
+			<div>
+				<button label="${labels.ermResUserList.export}"
+					id="export" onClick="" />
+			</div>
+		</hlayout>
+		<listbox id="loginNumberLBX" mold="paging" pageSize="10">
+			<listhead sizable="true">
+				<listheader label="${labels.loginNumber.loginDate} " sort="auto(loginDate)"/>
+				<listheader label="${labels.loginNumber.accountId}" sort="auto(accountId)"/>
+				<listheader label="${labels.loginNumber.accountName}" sort="auto(accountName)"/>
+				<listheader label="${labels.loginNumber.loginIp}" sort="auto(loginIp)"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell
+						label="${each.loginDate==null?each.loginDate:(c:formatDate(each.loginDate, 'yyyy-MM-dd HH:mm:ss'))}">
+					</listcell>
+					<listcell label="${each.accountId}"></listcell>
+					<listcell label="${each.accountName}"></listcell>
+					<listcell label="${each.loginIp}"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

@@ -1,0 +1,95 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="com.claridy.admin.composer.ErmNewsListComposer"
+		id="ermNews">
+		<vlayout width="300px">
+			<hlayout>
+				<!-- 標題 -->
+				<label value="${labels.ermNews.title}:" hflex="1"/>
+				<textbox id="titleTxt" hflex="3"/>
+			</hlayout>
+			<hlayout>
+				<!-- 上下架 -->
+				<label value="${labels.ermNews.soldOutShelves}:" hflex="1"></label>
+				<radiogroup id="onDownRdb" hflex="3">
+					<radio label="${labels.ermNews.shelves}" value="1" hflex="1"></radio>
+					<radio label="${labels.ermNews.soldOut}" value="0" hflex="1"></radio>
+				</radiogroup>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+			<!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="ermNewsLbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<!-- 標題 -->
+				<listheader label="${labels.ermNews.title}" sort="auto(matterZhTw)"></listheader>
+				<!-- 上架日期 -->
+				<listheader label="${labels.ermNews.OnDate}" sort="auto(startDate)"></listheader>
+				<!-- 下架日期 -->
+				<listheader label="${labels.ermNews.shelvesDate}" sort="auto(closeDate)"></listheader>
+				<!-- 點擊數 -->
+				<listheader label="${labels.ermNews.clickNum}" sort="auto(clickNum)"></listheader>
+				<!-- 是否置頂 -->
+				<listheader label="${labels.ermNews.isTop}" sort="auto(isTop)"></listheader>
+				<!-- 排序 -->
+				<listheader label="${labels.ermNews.sort}" sort="auto(sortNum)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.ermNews.creater}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動紀錄 -->
+				<listheader label="${labels.firstTopLink.changeRecord}" ></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+		 <template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.matterZhTw }"></listcell>
+					<listcell label="${c:formatDate(each.startDate,'yyyy-MM-dd HH:mm:ss') }"></listcell>
+					<listcell label="${each.closeDate==null?each.closeDate:(c:formatDate(each.closeDate,'yyyy-MM-dd HH:mm:ss'))}"></listcell>
+					<listcell label="${each.clickNum}"></listcell>
+					<listcell label="${labels.ermNews.is}" if="${each.isTop==1}"></listcell>
+					<listcell label="${labels.ermNews.no}" if="${each.isTop==0}"></listcell>
+					<listcell label="${each.sortNum}"></listcell>
+					<listcell label="${each.webEmployee.employeeName}"></listcell>
+					<listcell label="${c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss') }">
+						<button label="${labels.changeRecord} "
+							target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "webnews_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					
+					<listcell >
+						<button label="${labels.edit}" target="${each.uuid}">
+						 <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("uuid",  self.getTarget());
+							params.put("currentPage",String.valueOf(ermNewsLbx.getActivePage()));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/ermNews/ermNewsEdit.zul", ermNews,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						     </button>
+					</listcell> 
+				</listitem>
+			</template> 
+		</listbox>
+	</window>
+</zk>

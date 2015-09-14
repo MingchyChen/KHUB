@@ -1,0 +1,99 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="ermCodeDbListWin"
+		apply="com.claridy.admin.composer.ErmCodeDbListComposer">
+		<vlayout width="500px">
+			<hlayout>
+				<div width="60px">
+					<label value="資料庫名稱"></label>
+				</div>
+				<textbox id="nameTxt"></textbox><!-- 資料庫名稱 -->
+			</hlayout>
+		</vlayout>
+		<hlayout>
+			<div width="60px">
+				<label value="資料庫編號"></label>
+			</div>
+			<textbox id="dbIdTxt"></textbox>
+		</hlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search}" id="pagSearchBtn"></button>
+			<!-- 新增 -->
+			<button id="addBtn" label="${labels.add}" />
+			<!-- 刪除 -->
+			<button id="delSuunitBtn" label="${labels.del}"></button>
+			<!-- 清空 -->
+			<button id="clearBtn"
+				label="${labels.ermResMainEjeb.clearTj}" />
+		</hbox>
+		<listbox id="resCodeDbLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<!-- 資料庫編號 -->
+				<listheader label="資料庫編號" sort="auto(dbId)"></listheader>
+				<!-- 資料庫名稱 -->
+				<listheader label="資料庫名稱" sort="auto(name)"></listheader>
+				<!-- 排序 -->
+				<listheader label="${labels.firstTopLink.sort}" sort="auto(orderNo)"></listheader>
+				<!-- url -->
+				<listheader label="url" sort="auto(url)"></listheader>
+				<listheader label="${labels.dataowner }"
+					sort="auto(webEmployee.employeeName)">
+				</listheader>
+				<!-- 建立日/異動記錄 -->
+				<listheader
+					label="${labels.createDate}/${labels.changeRecord}"
+					sort="auto(createDate)" width="150px">
+				</listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit}" width="120px"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.dbId}"></listcell>
+					<listcell label="${each.name}"></listcell>
+					<listcell label="${each.orderNo}"></listcell>
+					<listcell label="${each.url}"></listcell>
+					<listcell
+						label="${each.webEmployee.employeeName }">
+					</listcell>
+					<listcell
+						label="${each.createDate==null?each.createDate:(c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss'))}">
+						<button label="${labels.changeRecord}"
+							target="${each.dbId}">
+							<attribute name="onClick">
+								<![CDATA[
+	Map arg = new HashMap();
+	arg.put("nlocate", "codeDb_" + self.getTarget());
+	Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+			arg);
+]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button label="${labels.edit}"
+							target="${each.dbId}">
+							<attribute name="onClick">        
+						     <![CDATA[
+	Map params = new HashMap();
+	int currentPage=resCodeDbLix.getActivePage();
+	params.put("currentPage", String.valueOf(currentPage));
+	params.put("dbId", self.getTarget());
+	Window newWindow = (Window) com.claridy.common.util.ZkUtils
+			.createComponents(
+					"/WEB-INF/pages/system/ermCodeDb/ermCodeDbEdit.zul", ermCodeDbListWin,
+					params);
+	newWindow.doModal();
+]]>        
+						     </attribute>
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

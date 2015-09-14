@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.1.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+      http://www.springframework.org/schema/util
+      http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <!-- Allows to use system properties as variables in this configuration
+        file -->
+    <bean
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:config.properties</value>
+        </property>
+    </bean>
+
+    <util:properties id="systemproperties" location="classpath:system.properties"></util:properties>
+
+    <!-- Direct JDBC DataSource -->
+    <bean id="jdbcDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+
+        <property name="driverClass" value="${datasource.jdbc.driver.name}" />
+        <property name="jdbcUrl" value="${datasource.url}" />
+        <property name="user" value="${datasource.username}" />
+        <property name="password" value="${datasource.password}" />
+
+        <!-- 最小連接數 -->
+        <property name="minPoolSize" value="10" />
+        <!-- 最大連接數 -->
+        <property name="maxPoolSize" value="15" />
+        <!--最大空閒時間，1800秒內未使用則連結被丟棄。若為0則永不丟棄。Default: 0 -->
+        <property name="maxIdleTime" value="1800" />
+        <!-- 當連接池裡面的連結用完的時候，C3P0一次獲得的新連接數 -->
+        <property name="acquireIncrement" value="3" />
+        <!-- 最大的PreparedStatement數量 -->
+        <property name="maxStatements" value="1000" />
+        <!-- 初始連接數 -->
+        <property name="initialPoolSize" value="10" />
+        <!-- 每隔120秒檢查連接池裡面的空閒連結，單位秒 -->
+        <property name="idleConnectionTestPeriod" value="120" />
+        <!-- 從資料庫獲取新連接失敗之後重複嘗試的次數 -->
+        <property name="acquireRetryAttempts" value="100" />
+        <property name="breakAfterAcquireFailure" value="false" />
+        <property name="testConnectionOnCheckout" value="false" />
+    </bean>
+
+    <!-- ============================================ -->
+    <!-- Integration Hibernate -->
+    <!-- ============================================ -->
+    <!-- org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
+    <!-- org.springframework.orm.hibernate3.LocalSessionFactoryBean -->
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.max_fetch_depth">5</prop>
+                <prop key="hibernate.query.substitutions">true 1, false 0</prop>
+
+                <!-- connection release mode : JDBC使用after_transaction；JTA使用after_statement -->
+                <prop key="hibernate.connection.release_mode">after_transaction</prop>
+
+                <!-- Important : This will drop all tables and create new tables -->
+                <!--  prop key="hibernate.hbm2ddl.auto">create</prop -->
+            </props>
+        </property>
+        <property name="dataSource" ref="${datasource.type}" />
+        <property name="packagesToScan" value="com.claridy" />
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- Transaction Manager -->
+    <bean id="txManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- Annotation Driven Transactions -->
+    <tx:annotation-driven transaction-manager="txManager" />
+    <import resource="appCtx_Service.xml" />
+
+    <!-- Handling Exception -->
+    <bean
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <!-- <entry key="org.springframework.web.multipart.MaxUploadSizeExceededException"
+                    value="errors/maxuploadsize" /> -->
+                <!-- <entry key="DataAccessException" value="errors/dataError" /> -->
+                <!-- <entry key="com.stuff.MyAppRuntimeException" value="errors/appNncheckedError"
+                    /> -->
+                <!-- <entry key="com.stuff.MyAppCheckedException" value="errors/appCheckedError"
+                    /> -->
+            </map>
+        </property>
+        <property name="defaultErrorView" value="errors/generalError" />
+    </bean>
+</beans>

@@ -1,0 +1,80 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${labels.systemName }" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="main"
+		apply="com.claridy.admin.composer.LoginComposer">
+		<style src="../../../css/system/style.css"></style>
+
+		<div class="container">
+			<div class="top"></div>
+			<div class="down">
+				<div class="login">
+					<label forEach="textfield"></label>
+
+					<textbox name="textfield" type="text" class="from"
+						value="" id="textField">
+					</textbox>
+
+					<textbox name="textfield2" type="password" value=""
+						class="from1" id="textField2">
+					</textbox>
+					<div style="padding-top:8px;">
+						<radiogroup id="rg">
+							<attribute name="onCheck">
+							<![CDATA[
+								String localeValue = self.getSelectedItem().getValue();
+								Locale prefer_locale = localeValue.length() > 2 ? new Locale(
+										localeValue.substring(0, 2), localeValue.substring(3))
+										: new Locale(localeValue);
+								session.setAttribute(org.zkoss.web.Attributes.PREFERRED_LOCALE,
+										prefer_locale);
+								session.setAttribute("now_Locale", self.getSelectedIndex());
+								//execution.sendRedirect("");
+							]]></attribute>
+							<radio label="${labels.language_en }" value="en_US"
+								checked="${c:getCurrentLocale() == self.value}"
+								style="display:none;" />
+							<radio label="${labels.language_zh_TW }" value="zh_TW"
+								checked="${c:getCurrentLocale() == self.value}"
+								style="display:none;" />
+							<!-- <radio label="${labels.language_zh_CN}" value="zh_CN"
+								checked="${c:getCurrentLocale() == self.value}" /> -->
+						</radiogroup>
+						<zscript>
+						<![CDATA[
+						if (session.getAttribute("now_Locale") != null) {
+							rg.setSelectedIndex(Integer.parseInt(session.getAttribute("now_Locale")
+									.toString()));
+						} else {
+							String localeValue = "zh_TW";
+							Locale prefer_locale = localeValue.length() > 2 ? new Locale(
+									localeValue.substring(0, 2), localeValue.substring(3))
+									: new Locale(localeValue);
+							session.setAttribute(org.zkoss.web.Attributes.PREFERRED_LOCALE,
+									prefer_locale);
+							session.setAttribute("now_Locale", 1);
+							rg.setSelectedIndex(1);
+						}
+					]]></zscript>
+					</div>
+
+					<div class="btn">
+						<a id="loginBtn">
+							<image
+								src="../../../images/system/button.png" width="213" height="51"
+								border="0" />
+						</a>
+					</div>
+				</div> 
+			</div>
+			<div class="black" id="copyright">
+				<html>${footerinfo}</html>
+				<!-- 維護廠商：艾迪訊科技 資訊服務窗口：吳小姐或鍾小姐，電話：02-6606-0588 #152 或 #150；
+				Email : cs@csr.transtech.com.tw
+				<separator></separator>
+				行政院農業委員會版權所有©2014 COA All Rights Reserved 以及最佳瀏覽狀態為IE7.0
+				以上‧Firefox 1.0 以上‧1024*768 以上解析度最佳 -->
+			</div>
+		</div>
+	</window>
+</zk>

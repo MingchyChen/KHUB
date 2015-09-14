@@ -1,0 +1,77 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="sysSettingWin" apply="com.claridy.admin.composer.SystemSettingListComposer">
+		
+		<hbox align="center">
+			<!-- 關鍵字 -->
+			<label>${labels.keyword}:</label>
+			<textbox id="keywordBox" width="200px" />
+		</hbox>
+		<hbox>
+			<!-- 查詢，顯示全部,新增，修改，刪除 -->
+			<button id="pagSearchBtn" label="${labels.search}" />
+			<button label="${labels.showAll}" id="showAllBtn"></button>
+			<button id="addBtn" label="${labels.add}" />
+			<!-- <button id="editBtn" label="${labels.edit}" /> -->
+			<button id="deleteBtn" label="${labels.del}" />
+			<!-- <button id="addSolr" label="執行排程"/> -->
+		</hbox>
+		<listbox id="sysSettingLbx" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead sizable="true">
+				<listheader align="center" width="45px"></listheader>
+				<!-- 功能 -->
+				<listheader label="${labels.systemSetting.sysSettingLbx.funcId} " sort="auto(funcId)"></listheader>
+				<!-- 參數值 -->
+				<listheader label="${labels.systemSetting.sysSettingLbx.funcValue}" sort="auto(funcValue)"></listheader>
+				<!-- 參數名稱 -->
+				<listheader label="${labels.systemSetting.sysSettingLbx.funcName}" sort="auto(funcName)"></listheader>
+				<!-- 建立者 -->
+				<listheader label="${labels.dataowner}" sort="auto(webEmployee.employeeName)"></listheader>
+				<!-- 建立日/異動記錄 -->
+				<listheader label="${labels.createdate}/${labels.changeRecord}"></listheader>
+				<!-- 編輯 -->
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.funcId}"></listcell>
+					<listcell label="${each.funcValue}"></listcell>
+					<listcell label="${each.funcName}"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate, 'yyyy-MM-dd HH:mm:ss')}" >
+						<!-- 異動紀錄 -->
+						<button label="${labels.changeRecord} "
+							target="${each.funcId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("nlocate", "sysSetting_" + self.getTarget());
+									Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+											arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell>
+						<button label="${labels.edit}" target="${each.funcId}">
+						    <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("funcId",  self.getTarget());
+							params.put("currentPage",String.valueOf(sysSettingLbx.getActivePage()));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/sysSetting/systemSettingEdit.zul", sysSettingWin,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						</button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

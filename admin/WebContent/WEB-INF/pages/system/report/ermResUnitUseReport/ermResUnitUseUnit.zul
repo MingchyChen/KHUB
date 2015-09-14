@@ -1,0 +1,48 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="ermResUnitUseUnitWin" width="66%" border="normal"
+		position="center,center" closable="ture"
+		apply="com.claridy.admin.composer.ErmResUnitUseUnitComposer">
+		<hlayout>
+			<div width="80px">
+				<label value="${labels.ermResUserList.unit}"
+					style="color:red;">
+				</label>
+			</div>
+			<textbox id="unit"></textbox>
+		</hlayout>
+		<space height="5px"></space>
+		<hlayout>
+			<button id="searchBtn"
+				label="${labels.ermResUnitUse.search}" />
+			<button id="clearBtn" label="${labels.ermResUnitUse.clear}" />
+			<button id="confirmBtn"
+				label="${labels.ermResUnitUse.confirm}" />
+		</hlayout>
+		<hlayout>
+			<listbox id="unitLbx" checkmark="true" multiple="true"
+				mold="paging" pageSize="10" pagingPosition="both">
+				<listhead sizable="true">
+					<listheader align="center" width="100px"
+						label="${labels.selectAll} ">
+					</listheader>
+					<listheader label="${labels.ermResUserList.unit} "
+						sort="auto(unit)">
+					</listheader>
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell></listcell>
+						<listcell label="${each.orgName}"></listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</hlayout>
+		<hlayout>
+			<div>
+				<button label="${labels.ermResUnitUse.cancel}"
+					id="cancelBtn" onClick="ermResUnitUseUnitWin.detach();" />
+			</div>
+		</hlayout>
+	</window>
+</zk>

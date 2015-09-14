@@ -1,0 +1,41 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermResMainDbwsOpenAddWin" title="${labels.sysMenuResMainDbws}" width="66%"
+		 mode="modal" border="normal" position="center,center" closable="true" apply="com.claridy.admin.composer.ErmResMainDbwsOpenAddComposer">
+<vlayout width="300px">
+			<hlayout>
+				<!-- 代碼 -->
+				<label hflex="1">${labels.generalcode.generalcode_id}:</label>
+				<textbox hflex="3" id="openCode" maxlength="50"></textbox>
+			</hlayout>
+			<hlayout>
+				<!-- 名稱 -->
+				<label hflex="1">${labels.generalcode.name1}:</label>
+				<textbox hflex="3" id="openName" maxlength="50"></textbox>
+			</hlayout>
+		</vlayout>
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search}" id="pagSearchBtn"></button>
+			<!-- 顯示全部 -->
+			<button label="${labels.showAll}" id="showAllBtn"></button>
+			<!-- 確認選擇-->
+			<button label="${labels.sureSelect}" id="selectBtn"></button>
+		</hbox>
+		<listbox id="ermResMainDbwsOpenLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<!-- 代碼 -->
+				<listheader label="${labels.generalcode.generalcode_id}" sort="auto(resourcesId)"></listheader>
+				<!-- 名稱 -->
+				<listheader label="${labels.generalcode.name1}" sort="auto(title)"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.resourcesId}"></listcell>  
+					<listcell label="${each.title}"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+</window>
+</zk>

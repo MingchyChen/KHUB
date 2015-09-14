@@ -1,0 +1,45 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermResourcesConfigWin" apply="com.claridy.admin.composer.ErmResourcesConfigListComposer">
+	<vlayout  width="300px">
+		<hlayout>
+			<label hflex="1" id="codeName" value="${labels.ermResourcesConfig.name }"></label>
+			<combobox hflex="3" id="nameCBox" readonly="true"></combobox>
+		</hlayout>
+	</vlayout>
+	<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button><!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+	<listbox id="ermResourcesCofigLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+		<listhead>
+			<listheader align="center" width="45px"></listheader>
+			<listheader label="${labels.ermResourcesConfig.name }" sort="auto(name1)"></listheader>
+			<listheader label="${labels.edit }"></listheader>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell></listcell>
+				<listcell label="${each.name1 }"></listcell>
+				<listcell>
+					<button label="${labels.edit}" target="${each.generalcodeId}">
+						<attribute name="onClick">
+							<![CDATA[
+								Map arg=new HashMap();
+								arg.put("uuid",self.getTarget());
+								Window update=(Window)com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermResourcesConfig/ermResourcesConfigEdit.zul",null,arg);
+								update.doModal();
+							]]>
+						</attribute>
+					</button>
+				</listcell>
+			</listitem>
+		</template>
+	</listbox>
+	
+</window>
+</zk>

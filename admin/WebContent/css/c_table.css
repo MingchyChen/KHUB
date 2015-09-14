@@ -1,0 +1,144 @@
+@CHARSET "GBK";
+
+table.listtable {
+	
+}
+
+table.listtable caption {
+	font-size: 120%;
+	text-transform: uppercase;
+	text-align: left;
+	padding: .5em 1em;
+}
+
+table.listtable thead th {
+	border: 1px solid #ACA899;
+	font-weight: bold;
+	background-image: url("../images/blue_title_bg.jpg");
+	line-height: 20px;
+	text-align: center;
+}
+
+table.listtable tfoot th,table.listtable tfoot td {
+	border: 1px solid #ACA899;
+	background-color: #d0d7ec;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+table.listtable tfoot td img {
+	border: none;
+	float: right;
+	vertical-align: bottom;
+	padding-left: 10px;
+}
+
+table.listtable tbody {
+	background: #fff;
+	text-align: left;
+}
+
+table.listtable tbody td,table.listtable tbody th {
+	padding: 1px 2px 1px 2px;
+	border: 1px solid #ACA899;
+}
+
+table.listtable tbody tr.odd {
+	background-color: #E8E8FF;
+}
+
+table.listtable tbody tr.even {
+	background-color: #ffffff;
+}
+
+table.listtable tbody tr.white {
+	background-color: #ffffff;
+}
+
+table.listtable tbody tr.glory,td.glory {
+	background-color: #E7E7E7;
+}
+
+table.listtable tbody tr.yellow,td.yellow {
+	background-color: #F7EDCC;
+}
+
+table.listtable tbody tr.blue,td.blue {
+	background-color: #CCE0FE;
+}
+
+table.listtable tbody tr.title_2 {
+	background-image: url("../images/left_tab_back.jpg");
+	text-align: center;
+}
+
+table.listtable tbody tr.title_3 {
+	background-image: url("../images/table_title3.jpg");
+	text-align: center;
+}
+
+table.listtable tbody tr.hand {
+	cursor: hand;
+	background-image: url("../images/hand_back.jpg");
+}
+
+table.listtable tbody tr.green,td.green {
+	background-color: #C5E3B9;
+}
+
+table.listtable tbody tr.red,td.red {
+	background-color: #FE7D7A;
+}
+
+table.listtable td div.left,table.querytable td div.left {
+	float: left;
+}
+
+table.listtable td div.right,table.querytable td div.right {
+	float: right;
+}
+
+table.querytable,table.querytable tr,table.querytable td {
+	border: 1px solid #ACA899;
+	/*background-color:#ffffff;*/
+	padding: 1px 2px 1px 2px;
+	text-align: left;
+	font-size: 12px;
+	font-family: Arial, "Arial Black", "ºÚÌå", "ËÎÌå";
+}
+
+table.querytable .title_1 {
+	border: 1px solid #ACA899;
+	font-weight: bold;
+	text-align: center;
+	background-image: url("../images/blue_title_bg.jpg");
+	line-height: 20px;
+}
+
+table.querytable .title_2 {
+	background-image: url("../images/left_tab_back.jpg");
+	text-align: center;
+}
+
+table.querytable .title_3 {
+	background-image: url("../images/table_title3.jpg");
+	text-align: center;
+}
+
+table.querytable .title_4 {
+	background-color: #d1ddf2;
+	text-align: center;
+}
+
+table.listtable .foot,table.querytable .foot {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #ACA899;
+	background-color: #d0d7ec;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}

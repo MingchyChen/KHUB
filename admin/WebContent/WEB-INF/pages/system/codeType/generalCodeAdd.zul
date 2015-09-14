@@ -1,0 +1,76 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="addGeneralCodeWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmCodeItemDetailComposer">
+<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="40%">
+						<!-- 類別 -->
+						<label value="${labels.generalcode.itemid}:" style="color:red;"/>
+						</cell>
+						<cell>
+						<textbox id="itemIdBox" readonly="true" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="40%">
+						<!-- 代碼 -->
+						<label value="${labels.generalcode.generalcode_id}:" style="color:red;"/>
+						</cell>
+						<cell>
+						<textbox id="generalcode_IdValue" value="" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+					<cell width="40%">
+					<!-- 名稱 -->
+					<label value="${labels.generalcode.name1}:" style="color:red;"/>
+						</cell>
+						<cell>
+						<textbox id="name1Value" value="" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+					<cell width="40%">
+					<!-- 名稱(英文) -->
+					<label value="${labels.generalcode.name2}:" style="color:red;"/>
+						</cell>
+						<cell>
+						<textbox id="name2Value" value="" maxlength="50"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="40%">
+						<!-- 停用注記 -->
+						<label value="${labels.generalcode.history} " style="color:red;"/>
+						</cell>
+						<cell>
+						<radiogroup id="yesOrNoRdp">
+							<radio label="${labels.no }" value="N" checked="true"></radio>
+							<radio label="${labels.yes }" value="Y"></radio>
+						</radiogroup>
+						</cell>
+					</row>
+
+					<row>
+						<cell width="40%">
+						<!-- 備註 -->
+						<label value="${labels.generalcode.note} " />
+						</cell>
+						<cell>
+						<textbox id="noteValue" value="" width="60%" rows="7"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="addGeneralCodeWin.detach();"/>
+			</div>
+		</vlayout>
+</window>
+</zk>

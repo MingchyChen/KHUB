@@ -1,0 +1,146 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="sysUseNumberWin" title="${labels.report.sysUseNumberPON}" width="66%" mode="modal"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.SysUseNumberPONComposer">
+		<label id="pcondition" width="100%"></label>
+		<separator></separator>
+		<label id="punit" width="100%"></label>
+		<hlayout>
+			<div>
+				<button label="${labels.ermResUserList.export}"
+					id="export" onClick="" />
+			</div>
+		</hlayout>
+		<listbox id="parentOrgNameLbx" mold="paging" pageSize="10"
+			pagingPosition="both">
+			<listhead sizable="true">
+				<listheader
+					label="${labels.accountNumber.parentOrgName }" sort="auto(orgName)">
+				</listheader>
+				<listheader
+					label="${labels.sysUseNumber.newsNumber }" sort="auto(newsNumber)">
+				</listheader>
+				<listheader label="${labels.sysUseNumber.eduNumber }" sort="auto(eduNumber)">
+				</listheader>
+				<listheader
+					label="${labels.sysUseNumber.farmNumber }" sort="auto(farmNumber)">
+				</listheader>
+				<listheader
+					label="${labels.sysUseNumber.reportNumber}" sort="auto(reportNumber)">
+				</listheader>
+				<listheader label="${labels.sysUseNumber.pubNumber}" sort="auto(pubNumber)">
+				</listheader>
+				<listcell label="${each.eduNumber }"
+						if="${each.eduNumber==0 }">
+					</listcell>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.orgName}"></listcell>
+					<listcell if="${each.newsNumber!=0}">
+						<a label="${each.newsNumber} "
+							zclass="${each.parentId}" sclass="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("orgId", self.getSclass());
+									arg.put("status", "new");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/resourcesUsageReport/sysUseNumber/sysUseN.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.newsNumber }"
+						if="${each.newsNumber==0 }">
+					</listcell>
+					<listcell if="${each.eduNumber!=0}">
+						<a label="${each.eduNumber} "
+							zclass="${each.parentId}" sclass="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("orgId", self.getSclass());
+									arg.put("status", "edu");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/resourcesUsageReport/sysUseNumber/sysUseN.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.eduNumber }"
+						if="${each.eduNumber==0 }">
+					</listcell>
+					<listcell if="${each.farmNumber!=0}">
+						<a label="${each.farmNumber} "
+							zclass="${each.parentId}" sclass="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("orgId", self.getSclass());
+									arg.put("status", "farm");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/resourcesUsageReport/sysUseNumber/sysUseN.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.farmNumber }"
+						if="${each.farmNumber==0 }">
+					</listcell>
+					<listcell if="${each.reportNumber!=0}">
+						<a label="${each.reportNumber} "
+							zclass="${each.parentId}" sclass="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("orgId", self.getSclass());
+									arg.put("status", "report");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/resourcesUsageReport/sysUseNumber/sysUseN.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.reportNumber }"
+						if="${each.reportNumber==0 }">
+					</listcell>
+					<listcell if="${each.pubNumber!=0}">
+						<a label="${each.pubNumber} "
+							zclass="${each.parentId}" sclass="${each.orgId}">
+							<attribute name="onClick">
+								<![CDATA[
+									Map arg = new HashMap();
+									arg.put("parentId", self.getZclass());
+									arg.put("orgId", self.getSclass());
+									arg.put("status", "pub");
+									Executions
+											.createComponents(
+													"/WEB-INF/pages/system/resourcesUsageReport/sysUseNumber/sysUseN.zul",
+													null, arg);
+								]]>
+							</attribute>
+						</a>
+					</listcell>
+					<listcell label="${each.pubNumber }"
+						if="${each.pubNumber==0 }">
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

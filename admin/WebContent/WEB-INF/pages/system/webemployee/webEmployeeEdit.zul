@@ -1,0 +1,118 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>  
+ 
+<zk>
+	<window id="editWebEmployeeWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.WebEmployeeComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<!-- 姓名 -->
+						<cell width="20%"><label  value="${labels.name }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxEmployeeName" value="" maxlength="50"  width="80%"/></cell>
+					</row>
+					<row>
+					<!-- 賬號 -->
+						<cell width="20%"><label value="${labels.account }:" style="color:red;"></label></cell>
+						<cell width="50%"><div>
+							<textbox id="tboxEmployeeId" maxlength="50" value="" width="80%" readonly="true"/>
+						</div></cell>
+						
+					</row>
+					<!-- 密碼 -->
+					<row>
+						<cell width="20%"><label value="${labels.password }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox maxlength="50" type="password" id="tboxPwd" width="80%"></textbox></cell>
+						
+					</row>
+					<row>
+						<cell width="20%"><label value="${labels.webEmployeeAdd.tboxPwdtwo.pwdtwo }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox maxlength="50" type="password" value="" id="tboxPwdtwo" width="80%"></textbox></cell>
+					</row>
+					<row>
+					<!-- 單位別 -->
+						<cell width="20%">
+							<label value="${labels.unit }:" style="color:red;"></label>
+							
+							
+						</cell>
+						<cell width="50%">
+							<combobox readonly="true" id="orgNameBox" width="40%" ></combobox>
+							<label width="5%"></label>
+							<label value="${labels.orgid }"></label>
+							<combobox id="sorgNameBox" width="40%" readonly="true">
+							</combobox>
+						</cell>
+					</row>
+					<row>
+					<!-- E-Mail -->
+						<cell width="20%"><label value="E-Mail:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox maxlength="500" id="tboxEMail"  value=""  width="80%" constraint="/.+@.+\.[a-z]+/:${labels.webPubLication.notIsEmail }"/></cell>
+					</row>
+					<row>
+					<!-- 連絡電話 -->
+						<cell width="20%"><label value="${labels.phone }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox maxlength="50" id="tboxTel"  value=""  width="80%"/></cell>
+					</row>
+					<row>
+					<!-- 狀態 -->
+						<cell width="20%"><label value="${labels.state }:" style="color:red;"></label></cell>
+						<cell width="50%"><radiogroup id="rgroupstate" width="80%">
+							<radio label="${labels.start }" value="0" hflex="1" ></radio>
+							<radio label="${labels.disable }" value="1" hflex="1"></radio>
+						</radiogroup></cell>
+					</row>
+					<row>
+					<!-- 身份別 -->
+						<cell width="20%"><label value="${labels.identity }" style="color:red;"></label></cell>
+						<cell width="50%"><combobox readonly="true" id="tboxIdType" hflex="3"  width="80%">
+							<comboitem label="${labels.select }" value="0"></comboitem>
+							<comboitem label="${labels.webEmployeeAdd.tboxIdType.coaManagers }" value="1"></comboitem>
+							<comboitem label="${labels.webEmployeeAdd.tboxIdType.unit }" value="2"></comboitem>
+							<comboitem label="${labels.webEmployeeAdd.tboxIdType.use }" value="3"></comboitem>
+							<comboitem label="${labels.webEmployee.tboxIdType.fuse }" value="4"></comboitem>
+							<comboitem label="${labels.webEmployee.tboxIdType.aidUse }" value="5"></comboitem>
+							<comboitem label="${labels.webEmployee.tboxIdType.technician }" value="6"></comboitem>
+							<comboitem label="${labels.webEmployee.tboxIdType.ftechnician }" value="7"></comboitem>
+							<comboitem label="${labels.webEmployee.tboxIdType.other }" value="8"></comboitem>
+						</combobox></cell>
+					</row>
+					<row>
+						<!-- 是否為單位主管 -->
+						<cell width="20%"><label value="${labels.webEmployeeAdd.isUnitHeadLab.isNY }" id="isUnitHeadLab" style="color:red;"></label></cell>
+						<cell width="50%"><radiogroup id="rgroupIsManager" width="80%">
+							<radio label="${labels.yes }" value="1" width="30%"></radio>
+							<radio label="${labels.no}" value="0" width="30%" ></radio>
+						</radiogroup></cell>
+					</row>
+					<row>
+						<!-- 是否有最新消息置頂權限 -->
+						<cell width="20%"><label value="${labels.webEmployee.isnewstop}" id="isNewTopLab" style="color:red;"/></cell>
+						<cell width="50%"><radiogroup id="rdoIsNewsTop" width="80%">
+							<radio label="${labels.yes}" value="1" width="30%"></radio>
+							<radio label="${labels.no}" value="0" width="30%" selected="true"></radio>
+						</radiogroup></cell>
+					</row>
+					<row>
+						<cell width="20%">
+						<!-- 權限 -->
+						<label value="${labels.power} "></label>
+						</cell>
+						<cell>
+							<checkbox id="checkAll" label="${labels.selectAll}"/>
+							<tree id="tree" height="200px;" style="overflow:auto;"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="updateBtn" />
+				<button label="${labels.updCancel}" id="cancelBtn"
+					onClick="editWebEmployeeWin.detach();" />
+			</div>
+		</vlayout>
+	</window>
+
+</zk>

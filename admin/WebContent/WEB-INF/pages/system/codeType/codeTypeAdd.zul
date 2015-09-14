@@ -1,0 +1,41 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="addErmCodeItemWin" title="${labels.add}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmCodeItemComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<!-- 類別代碼 -->
+					<row>
+						<cell width="20%"><label  value="${labels.ermCodeItem.typeCode }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxTypeCode" value=""  width="80%" maxlength="50"/></cell>
+					</row>
+					<!-- 類別名稱 -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodeItem.typeName }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxTypeName" width="80%" maxlength="50"></textbox></cell>
+					</row>
+					<!-- 類別名稱(英文) -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodeItem.typeNameUS }:" style="color:red;"></label></cell>
+						<cell width="50%"><textbox id="tboxTypeNameUS" width="80%" maxlength="50"></textbox></cell>
+					</row>
+					<!-- 停用註記 -->
+					<row>
+						<cell width="20%"><label value="${labels.ermCodeItem.history }:"></label></cell>
+						<cell width="50%"><radiogroup id="RdpHistory" width="80%">
+							<radio label="${labels.yes }" value="Y" hflex="1"></radio>
+							<radio label="${labels.no }" value="N" hflex="1"></radio>
+						</radiogroup></cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.saveOrUpdMessage}" id="saveBtn" onClick="" />
+				<button label="${labels.saveCancel}" id="cancelBtn"
+					onClick="addErmCodeItemWin.detach();" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

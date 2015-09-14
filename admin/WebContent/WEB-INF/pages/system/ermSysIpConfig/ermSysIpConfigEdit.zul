@@ -1,0 +1,63 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="editSysIpConfigWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmSysIpConfigComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="30%">
+							<!-- 單位 -->
+							<label value="${labels.ermResUserList.unit}"
+								style="color:red">
+							</label>
+						</cell>
+						<cell>
+							<hlayout>
+								<combobox id="parentOrgName"
+									readonly="true">
+								</combobox>
+							</hlayout>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- IP區間 -->
+							<label value="${labels.ermSysIpConfig.ip}"
+								style="color:red;">
+							</label>
+						</cell>
+						<cell>
+							<textbox id="ipConfig" value="" width="80%" />
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 是否開啟 -->
+							<label value="${labels.firstTopLink.sfkq}"
+								style="color:red">
+							</label>
+						</cell>
+						<cell>
+							<radiogroup id="isOpenRdo">
+								<radio
+									label="${labels.firstTopLink.close}" value="0" hflex="1">
+								</radio>
+								<radio
+									label="${labels.firstTopLink.open}" value="1" hflex="1">
+								</radio>
+							</radiogroup>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<button label="${labels.save}" id="updateBtn"
+					onClick="" />
+				<button label="${labels.cancel}" id="cancelBtn"
+					onClick="editSysIpConfigWin.detach();" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,72 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="webEduTrainingWin" apply="com.claridy.admin.composer.WebEduTrainingListComposer" >
+		<vlayout width="310px">
+			<hlayout>
+				<label hflex="1" value="${labels.webEduTraining.startDate}"></label>
+				<datebox format="yyyy-MM-dd" id="startDateDbox" readonly="true"></datebox>
+				<label value="～"></label>
+				<datebox format="yyyy-MM-dd" id="endDateDbox" readonly="true"/>
+			</hlayout>
+		</vlayout>
+
+
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAllBtn"></button><!-- 新增，刪除 -->
+			<button id="addBtn" label="${labels.add}" />
+			<button id="deleteBtn" label="${labels.del}" />
+		</hbox>
+		<listbox id="WebEduTrainLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.ermNews.title}" sort="auto(matterZhTw)"></listheader>
+				<listheader label="${labels.webEduTraining.startDate}" sort="auto(startDate)"></listheader>
+				<listheader label="訓練日期" sort="auto(trainingDate)"></listheader>
+				<listheader label="${labels.webEduTraining.clickNum }" sort="auto(clickNum)"></listheader>
+				<listheader label="${labels.dataowner }" sort="auto(webEmployee.employeeName)"></listheader>
+				<listheader label="${labels.changeRecord }"></listheader>
+				<listheader label="${labels.edit }"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.matterZhTw }"></listcell>
+					<listcell label="${c:formatDate(each.startDate,'yyyy-MM-dd HH:mm:ss') }"></listcell>
+					<listcell label="${each.trainingDate==null?each.trainingDate:(c:formatDate(each.trainingDate,'yyyy-MM-dd HH:mm:ss'))}"></listcell>
+					<listcell label="${each.clickNum }"></listcell>
+					<listcell label="${each.webEmployee.employeeName }"></listcell>
+					<listcell label="${c:formatDate(each.createDate,'yyyy-MM-dd HH:mm:ss') }">
+						<button label="${labels.changeRecord }" target="${each.uuid}">
+							<attribute name="onClick">
+								<![CDATA[
+										Map arg = new HashMap();
+										arg.put("nlocate", "webedutraining_" + self.getTarget());
+										Executions.createComponents("/WEB-INF/pages/common/webSysLog.zul", null,
+												arg);
+								]]>
+							</attribute>
+						</button>
+					</listcell>
+					<listcell >
+						<button label="${labels.edit}" target="${each.uuid}">
+						 <attribute name="onClick">        
+						     <![CDATA[       
+							Map params = new HashMap();
+							params.put("uuid",  self.getTarget());
+							params.put("currentPage",String.valueOf(WebEduTrainLix.getActivePage()));
+							Window newWindow = (Window) com.claridy.common.util.ZkUtils.createComponents(
+									"/WEB-INF/pages/system/webEduTraining/webEduTrainingEdit.zul", webEduTrainingWin,
+									params);
+							newWindow.doModal();
+						     ]]>        
+						     </attribute>   
+						     </button>
+					</listcell> 
+				</listitem>
+			</template>
+		</listbox>
+</window>
+</zk>

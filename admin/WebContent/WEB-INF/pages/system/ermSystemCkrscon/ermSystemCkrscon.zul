@@ -1,0 +1,55 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermSystemCkrsconWin"  apply="com.claridy.admin.composer.ErmSystemCkrsconComposer">
+	<hbox>
+		<button id="updateBtn" label="${labels.update }"></button>
+	</hbox>
+	<vlayout>
+		<hlayout>
+			<label value="${labels.ermSystemCkrscon.senseTime }"></label>
+			<combobox id="hourCBbx" readonly="true">
+				<comboitem label="00" value="00"></comboitem>
+				<comboitem label="01" value="01"></comboitem>
+				<comboitem label="02" value="02"></comboitem>
+				<comboitem label="03" value="03"></comboitem>
+				<comboitem label="04" value="04"></comboitem>
+				<comboitem label="05" value="05"></comboitem>
+				<comboitem label="06" value="06"></comboitem>
+				<comboitem label="07" value="07"></comboitem>
+				<comboitem label="08" value="08"></comboitem>
+				<comboitem label="09" value="09"></comboitem>
+				<comboitem label="10" value="10"></comboitem>
+				<comboitem label="11" value="11"></comboitem>
+				<comboitem label="12" value="12"></comboitem>
+				<comboitem label="13" value="13"></comboitem>
+				<comboitem label="14" value="14"></comboitem>
+				<comboitem label="15" value="15"></comboitem>
+				<comboitem label="16" value="16"></comboitem>
+				<comboitem label="17" value="17"></comboitem>
+				<comboitem label="18" value="18"></comboitem>
+				<comboitem label="19" value="19"></comboitem>
+				<comboitem label="20" value="20"></comboitem>
+				<comboitem label="21" value="21"></comboitem>
+				<comboitem label="22" value="22"></comboitem>
+				<comboitem label="23" value="23"></comboitem>
+			</combobox>
+			<combobox id="minCBbx" readonly="true">
+				<comboitem label="00" value="00"></comboitem>
+				<comboitem label="30" value="30"></comboitem>
+			</combobox>
+		</hlayout>
+		<hlayout>
+			<label value="${labels.ermSystemCkrscon.addresseeGroup }"></label>
+			<textbox id="groupIdTBox" visible="false"></textbox><textbox id="groupNameTBox" width="400px"></textbox>
+			<button id="groupBtn" label="${labels.select }">
+				<attribute name="onClick">
+					<![CDATA[
+						Window gourp=com.claridy.common.util.ZkUtils.createComponents("/WEB-INF/pages/system/ermSystemCkrscon/ermSystemCkrsconGroupId.zul",ermSystemCkrsconWin,null);
+						gourp.doModal();
+					]]>
+				</attribute>
+			</button>
+		</hlayout>
+	</vlayout>
+</window>
+</zk>

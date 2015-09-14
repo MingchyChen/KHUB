@@ -1,0 +1,49 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="ermSystemCkrsconGourpIdWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmSystemCkrsconGourpIdComposer">
+	<vlayout width="300px">
+			<hlayout>
+				<label hflex="1" value="${labels.account}:"></label>
+				<textbox hflex="3" id="IdBox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.name }:"></label>
+				<textbox hflex="3" id="NameBox"></textbox>
+			</hlayout>
+			<hlayout>
+				<label  hflex="1" value="${labels.unit }:"></label>
+				<combobox hflex="3" id="orgNameBox"  readonly="true"></combobox>
+			</hlayout>
+		</vlayout>
+
+
+		<hbox>
+			<!-- 查詢 -->
+			<button label="${labels.search }" id="pagSearchBtn"></button>
+			<button label="${labels.showAll }" id="showAll"></button>
+			<button label="${labels.sureSelect}" id="updateBtn" />
+		</hbox>
+		<listbox id="GroupIdLix" checkmark="true" multiple="true"
+			mold="paging" pageSize="10" pagingPosition="both">
+			<listhead>
+				<listheader align="center" width="45px"></listheader>
+				<listheader label="${labels.account}" sort="auto(employeeId)"></listheader>
+				<listheader label="${labels.name}" sort="auto(employeeName)"></listheader>
+				<listheader label="${labels.unit }" sort="auto(orgId)"></listheader>
+				
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell></listcell>
+					<listcell label="${each.employeeId }"></listcell>
+					<listcell label="${each.employeeName }"></listcell>
+					<listcell label="${each.parentWebOrg.orgName }" if="${each.weborg.orgId==''}"></listcell>
+					<listcell label="${each.parentWebOrg.orgName }-${each.weborg.orgName }" if="${each.weborg.orgId!=''}"></listcell>
+				</listitem>
+			</template>
+		</listbox>
+		
+</window>
+</zk>

@@ -1,0 +1,30 @@
+<?page title="用户管理" contentType="text/html;charset=UTF-8"?>
+<!-- <vlayout xmlns:h="native" vflex="1"   apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.claridy.admin.composer.UserTreePowerComposer')" height="100%">
+   <checkbox id="checkAll" label="全选"  onClick="@command('checkAll')"/>
+   <tree id="tree" height="100%" style="overflow:auto;"  model="@bind(vm.btm)">
+	<template name="model" var="webFunctionList">
+		<treeitem>
+			<treerow>
+				<treecell label="@bind(webFunctionList.funcName)" >
+					<checkbox value="@bind(webFunctionList.uuid)" label="@bind(webFunctionList.funcName)" checked="@{bind(webFunctionList.checked)}" />
+				</treecell>
+			</treerow>
+		</treeitem>
+	</template>
+  </tree>
+</vlayout> -->
+
+<vlayout xmlns:h="native" vflex="1" apply="com.claridy.admin.composer.UserTreePowerComposer" height="100%">
+   <checkbox id="checkAll" label="全选"/>
+   <tree id="tree" height="100%" style="overflow:auto;">
+	<!-- <template name="model">
+		<treeitem label="${each.funcName}" open="true">
+			<treerow>
+				<treecell label="${each.funcName}" context="${each.uuid}">
+					<checkbox value="${each.uuid}" label="${each.funcName}"/>
+				</treecell>
+			</treerow>
+		</treeitem>
+	</template> -->
+  </tree>
+</vlayout>

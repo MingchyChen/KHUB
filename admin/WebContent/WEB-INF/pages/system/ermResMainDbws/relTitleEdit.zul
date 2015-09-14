@@ -1,0 +1,47 @@
+<?page id="noticeEditPage" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>  
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<window id="editRelTitleWin" title="${labels.edit}" width="66%"
+		border="normal" position="center,center" closable="true"
+		apply="com.claridy.admin.composer.ErmRelTitleComposer">
+		<vlayout>
+			<grid>
+				<rows>
+					<row>
+						<cell width="30%">
+						<!-- 資源編號 -->
+						<label value="${labels.ermTypeRes.resId}"></label>
+						</cell>
+						<cell>
+						<textbox id="resIdBox" readonly="true" value="" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- 相關題名編號 -->
+							<label value="${labels.ermTypeRes.relatedTitleId}"></label>
+							</cell>
+							<cell>
+							<textbox id="relTitleIdBox" readonly="true" value="" width="80%"/>
+						</cell>
+					</row>
+					<row>
+						<cell width="30%">
+							<!-- ${labels.ermTypeRes.relatedTItleName} -->
+							<label value="相關題名" style="color:red;"></label>
+							</cell>
+							<cell>
+							<textbox id="relTitleNameBox" value="" width="80%"/>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<!-- 確定存檔 -->
+				<button id="updBtn" label="${labels.webNoticeTemplatesEdit.updBtn}"/>
+				<!-- 取消編輯，回列表檢視模式 -->
+				<button id="cancelBtn" label="${labels.webNoticeTemplatesEdit.cancelBtn} " onClick="editRelTitleWin.detach();"/>
+			</div>
+		</vlayout>
+	</window>
+</zk>

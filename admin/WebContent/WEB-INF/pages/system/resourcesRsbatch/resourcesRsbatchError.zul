@@ -1,0 +1,20 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" apply="com.claridy.admin.composer.ResourcesRsbatchErrorComposer">
+<label id="path_label"></label><!-- 頁面路徑 -->
+<separator height="10px"/>
+<hbox>
+<label id="warn1"></label>
+<label id="all_resources"></label>
+<label id="warn2"></label>
+<label id="erro_resources"></label>
+<label id="warn3"></label>
+</hbox>
+<separator height="10px"/>
+<grid id="erro_data_grid"></grid><!-- 錯誤數據顯示的Gird -->
+<hbox>
+<button id="out_btn"></button>
+<button id="return_btn"></button>
+</hbox>
+</window>
+</zk>
